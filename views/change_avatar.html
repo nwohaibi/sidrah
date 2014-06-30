@@ -1,0 +1,23 @@
+<div class="row">
+
+	<div class="large-2 columns">
+		{photo}
+	</div>
+	
+	<div class="large-10 columns">
+		<form action="change_avatar.php?id={id}" method="post" enctype="multipart/form-data">
+			<div class="row">
+				<div class="large-12 columns">
+					<label>تغيير الصورة (الحجم الأقصى {max_size} ك.ب)</label>
+					<input type="file" name="photo" />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="large-12 columns">
+					<button class="small button" type="submit" name="submit" value="1">تغيير الصورة</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

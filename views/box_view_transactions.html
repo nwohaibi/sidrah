@@ -1,0 +1,59 @@
+				<div class="row">
+					<div class="large-4 columns">
+						<h3>{total_deposits} <small>الإيرادات</small></h3>
+					</div>
+					<div class="large-4 columns">
+						<h3>{total_withdraws} <small>المصروفات</small></h3>
+					</div>
+					<div class="large-4 columns">
+						<h3>{balance} <small>الرصيد</small></h3>
+					</div>
+					
+					<hr />
+				</div>
+
+				<div class="row">
+					<div class="large-12 columns">
+
+						<a class="small button" href="family_box.php?action=add_transaction">إضافة عملية</a> <a href="family_box.php?action=view_subscribers" class="small secondary button">عرض المشتركين</a>
+
+						<h4>عمليات معلّقة ({pending_transactions_count})</h4>
+		
+							<table class="table" width="100%">
+								<thead>
+									<tr>			
+										<th>المبلغ</th>
+										<th>الحساب</th>
+										<th>نوع العملية</th>
+										<th>نوع الصرف</th>
+										<th>المُدخل</th>
+										<th>الإجراء</th>
+									</tr>
+								</thead>
+								<tbody>
+									{pending_transactions}
+								</tbody>
+							</table>
+		
+		
+						<h4>العمليات ({transactions_count})</h4>
+		
+							<table class="table" width="100%">
+								<thead>
+									<tr>	
+										<th></th>		
+										<th>المبلغ</th>
+										<th>الحساب</th>
+										<th>الزناد</th>
+										<th>الغرض</th>
+										<th>أنشأهُ</th>
+										<th>نفّذهُ</th>
+									</tr>
+								</thead>
+								<tbody>
+									{transactions}
+								</tbody>
+							</table>
+		
+					</div>
+				</div>

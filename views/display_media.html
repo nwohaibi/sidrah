@@ -1,0 +1,103 @@
+
+<script type="text/javascript">
+
+$(function(){
+
+	$("#upload").hide();
+
+	/*
+	$("#upload_own_media_link").mouseover();
+	*/
+
+	$("#upload_own_media_link").click(function(){
+		$("#upload").show();
+	});
+
+	$("#done").click(function(){
+		
+		var data = new FormData();
+		var media = $("#media_file")[0].files[0];
+		
+		// TODO: Check if the file is okay.
+		
+		if ($("#media_title").val() == "")
+		{
+			alert("الرجاء إدخال وصف للصورة.");
+			return;
+		}
+		
+		data.append("media_title", $("#media_title").val());
+		data.append("media_file", media);
+
+		$("#status").html("جاري الرفع...");
+			
+		$.ajax({
+			url: "zoghiby_ajax.php?action=upload_media&event_id={event_id}&media_is_event={media_is_event}",
+			data: data,
+			cache: false,
+			contentType: false,
+			processData: false,
+			type: "POST",
+			success: function(data){		
+				if (data.status == 0)
+				{
+					$("#status").html("Fail");
+				}
+				else
+				{
+					$("#status").html("تم رفع الصورة بنجاح، جرّب رفع صور أخرى.");
+					
+					var item = "<a href='media.php?action=view_media&id=" + data.media.id + "'><img src='views/medias/photos/thumb/" + data.media.uniqename + "' /></a> ";
+					$("#medias").append(item);
+				}
+
+				$("#media_file").val("");
+				$("#media_title").val("");
+			}
+		});
+	});
+});
+</script>
+
+<div class="media">
+
+	<div id="upload" class="row">
+	
+		<div class="large-12 columns">
+		
+			<h5>ارفع صوراً لديك.</h5>
+		
+			<div class="row">
+				<div class="large-12 columns">
+					<label>الصورة (أقصى حجم {media_max_size} ك.ب)</label>
+					<input type="file" id="media_file" size="8"/>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="large-12 columns">
+					<label>وصف الصورة</label>
+					<input type="text" id="media_title" />
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="large-12 columns">
+					<button type="button" id="done" class="small button">رفع!</button>
+					<span id="status"></span>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+	<div id="display_medias" class="row">
+		<div id="medias" class="large-12 columns">
+		<a id="upload_own_media_link" href="javascript:void(0)" title="أضف صورك"><img src="views/img/add_media.png" /></a>
+		{medias}
+		</div>
+	</div>
+	
+	<div class="clear"></div>
+</div>
+

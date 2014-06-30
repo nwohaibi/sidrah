@@ -1,0 +1,108 @@
+				<script type="text/javascript">
+				
+					$(function(){
+					
+						$("#say_idea").click(function(){
+						
+							if ($("#say_idea").is(".active") == false)
+							{
+								$("#say_idea").addClass("active");
+								
+								// buttons
+								$("#report_bug").removeClass("active");
+								$("#give_praise").removeClass("active");
+								
+								$("#type").val("idea");
+								
+								$(".feedback_txt").val("");
+								$(".feedback_txt").attr("placeholder", "أكتب الفكرة التي تخطر على بالك.");
+							}
+						});
+						
+						$("#report_bug").click(function(){
+						
+							if ($("#report_bug").is(".active") == false)
+							{
+								$("#report_bug").addClass("active");
+								
+								// buttons
+								$("#say_idea").removeClass("active");
+								$("#give_praise").removeClass("active");
+								
+								$("#type").val("bug");
+								
+								$(".feedback_txt").val("");
+								$(".feedback_txt").attr("placeholder", "اشرح بالتفصيل الخطأ الذي ظهر لك.");
+							}
+						});
+						
+						$("#give_praise").click(function(){
+						
+							if ($("#give_praise").is(".active") == false)
+							{
+								$("#give_praise").addClass("active");
+								
+								// buttons
+								$("#say_idea").removeClass("active");
+								$("#report_bug").removeClass("active");
+								
+								$("#type").val("praise");
+								
+								$(".feedback_txt").val("");
+								$(".feedback_txt").attr("placeholder", "سجّل إعجابك بالموقع.");
+							}
+						});
+					});
+				</script>
+
+				<div class="row">
+
+					<div class="large-8 columns">
+						<form action="feedback.php" method="post">
+						
+							<input type="hidden" name="type" value="idea" id="type" />
+							<input type="hidden" name="page" value="{page}" />
+						
+							<div class="row">
+							
+								<dl class="sub-nav">
+									<div class="large-12 columns">
+										<dl>
+											<dd id="say_idea" class="active"><a href="javascript:void(0);">اطرح فكرة</a></dd>
+											<dd id="report_bug"><a href="javascript:void(0);">أبلغ عن خطأ</a></dd>
+											<dd id="give_praise"><a href="javascript:void(0);">أبد إعجابك</a></dd>
+										</dl>
+									</div>
+								</dl>
+							</div>
+						
+							<div class="row">
+								<div class="large-12 columns">
+									<label>المحتوى</label>
+									<textarea class="feedback_txt" name="content" placeholder="أكتب الفكرة التي تخطر على بالك."></textarea>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="large-6 columns">
+									<div class="row collapse">
+										<label>رمز التحقّق</label>
+										<div class="small-9 columns">
+											<input type="text" name="captcha" placeholder="" size="4" />
+										</div>
+										<div class="small-3 columns">
+											<span class="postfix"><img src="captcha.php?page=feedback" /></span>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="large-12 columns">
+									<input class="small button" type="submit" name="submit" value="أخبرنا برأيك" />
+								</div>
+							</div>
+							
+						</form>
+					</div>
+				</div>

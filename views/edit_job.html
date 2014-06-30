@@ -1,0 +1,41 @@
+				<div class="inputform">
+
+					<h2>تعديل وظيفة {title}</h2>
+					<form action="manage_jobs.php?action=edit_job&id={id}" method="post">
+						<p>
+							<label>مسمّى الوظيفة</label>
+							<input type="text" name="title" value="{title}" />
+						</p>
+						
+						<p>
+							<label>مسمّى الوظيفة (إنجليزي)</label>
+							<input type="text" name="en_title" value="{en_title}" />
+						</p>
+						
+						<p>
+							<label>الوصف</label>
+							<textarea name="description" cols="40" rows="4">{description}</textarea>
+						</p>
+						
+						<p>
+							<label>المسؤوليات</label>
+							<textarea name="responsibilities" cols="40" rows="4">{responsibilities}</textarea>
+						</p>
+						
+						<p>
+							<label>المؤهلات</label>
+							<textarea name="qualifications" cols="40" rows="4">{qualifications}</textarea>
+						</p>
+
+						<p>
+							<label>المهارات</label>
+							<textarea name="desired_skills" cols="40" rows="4">{desired_skills}</textarea>
+						</p>
+
+						<p>
+							<button class="submit" type="submit" name="submit" value="1"><i class="icon-ok icon-white"></i> تعديل وظيفة</button>
+							<span class="info">استخدم (*) في أول كل سطر لإضافة عنصر قائمة.</span>
+						</p>
+					</form>
+				</div>
+				

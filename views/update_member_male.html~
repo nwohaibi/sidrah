@@ -1,0 +1,1079 @@
+				<script type="text/javascript">
+
+				var suggested_mothers = [{suggested_mothers}];
+				var already_wives = [{already_wives}];
+				var wives = new Array();
+	
+				var wife_index = {wife_index};
+				var daughter_index = {daughter_index};
+				var son_index = {son_index};
+
+				// Configurations.
+				var saved_values = Array();
+				var default_value = "";
+	
+				$(function(){
+				
+					// Set the mother to be zoghibyAutoComplete object.
+					$(".zoghiby-mother-autocomplete").zoghibyAutoComplete({
+						type: 'mother', suggested: suggested_mothers
+					});
+
+					// Update education.
+					$(".education").val({education});
+		
+					// Update major.
+					$(".major").val('{major}');
+		
+					// Add an initial wife.
+					add_wife();
+		
+					// Add an initial son.
+					add_son();
+		
+					// Add an initial daughter.
+					add_daughter();
+		
+					// Set the birth date.
+					$("#dob_d").val({dob_d});
+					$("#dob_m").val({dob_m});
+					
+					// Set the death date.
+					$("#dod_d").val({dod_d});
+					$("#dod_m").val({dod_m});
+					
+					{js_on_load}
+					
+					$(".inputform").submit(function(){
+						
+						// Remove all warning classes.
+						$("#p_mother").removeClass("warning");
+						$("#p_mobile").removeClass("warning");
+						$("#p_location").removeClass("warning");
+						$("#p_pob").removeClass("warning");
+						$("#p_dob").removeClass("warning");
+						
+						
+						// Check if the mother is empty.
+						if ($(".zoghiby-mother-autocomplete").val() == "")
+						{
+							alert("الرجاء إدخال اسم الأم.");
+							$("#p_mother").addClass("warning");
+							return false;
+						}
+						
+						var mobile = parseInt($("#input_mobile").val());
+						
+						if (isNaN(mobile) || mobile == 0)
+						{
+							alert("الرجاء إدخال رقم الجوّال.");
+							$("#p_mobile").addClass("warning");
+							return false;
+						}
+						
+						if ($("#input_location").val() == "")
+						{
+							alert("الرجاء إدخال مكان الإقامة الحاليّ.");
+							$("#p_location").addClass("warning");
+							return false;
+						}
+						
+						var dob_y = parseInt($('#dob_y').val());
+						
+						if ($('#dob_d').val() == "0" || $('#dob_m').val() == "0" || isNaN(dob_y) || dob_y == 0)
+						{
+							alert("الرجاء إدخال تاريخ الميلاد.");
+							$("#p_dob").addClass("warning");
+							return false;
+						}
+						
+						if ($("#input_pob").val() == "")
+						{
+							alert("الرجاء إدخال مكان الميلاد");
+							$("#p_pob").addClass("warning");
+							return false;
+						}
+						
+						var wives_count = 0;
+						
+						// Check the wives if the man is married.
+						$(".wife").each(function (k, v){
+							if (v.value != "")
+							{
+								wives_count++;
+							}
+						});
+						
+						// Check if the man is married and has no wives.
+						if ($(".marital_status").val() == 2 && wives_count == 0)
+						{
+							alert("الرجاء إدخال زوجة واحدة على الأقل.");
+							return false;
+						}
+						
+						// Walk up-on children.
+						var children_count = 0;
+						
+						$(".childnamein").each(function(k, v){
+							if (v.value != "")
+							{
+								children_count++;
+							}
+						});
+						
+						if (wives_count == 0 && children_count > 0)
+						{
+							alert("الرجاء إدخال اسم والدة الأبناء.");
+							return false;
+						}
+						
+						var non_entered_husbands = 0;
+						
+						// Walk up-on daughters to check husband names.
+						$(".daughter_ms_select").each(function(index){
+						
+							var _husband = $(".zoghiby-daughter-husband-autocomplete:eq(" + index + ")").val();
+							var _value = $(".daughter_ms_select:eq(" + index + ")").val();
+							
+							// Check if one of the daughters is married/divorced/widow.
+							if (_value != 1 && _husband == "")
+							{
+								non_entered_husbands++;
+							}
+						});
+						
+						if (non_entered_husbands > 0)
+						{
+							alert("الرجاء إدخال اسم زوج أو طليق البنت.");
+							return false;
+						}
+
+					});
+				});
+	
+				// Add a wife input field
+				function add_wife()
+				{
+					var marital_status = '<select name="wife_marital_status[' + wife_index + ']"><option value="2">زوجة</option><option value="3">طليقة</option></select> <select name="wife_is_alive[' + wife_index + ']"><option value="1">حيّة ترزق</option><option value="0">متوفّاة</option></select>';
+					var one_wife = '<p><input class="zoghiby-wife-autocomplete" type="text" name="wife[' + wife_index + ']" size="30" placeholder="[اسم الزوجة] [الأب] [الجد] [العائلة]" /> ' + marital_status + '</p>';
+
+					$("#more_wives").append(one_wife);
+		
+					// Set the wives to be zoghibyAutoComplete object.
+					$(".zoghiby-wife-autocomplete").zoghibyAutoComplete({
+						type: 'wife', class_to_walk: 'wife'
+					}, function(){
+						update_wives();
+					});
+		
+					wife_index--;
+				}
+	
+				// Add a son input field
+				function add_son()
+				{
+					var son_additional = '<td><select name="son_is_alive[' + son_index + ']"><option value="1">حيّ يرزق</option><option value="0">متوفّى</option></select></td><td><input type="text" placeholder="رقم الجوّال" name="son_mobile[' + son_index + ']" size="8" /></td><td><select name="son_dob_d[' + son_index + ']"><option value="0"></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option></select> <select name="son_dob_m[' + son_index + ']"><option value="0"></option><option value="1">محرم</option><option value="2">صفر</option><option value="3">ربيع الأول</option><option value="4">ربيع الثاني</option><option value="5">جمادى الأولى</option><option value="6">جمادى الثانية</option><option value="7">رجب</option><option value="8">شعبان</option><option value="9">رمضان</option><option value="10">شوال</option><option value="11">ذو القعدة</option><option value="12">ذو الحجة</option></select> <input type="text" placeholder="0000" name="son_dob_y[' + son_index + ']" size="2" /></td>';
+					var one_son = '<tr><td class="childname"><input class="childname childnamein" type="text" name="son[' + son_index + ']" placeholder="[الاسم الأول]" /></td><td><select class="moms" name="son_mom[' + son_index + ']"></select></td>' + son_additional + '</tr>';
+					
+					$("#sons_table").append(one_son);
+					update_wives();
+					son_index--;
+				}
+
+				// Add a daughter input field
+				function add_daughter()
+				{
+					var il_daughter = '<td><select name="daughter_is_alive[' + daughter_index + ']"><option value="1">حيّة ترزق</option><option value="0">متوفّاة</option></select></td><td><input type="text" placeholder="رقم الجوّال" name="daughter_mobile[' + daughter_index + ']" size="8" /></td>';
+					var dob_daughter = '<td><select name="daughter_dob_d[' + daughter_index + ']"><option value="0"></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option></select> <select name="daughter_dob_m[' + daughter_index + ']"><option value="0"></option><option value="1">محرم</option><option value="2">صفر</option><option value="3">ربيع الأول</option><option value="4">ربيع الثاني</option><option value="5">جمادى الأولى</option><option value="6">جمادى الثانية</option><option value="7">رجب</option><option value="8">شعبان</option><option value="9">رمضان</option><option value="10">شوال</option><option value="11">ذو القعدة</option><option value="12">ذو الحجة</option></select> <input type="text" placeholder="0000" name="daughter_dob_y[' + daughter_index + ']" size="2" /></td>';
+					var ms_daughter = '<td><select onchange="daughter_husband_toggle(this.name)" name="daughter_marital_status[' + daughter_index + ']" id="dm_' + daughter_index + '" class="daughter_ms_select"><option value="1">عزباء</option><option value="2">متزوجة</option><option value="3">طليقة</option><option value="4">أرملة</option></select></td><td><input type="text" placeholder="اسم الزوج (رباعي)" name="daughter_husband_name[' + daughter_index + ']" style="display: none;" class="zoghiby-daughter-husband-autocomplete" id="daughter_husband_' + daughter_index + '"/></td>';
+					var one_daughter = '<tr><td class="childname"><input class="childname childnamein" type="text" name="daughter[' + daughter_index + ']" placeholder="[الاسم الأول]" /></td><td><select class="moms" name="daughter_mom[' + daughter_index + ']"></select></td>' + il_daughter + dob_daughter + ms_daughter + '</tr>';		
+
+					$("#daughters_table").append(one_daughter);
+
+					$(".zoghiby-daughter-husband-autocomplete").zoghibyAutoComplete({
+						type: 'husband'
+					});
+
+					update_wives();
+					daughter_index--;
+				}
+
+				// Update the wives
+				function update_wives()
+				{
+					wives = []; // Empty the list.
+					wives = wives.concat(already_wives); // Copy the wives from database.
+
+					var temp = $(".wife");
+		
+					for(var i=0; i<temp.length; i++)
+					{
+						var _wname = temp[i].value;
+			
+						if (_wname != "")
+						{
+							var wnameobj = temp[i].name;
+							var _id = wnameobj.substring(5, wnameobj.length-1);
+				
+							// Set the default value
+							if (default_value == "")
+							{
+								default_value = _id;
+							}
+					
+							if (!is_inside_already_wives(_wname))
+							{
+								// Add the wife to the array
+								wives.push({id: _id, name: _wname});
+							}
+						}
+					}
+		
+					$.each($(".moms"), function(k, v){
+						saved_values[k] = v.value;
+					});
+		
+					$(".moms").html("");
+		
+					for (var j=0; j<wives.length; j++)
+					{
+						var wife_names = wives[j].name.split(/\s/);
+						var short_name =  wife_names[0] + ' ' + wife_names[1] + ' ' + wife_names[2] + ' ' + wife_names[wife_names.length-1];
+						
+						$(".moms").append("<option value='" + wives[j].id + "'>" + short_name + "</option>\n");
+					}
+		
+					$.each($(".moms"), function(k, v){
+		
+						var val;
+			
+						if (saved_values[k] == "")
+						{
+							val = default_value;
+						}
+						else
+						{
+							val = saved_values[k];
+						}
+			
+						if (val != "")
+						{
+							v.value = val;
+						}
+					});
+		
+					update_sons_daughters();
+				}
+	
+				function is_inside_already_wives(name)
+				{
+					for(var i=0; i<already_wives.length; i++)
+					{
+						if (already_wives[i].name == name)
+						{
+							return true;
+						}
+					}
+					
+					return false;
+				}
+	
+				function update_sons_daughters()
+				{
+					if (wives.length == 0)
+					{
+						$(".sons_daughters").hide();
+					}
+					else
+					{
+						$(".sons_daughters").show();
+					}
+				}
+
+				function daughter_husband_toggle(id)
+				{
+					var n = id.substring(id.indexOf("[")+1, id.length-1);
+					var dms = $("#dm_" + n).val();
+		
+					if (dms != 1)
+					{
+						$("#daughter_husband_" + n).show();
+					}
+					else
+					{
+						$("#daughter_husband_" + n).hide();
+					}
+				}
+
+				function update_son_mom_id(id, mom_id)
+				{
+					$("#son_mom_id_" + id).val(mom_id);
+				}
+	
+				function update_son_is_alive(id, is_alive)
+				{
+					$("#son_is_alive_" + id).val(is_alive);
+				}
+				
+				function update_son_dob_d(id, dob_d)
+				{
+					$("#son_dob_d_" + id).val(dob_d);
+				}
+	
+				function update_son_dob_m(id, dob_m)
+				{
+					$("#son_dob_m_" + id).val(dob_m);
+				}
+	
+				function update_daughter_mom_id(id, mom_id)
+				{
+					$("#daughter_mom_id_" + id).val(mom_id);
+				}
+
+				function update_daughter_is_alive(id, is_alive)
+				{
+					$("#daughter_is_alive_" + id).val(is_alive);
+				}
+				
+				function update_daughter_dob_d(id, dob_d)
+				{
+					$("#daughter_dob_d_" + id).val(dob_d);
+				}
+	
+				function update_daughter_dob_m(id, dob_m)
+				{
+					$("#daughter_dob_m_" + id).val(dob_m);
+				}
+	
+				function update_daughter_marital_status(id, ms)
+				{
+					$("#dm_" + id).val(ms);
+				}
+	
+				function update_mother_ms(ms)
+				{
+					$(".mom_marital_status").val(ms);
+				}
+	
+				function update_mother_is_alive(is_alive)
+				{
+					$(".mom_is_alive").val(is_alive);
+				}
+	
+				function update_wife_marital_status(id, ms)
+				{
+					$("#wife_marital_status_" + id).val(ms);
+				}
+	
+				function update_wife_is_alive(id, is_alive)
+				{
+					$("#wife_is_alive_" + id).val(is_alive);
+				}
+
+				function update_marital_status(status)
+				{
+					$(".marital_status").val(status);
+				}
+	
+				function update_is_alive(is_alive)
+				{
+					$(".is_alive").val(is_alive);
+		
+					if (is_alive == 0)
+					{
+						$(".date_of_death").show();
+					}
+					else
+					{
+						$(".date_of_death").hide();
+
+						$("#dod_d").val("0");
+						$("#dod_m").val("0");
+						$("#dod_y").val("0000");
+					}
+				}
+
+				</script>
+
+				<form action="update_profile_male.php?id={member_id}&qkey={qkey}" method="post" class="inputform">
+				
+					<div id="note">
+						<i class="icon-warning-sign"></i>
+						الرجاء تحرّي الدقّة في إدخال جميع المعلومات، مع العلم أن اسم الأم و الزوجة و البنت لن يظهر للعموم.
+					</div>
+
+					<h2>معلومات النبض</h2>
+
+					<!-- Is alive -->
+					<p>
+						<label>الحالة</label>
+						
+						<select name="is_alive" class="is_alive" onchange="update_is_alive(this.value)">
+							<option value="1">حيّ يرزق</option>
+							<option value="0">متوفّى</option>
+						</select>
+					</p>
+					<div class="clear"></div>
+
+					<h2>معلومات الأم
+<span class="h2span">
+		(إذا كانت الأم من العائلة و ظهرت نتائج البحث متشابهة ننصحك بالذهاب إلى <a href="familytree.php" target="_blank">شجرة العائلة</a> و التأكد من اسم الجد الخامس)
+</span>
+					</h2>
+
+					<!-- Mother -->
+					<p>	
+					<ul id="p_mother" class="autocomplete_ul">
+							<li class="label">الأم
+							<i>(مثال: نورة محمد عبدالله الزغيبي)</i>
+							</li>
+						
+							<li>
+								<input type="text" class="zoghiby-mother-autocomplete" name="mother_name" value="{mother_name}" placeholder="[اسم الأم] [الأب] [الجد] [العائلة]"/>
+							</li>
+							
+						<li>
+							<select name="mom_marital_status" class="mom_marital_status" onchange="update_mother_ms(this.value)">
+								<option value="2">زوجة للأب</option>
+								<option value="3">طليقة منه</option>
+								<option value="4">أرملة له</option>
+							</select>
+						</li>
+
+						<li>
+							<select name="mom_is_alive" class="mom_is_alive">
+								<option value="1">حيّة ترزق</option>
+								<option value="0">متوفّاة</option>
+							</select>
+						</li>
+						<li>
+							<i class="icon-warning-sign"></i> يجب عليك النقر على أحد الأسماء التي تظهر في القائمة ليتم التأكيد.
+						<li>
+					</ul>
+					<div class="clear"></div>
+					</p>
+					
+
+					<h2>معلومات الإتصال</h2>
+
+					<!-- Mobile -->
+					<p id="p_mobile">
+						<label>الجوّال</label>
+						<input id="input_mobile" type="text" name="mobile" value="{mobile}" />
+					</p>
+					<div class="clear"></div>
+
+					<!-- Location -->
+					<p id="p_location">
+						<label>مكان الإقامة الحاليّ</label>
+						<input id="input_location" type="text" name="location" value="{location}" />
+						<span class="explain"><i class="icon-warning-sign"></i> الرجاء إدخال مكان إقامة واحد فقط.</span>
+					</p>
+					<div class="clear"></div>
+
+					<h2>معلومات تاريخية</h2>
+
+					<!-- Date of Birth -->
+					<p id="p_dob">
+						<label>تاريخ الميلاد (هجري)</label>
+						
+						<select name="dob_d" id="dob_d">
+							<option value="0"></option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+							<option value="24">24</option>
+							<option value="25">25</option>
+							<option value="26">26</option>
+							<option value="27">27</option>
+							<option value="28">28</option>
+							<option value="29">29</option>
+							<option value="30">30</option>
+						</select>
+					
+						<select name="dob_m" id="dob_m">
+							<option value="0"></option>
+							<option value="1">محرم</option>
+							<option value="2">صفر</option>
+							<option value="3">ربيع الأول</option>
+							<option value="4">ربيع الثاني</option>
+							<option value="5">جمادى الأولى</option>
+							<option value="6">جمادى الثانية</option>
+							<option value="7">رجب</option>
+							<option value="8">شعبان</option>
+							<option value="9">رمضان</option>
+							<option value="10">شوال</option>
+							<option value="11">ذو القعدة</option>
+							<option value="12">ذو الحجة</option>
+						</select>
+					
+						<input id="dob_y" type="text" name="dob_y" value="{dob_y}" placeholder="سنة" size="2"/>
+					</p>
+					<div class="clear"></div>
+
+					<!-- Place of Birth -->
+					<p id="p_pob">
+						<label>مكان الميلاد</label>
+						<input type="text" name="pob" placeholder="مكان الميلاد" value="{pob}" id="input_pob" />
+					</p>
+					<div class="clear"></div>
+
+					<div class="date_of_death">
+					<!-- Date of Death -->
+					<p>
+						<label>تاريخ الوفاة (هجري)</label>
+						
+						<select name="dod_d" id="dod_d">
+							<option value="0"></option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+							<option value="24">24</option>
+							<option value="25">25</option>
+							<option value="26">26</option>
+							<option value="27">27</option>
+							<option value="28">28</option>
+							<option value="29">29</option>
+							<option value="30">30</option>
+						</select>
+					
+						<select name="dod_m" id="dod_m">
+							<option value="0"></option>
+							<option value="1">محرم</option>
+							<option value="2">صفر</option>
+							<option value="3">ربيع الأول</option>
+							<option value="4">ربيع الثاني</option>
+							<option value="5">جمادى الأولى</option>
+							<option value="6">جمادى الثانية</option>
+							<option value="7">رجب</option>
+							<option value="8">شعبان</option>
+							<option value="9">رمضان</option>
+							<option value="10">شوال</option>
+							<option value="11">ذو القعدة</option>
+							<option value="12">ذو الحجة</option>
+						</select>
+						
+						<input type="text" name="dod_y" value="{dod_y}" placeholder="سنة" size="2" class="dod_y" />
+					</p>
+					<div class="clear"></div>
+					</div>
+
+					<h2>معلومات التعليم</h2>
+
+					<!-- Education -->
+					<p>
+						<label>المستوى التعليمي</label>
+						<select name="education" class="education">
+							<option value="0">بدون</option>
+							<option value="1">ابتدائي</option>
+							<option value="2">متوسط</option>
+							<option value="3">ثانوي</option>
+							<option value="4">دبلوم</option>
+							<option value="5">بكالوريوس</option>
+							<option value="6">ماجستير</option>
+							<option value="7">دكتوراه</option>
+						</select>
+					</p>
+					<div class="clear"></div>
+
+					<!-- Major -->
+					<p>
+						<label>التخصّص</label>
+						<select name="major" class="major">
+
+						<option value=""></option>
+
+						<optgroup label="التخصصات الثانوية">
+						<option value="علمي">علمي</option>
+						<option value="أدبي">أدبي</option>
+						<option value="إداري">إداري</option>
+						<option value="تقني">تقني</option>
+						</optgroup>
+
+						<optgroup label="التخصصات الهندسية">
+						<option value="الهندسة الكهربائية">الهندسة الكهربائية</option>
+						<option value="الهندسة المدنية">الهندسة المدنية</option>
+						<option value="الهندسة الميكانيكية">الهندسة الميكانيكية</option>
+						<option value="الهندسة الصناعية">الهندسة الصناعية</option>
+						<option value="الهندسة الكيميائية">الهندسة الكيميائية</option>
+						<option value="الهندسة النفط">الهندسة النفط</option>
+						<option value="الهندسة الزراعية">الهندسة الزراعية</option>
+						<option value="الهندسة الزراعية">الهندسة الزراعية</option>
+						<option value="هندسة الطيران">هندسة الطيران</option>
+						<option value="هندسة التعدين">هندسة التعدين</option>
+						<option value="هندسة الحاسب الآلي">هندسة الحاسب الآلي</option>
+						<option value="هندسة الطيران والفضاء">هندسة الطيران والفضاء</option>
+						<option value="هندسة البترول">هندسة البترول</option>
+						<option value="الهندسة المعمارية">الهندسة المعمارية</option>
+						<option value="هندسة المختبرات الصناعية">هندسة المختبرات الصناعية</option>
+						<option value="هندسة الآلآت الدقيقة والتحكم">هندسة الآلآت الدقيقة والتحكم</option>
+						<option value="هندسة الكهروميكانيكا">هندسة الكهروميكانيكا</option>
+						<option value="التخطيط الحضري والعمراني">التخطيط الحضري والعمراني</option>
+						<option value="العمارة وعلوم البناء">العمارة وعلوم البناء</option>
+						<option value="عمارة البيئة">عمارة البيئة</option>
+						<option value="تقنية معمارية">تقنية معمارية</option>
+						<option value="تقنية مدنية">تقنية مدنية</option>
+						<option value="مساحة">مساحة</option>
+						<option value="سلامة الأغذية">سلامة الأغذية</option>
+						<option value="حماية البيئة">حماية البيئة</option>
+						<option value="السلامة والصحة المهنية">السلامة والصحة المهنية</option>
+						<option value="هندسة التصنيع">هندسة التصنيع</option>
+						<option value="هندسة التكييف والتبريد">هندسة التكييف والتبريد</option>
+						<option value="الهندسة الحرارية وتقنية تحلية المياة">الهندسة الحرارية وتقنية تحلية المياة</option>
+						<option value="هندسة كمبيوتر واتصالات">هندسة كمبيوتر واتصالات</option>
+						</optgroup>
+
+						<optgroup label="التخصصات الطبية">
+						<option value="التشريح">التشريح</option>
+						<option value="التخدير والعناية المركزة">التخدير والعناية المركزة</option>
+						<option value="الأمراض الجلدية">الأمراض الجلدية</option>
+						<option value="طب الأسرة والمجتمع">طب الأسرة والمجتمع</option>
+						<option value="طب وجراحة العيون">طب وجراحة العيون</option>
+						<option value="جراحة العظام">جراحة العظام</option>
+						<option value="طب الاطفال">طب الاطفال</option>
+						<option value="علم الأمراض">علم الأمراض</option>
+						<option value="علم وظائف الأعضاء">علم وظائف الأعضاء</option>
+						<option value="الجراحة">الجراحة</option>
+						<option value="وحدة الامراض النفسية">وحدة الامراض النفسية</option>
+						<option value="الأشعة والتصوير الطبي">الأشعة والتصوير الطبي</option>
+						<option value="وقاية الأسنان">وقاية الأسنان</option>
+						<option value="إصلاح الأسنان">إصلاح الأسنان</option>
+						<option value="علوم الإستعاضة السنية">علوم الإستعاضة السنية</option>
+						<option value="البصريات">البصريات</option>
+						<option value="علوم التأهيل الصحي">علوم التأهيل الصحي</option>
+						<option value="التمريض">التمريض</option>
+						<option value="صحة الأسنان">صحة الأسنان</option>
+						<option value="علوم صحة المجتمع">علوم صحة المجتمع</option>
+						<option value="صحة الطفل">صحة الطفل</option>
+						<option value="الطب الباطني">الطب الباطني</option>
+						<option value="الكيمياء الحيوية الإكلينيكية">الكيمياء الحيوية الإكلينيكية</option>
+						<option value="أمراض النساء والولادة">أمراض النساء والولادة</option>
+						<option value="العقاقير">العقاقير</option>
+						<option value="الصيدلة">الصيدلة</option>
+						<option value="الكيمياء الصيلية">الكيمياء الصيلية</option>
+						<option value="جراحة الوجه والفكين وعلوم التشخيص">جراحة الوجه والفكين وعلوم التشخيص</option>
+						<option value="علوم الفم الأساسية والسريرية">علوم الفم الأساسية والسريرية</option>
+						<option value="إعادت تأهيل الفم والوجه والفكين">إعادت تأهيل الفم والوجه والفكين</option>
+						<option value="علوم طب الأسنان الوقائي">علوم طب الأسنان الوقائي</option>
+						<option value="تقنية المختبرات الطبية">تقنية المختبرات الطبية</option>
+						<option value="العلاج الطبيعي">العلاج الطبيعي</option>
+						<option value="التغذية الإكلينيكية">التغذية الإكلينيكية</option>
+						<option value="الأحياء الطبية">الأحياء الطبية</option>
+						<option value="الفيزياء الطبية">الفيزياء الطبية</option>
+						<option value="الكائنات الدقيقة الطبية">الكائنات الدقيقة الطبية</option>
+						<option value="الطفيلات الطبية">الطفيلات الطبية</option>
+						<option value="الأذن والانف والحنجرة">الأذن والانف والحنجرة</option>
+						<option value="أمراض الدم">أمراض الدم</option>
+						<option value="جراحة المسالك البولية">جراحة المسالك البولية</option>
+						<option value="وحدة الجينوم">وحدة الجينوم</option>
+						<option value="النواتج الطبيعية والطب البديل">النواتج الطبيعية والطب البديل</option>
+						<option value="علم الأدوية والسموم">علم الأدوية والسموم</option>
+						<option value="تقنية أسنان">تقنية أسنان</option>
+						<option value="إسعاف وطوارئ">إسعاف وطوارئ</option>
+						<option value="السجلات الطبية">السجلات الطبية</option>
+						<option value="السكرتارية الطبية">السكرتارية الطبية</option>
+						<option value="إدارة صحية">إدارة صحية</option>
+						<option value="مساعد طبيب الاسنان">مساعد طبيب الاسنان</option>
+						<option value="إدارة مستشفيات">إدارة مستشفيات</option>
+						<option value="المراقبة الصحية">المراقبة الصحية</option>
+						<option value="الأجهزة الطبية">الأجهزة الطبية</option>
+						<option value="التأمين الصحي">التأمين الصحي</option>
+						<option value="الجودة في المنشآت الصحية">الجودة في المنشآت الصحية</option>
+						<option value="الخدمات الصحية">الخدمات الصحية</option>
+						<option value="الصحة والسلامة المهنية">الصحة والسلامة المهنية</option>
+						<option value="الاجهزة والاطراف الصناعية">الاجهزة والاطراف الصناعية</option>
+						<option value="العمليات">العمليات</option>
+						<option value="العلاج الوظيفي">العلاج الوظيفي</option>
+						</optgroup>
+
+						<optgroup label="العلوم الإدارية">
+						<option value="إدارة الأعمال">إدارة الأعمال</option>
+						<option value="الأساليب الكمية">الأساليب الكمية</option>
+						<option value="الإقتصاد">الإقتصاد</option>
+						<option value="الإدارة العامة">الإدارة العامة</option>
+						<option value="الأعلام">الأعلام</option>
+						<option value="أنظمة ( قانون )">أنظمة ( قانون )</option>
+						<option value="نظم المعلومات الإدارية">نظم المعلومات الإدارية</option>
+						<option value="تسويق">تسويق</option>
+						<option value="إدارة مكتبية">إدارة مكتبية</option>
+						<option value="التطبيقات المكتبية">التطبيقات المكتبية</option>
+						<option value="إدارة المواد">إدارة المواد</option>
+						<option value="دراسات المكتبات">دراسات المكتبات</option>
+						<option value="الدراسات الإحصائية">الدراسات الإحصائية</option>
+						<option value="الإحصاء التطبيقي">الإحصاء التطبيقي</option>
+						<option value="النسخ بلغتين">النسخ بلغتين</option>
+						<option value="السكرتير التنفيذي">السكرتير التنفيذي</option>
+						<option value="إدارة مراكز المحفوظات والوثائق">إدارة مراكز المحفوظات والوثائق</option>
+						<option value="الإدارة البنكية">الإدارة البنكية</option>
+						<option value="إدارة التأمين">إدارة التأمين</option>
+						<option value="إدارة الجودة">إدارة الجودة</option>
+						<option value="إدارة مستشفيات">إدارة مستشفيات</option>
+						<option value="الإدارة المالية">الإدارة المالية</option>
+						<option value="الأعمال البنكية">الأعمال البنكية</option>
+						<option value="المبيعات">المبيعات</option>
+						<option value="عمليات التأمين">عمليات التأمين</option>
+						<option value="إدارة المستودعات">إدارة المستودعات</option>
+						<option value="العلوم السياسية">العلوم السياسية</option>
+						<option value="الإحصاء وبحوث العمليات">الإحصاء وبحوث العمليات</option>
+						<option value="المحاسبة">المحاسبة</option>
+						<option value="ادارة الموارد البشرية">ادارة الموارد البشرية</option>
+						<option value="تقنية المكاتب">تقنية المكاتب</option>
+						</optgroup>
+
+						<optgroup label="التخصصات الزراعية">
+						<option value="علوم التربة">علوم التربة</option>
+						<option value="وقاية النبات">وقاية النبات</option>
+						<option value="الإنتاج النباتي">الإنتاج النباتي</option>
+						<option value="علوم الأغذية والتغذية">علوم الأغذية والتغذية</option>
+						<option value="الإنتاج الحيواني">الإنتاج الحيواني</option>
+						<option value="الهندسة الزراعية">الهندسة الزراعية</option>
+						<option value="الهندسة الزراعية">الهندسة الزراعية</option>
+						<option value="الهندسة الزراعية">الهندسة الزراعية</option>
+						<option value="زراعة المناطق الجافة">زراعة المناطق الجافة</option>
+						<option value="علم النبات">علم النبات</option>
+						<option value="النباتات والإحياء الدقيقة">النباتات والإحياء الدقيقة</option>
+						</optgroup>
+
+						<optgroup label="التخصصات الأدبية والشرعية">
+						<option value="التفسير وعلم القرآن">التفسير وعلم القرآن</option>
+						<option value="الحديث وعلومة">الحديث وعلومة</option>
+						<option value="الدعوة والثقافة الإسلامية">الدعوة والثقافة الإسلامية</option>
+						<option value="القراءات">القراءات</option>
+						<option value="الكتاب والسنة">الكتاب والسنة</option>
+						<option value="شريعة">شريعة</option>
+						<option value="القضاء">القضاء</option>
+						<option value="الإقتصاد الإسلامي">الإقتصاد الإسلامي</option>
+						<option value="التاريخ الإسلامي">التاريخ الإسلامي</option>
+						<option value="الحضارة">الحضارة</option>
+						<option value="الأصول">الأصول</option>
+						<option value="السنة وعلومها">السنة وعلومها</option>
+						<option value="العقيدة والمذاهب المعاصرة">العقيدة والمذاهب المعاصرة</option>
+						<option value="أصول الفقه">أصول الفقه</option>
+						<option value="الدعوة والإحتساب">الدعوة والإحتساب</option>
+						<option value="القرآن وعلومة">القرآن وعلومة</option>
+						<option value="السنة وعلومها">السنة وعلومها</option>
+						<option value="العقيدة والمذاهب المعاصرة">العقيدة والمذاهب المعاصرة</option>
+						<option value="الدراسات الإسلامية">الدراسات الإسلامية</option>
+						<option value="جغرافيا">جغرافيا</option>
+						<option value="علم النفس">علم النفس</option>
+						<option value="علوم الأدب">علوم الأدب</option>
+						<option value="البلاغة والنقد">البلاغة والنقد</option>
+						<option value="اللغويات">اللغويات</option>
+						<option value="النحو">النحو</option>
+						<option value="الصرف">الصرف</option>
+						<option value="التاريخ والحضارة">التاريخ والحضارة</option>
+						<option value="المكتبات والمعلومات">المكتبات والمعلومات</option>
+						<option value="الخدمة الإجتماعية">الخدمة الإجتماعية</option>
+						<option value="علم الإجتماع">علم الإجتماع</option>
+						<option value="اللغة الإنجليزية وآدابها">اللغة الإنجليزية وآدابها</option>
+						<option value="الآسيوية والترجمة">الآسيوية والترجمة</option>
+						<option value="الأوروبية والترجمة">الأوروبية والترجمة</option>
+						<option value="اللغة الفرنسية">اللغة الفرنسية</option>
+						<option value="اللغة الألمانية">اللغة الألمانية</option>
+						<option value="اللغة الإسبانية">اللغة الإسبانية</option>
+						<option value="اللغة الروسية">اللغة الروسية</option>
+						<option value="اللغة الإيطالية">اللغة الإيطالية</option>
+						<option value="اللغة التركية">اللغة التركية</option>
+						<option value="اللغة الصينية">اللغة الصينية</option>
+						<option value="اللغة العبرية">اللغة العبرية</option>
+						<option value="اللغة الفارسية">اللغة الفارسية</option>
+						<option value="اللغة اليابانية">اللغة اليابانية</option>
+						<option value="علوم لغات الشعوب الإسلامية وآدابها">علوم لغات الشعوب الإسلامية وآدابها</option>
+						<option value="اللغة العربية وآدابها">اللغة العربية وآدابها</option>
+						</optgroup>
+
+						<optgroup label="التربوية ( التعليمية )">
+						<option value="الإدارة التربوية">الإدارة التربوية</option>
+						<option value="التربية الفنية">التربية الفنية</option>
+						<option value="التربية الرياضية">التربية الرياضية</option>
+						<option value="التربية الخاصة">التربية الخاصة</option>
+						<option value="الوسائل وتكنولوجيا التعليم">الوسائل وتكنولوجيا التعليم</option>
+						<option value="جغرافيا">جغرافيا</option>
+						<option value="علم النفس">علم النفس</option>
+						<option value="علوم الأدب">علوم الأدب</option>
+						<option value="البلاغة والنقد">البلاغة والنقد</option>
+						<option value="اللغويات">اللغويات</option>
+						<option value="النحو">النحو</option>
+						<option value="الصرف">الصرف</option>
+						<option value="التاريخ والحضارة">التاريخ والحضارة</option>
+						<option value="اللغة الإنجليزية وآدابها">اللغة الإنجليزية وآدابها</option>
+						<option value="الدراسات القرآنية">الدراسات القرآنية</option>
+						<option value="مسار القراءات">مسار القراءات</option>
+						<option value="الدرسات الإسلامية">الدرسات الإسلامية</option>
+						<option value="الحاسب الآلي">الحاسب الآلي</option>
+						<option value="مسار اللغة العربية">مسار اللغة العربية</option>
+						<option value="الإنجليزي">الإنجليزي</option>
+						<option value="الرياضيات">الرياضيات</option>
+						<option value="العلوم">العلوم</option>
+						<option value="مسار الفيزياء">مسار الفيزياء</option>
+						<option value="مسار الكيمياء">مسار الكيمياء</option>
+						<option value="مسار الإحياء">مسار الإحياء</option>
+						<option value="الإجتماعيات">الإجتماعيات</option>
+						<option value="المناهج وطرق التدريس">المناهج وطرق التدريس</option>
+						<option value="الإجتماعيات">الإجتماعيات</option>
+						<option value="تقنيات التعليم">تقنيات التعليم</option>
+						<option value="الوسائل التعليمية">الوسائل التعليمية</option>
+						<option value="محضر مختبرات">محضر مختبرات</option>
+						<option value="رياض اطفال">رياض اطفال</option>
+						<option value="الإقتصاد المنزلي">الإقتصاد المنزلي</option>
+						</optgroup>
+
+						<optgroup label="التخصصات السياحية">
+						<option value="السياحة والسفر">السياحة والسفر</option>
+						<option value="الفندقة">الفندقة</option>
+						<option value="عمليات السفر والسياحة">عمليات السفر والسياحة</option>
+						</optgroup>
+
+						<optgroup label="علوم الحاسب الآلي">
+						<option value="علوم الحاسب">علوم الحاسب</option>
+						<option value="تقنية المعلومات">تقنية المعلومات</option>
+						<option value="تقنية الحاسب الآلي">تقنية الحاسب الآلي</option>
+						<option value="نظم الحاسب الآلي">نظم الحاسب الآلي</option>
+						<option value="دعم فني">دعم فني</option>
+						<option value="برمجيات">برمجيات</option>
+						<option value="شبكات">شبكات</option>
+						<option value="مشغلى الحاسب الآلي">مشغلى الحاسب الآلي</option>
+						<option value="نظم المعلومات">نظم المعلومات</option>
+						<option value="إدخال بيانات ومعالجة نصوص">إدخال بيانات ومعالجة نصوص</option>
+						<option value="رسم بالكمبيوتر اوتوكاد">رسم بالكمبيوتر اوتوكاد</option>
+						</optgroup>
+
+						<optgroup label="التخصصات العلمية">
+						<option value="الفيزياء">الفيزياء</option>
+						<option value="الكيمياء">الكيمياء</option>
+						<option value="الكيمياء التطبيقية">الكيمياء التطبيقية</option>
+						<option value="علم الحيوان">علم الحيوان</option>
+						<option value="الإحياء">الإحياء</option>
+						<option value="الرياضيات">الرياضيات</option>
+						<option value="علوم الحياة">علوم الحياة</option>
+						<option value="علوم الفلك">علوم الفلك</option>
+						<option value="الثروة المعدنية والصخور">الثروة المعدنية والصخور</option>
+						<option value="الجولوجيا النباتية">الجولوجيا النباتية</option>
+						<option value="الجولوجيا الفيزيائية">الجولوجيا الفيزيائية</option>
+						<option value="جولوجيا المياه">جولوجيا المياه</option>
+						<option value="الجولوجيا الهندسية">الجولوجيا الهندسية</option>
+						<option value="جولوجيا البترول والترسيبات">جولوجيا البترول والترسيبات</option>
+						<option value="الإحياء البحرية">الإحياء البحرية</option>
+						<option value="الفيزياء البحرية">الفيزياء البحرية</option>
+						<option value="الكيمياء البحرية">الكيمياء البحرية</option>
+						<option value="الجولوجيا البحرية">الجولوجيا البحرية</option>
+						<option value="الدراسات البحرية">الدراسات البحرية</option>
+						<option value="العلوم البيئية">العلوم البيئية</option>
+						<option value="علوم وإدارة موارد المياه">علوم وإدارة موارد المياه</option>
+						<option value="الكيمياء الصناعية">الكيمياء الصناعية</option>
+						<option value="الجيولوجيا">الجيولوجيا</option>
+						<option value="الجيوفيزياء">الجيوفيزياء</option>
+						<option value="الإرصاد">الإرصاد</option>
+						<option value="الآثار والمتحف">الآثار والمتحف</option>
+						</optgroup>
+
+						<optgroup label="التخصصات المهنية">
+						<option value="حلاقة">حلاقة</option>
+						<option value="خياطة">خياطة</option>
+						<option value="نجارة">نجارة</option>
+						<option value="حدادة">حدادة</option>
+						<option value="لحام">لحام</option>
+						<option value="معادن">معادن</option>
+						<option value="انتاج">انتاج</option>
+						<option value="دهان">دهان</option>
+						<option value="سباكة">سباكة</option>
+						<option value="صفائح معدنية">صفائح معدنية</option>
+						<option value="ميكانيكا سيارات">ميكانيكا سيارات</option>
+						<option value="دهان سيارات">دهان سيارات</option>
+						<option value="سمكرة سيارات">سمكرة سيارات</option>
+						<option value="تمديدات صحية">تمديدات صحية</option>
+						<option value="كهرباء انشائية">كهرباء انشائية</option>
+						<option value="كهرباء صناعية">كهرباء صناعية</option>
+						<option value="تبريد وتكييف">تبريد وتكييف</option>
+						<option value="التطبيقات المكتبية والسكرتارية">التطبيقات المكتبية والسكرتارية</option>
+						<option value="كهرباء تمديدات">كهرباء تمديدات</option>
+						<option value="كهرباء عام">كهرباء عام</option>
+						<option value="ميكانيكا عامة">ميكانيكا عامة</option>
+						<option value="إلكترونيات">إلكترونيات</option>
+						<option value="التحكم والسلامة">التحكم والسلامة</option>
+						<option value="سيارات ديزل">سيارات ديزل</option>
+						<option value="سيارات بنزين">سيارات بنزين</option>
+						<option value="أعمال البناء">أعمال البناء</option>
+						<option value="صيانة الآلآت المكتبية">صيانة الآلآت المكتبية</option>
+						<option value="صيانة الحاسب">صيانة الحاسب</option>
+						<option value="الأجهزة السمعية والمرئية">الأجهزة السمعية والمرئية</option>
+						<option value="لياسة">لياسة</option>
+						<option value="أعمال البلاط">أعمال البلاط</option>
+						<option value="تجميل">تجميل</option>
+						<option value="أمن وسلامة">أمن وسلامة</option>
+						<option value="تقنية صناعة الإلمنيوم">تقنية صناعة الإلمنيوم</option>
+						</optgroup>
+
+						<optgroup label="التخصصات الفنية">
+						<option value="إلكترونيات صناعية وتحكم">إلكترونيات صناعية وتحكم</option>
+						<option value="التبريد والتكييف">التبريد والتكييف</option>
+						<option value="الإنتاج">الإنتاج</option>
+						<option value="المحركات والمركبات">المحركات والمركبات</option>
+						<option value="الآلات الزراعية">الآلات الزراعية</option>
+						<option value="الأنظمة النيوماتية والهيدروليكية">الأنظمة النيوماتية والهيدروليكية</option>
+						<option value="كهربائي سيارات">كهربائي سيارات</option>
+						<option value="معدات ثقيلة">معدات ثقيلة</option>
+						<option value="لحام">لحام</option>
+						<option value="آلات ومعدات">آلات ومعدات</option>
+						<option value="القوى الكهربائية">القوى الكهربائية</option>
+						<option value="الإنتاج الكيميائي">الإنتاج الكيميائي</option>
+						<option value="المختبرات الكيميائية">المختبرات الكيميائية</option>
+						<option value="إنتاج الدواجن">إنتاج الدواجن</option>
+						<option value="تصنيع غذائي">تصنيع غذائي</option>
+						<option value="تقنية الإلكترونيات">تقنية الإلكترونيات</option>
+						<option value="تقنية الآلآت الدقيقة">تقنية الآلآت الدقيقة</option>
+						<option value="التقنية الكيميائية">التقنية الكيميائية</option>
+						<option value="تقنية الصيانة الميكانيكية">تقنية الصيانة الميكانيكية</option>
+						<option value="تقنية التصنيع">تقنية التصنيع</option>
+						<option value="الاتصالات">الاتصالات</option>
+						<option value="الآلآت الكهربائية">الآلآت الكهربائية</option>
+						<option value="التمديدات الكهربائية">التمديدات الكهربائية</option>
+						<option value="ميكانيكا عامة">ميكانيكا عامة</option>
+						<option value="تقنية الخطوط الهوائية">تقنية الخطوط الهوائية</option>
+						</optgroup>
+
+						</select>
+					</p>
+					<div class="clear"></div>
+
+					<h2>معلومات العمل</h2>
+
+					<!-- Job (If any) -->
+					<p>
+						<label>جهة العمل (إن وجد)</label>
+						<input type="text" name="company" value="{company_name}" />
+					</p>
+					<div class="clear"></div>
+
+					<p>
+						<label>المسمّى الوظيفي (إن وجد)</label>
+						<input type="text" name="job_title" value="{job_title}" />
+					</p>
+					<div class="clear"></div>
+
+					<h2>معلومات اجتماعية</h2>
+
+					<!-- Marital Status -->
+					<p>
+						<label>الحالة الإجتماعية</label>
+						
+						<select name="marital_status" class="marital_status">
+						<option value="1">أعزب</option>
+						<option value="2">متزوج</option>
+						</select>
+					</p>
+					<div class="clear"></div>
+
+					<h2>معلومات الزوجات (إن وجد)</h2>
+
+					<!-- Wives -->
+					{wives_html}
+
+					<h4><i class="icon-plus"></i> إضافة زوجات</h4>
+
+					<div id="more_wives">
+					</div>
+
+					<button type="button" class="zoghiby_btn positive" onclick="add_wife()"><i class="icon-plus icon-white"></i> إضافة زوجة</button>
+					<p></p>
+
+					<div class="sons_daughters">
+					
+						<div id="note">
+							<i class="icon-warning-sign"></i>
+							سيتم إرسال اسم المستخدم و كلمة المرور الخاصّة بالأبناء إلى أرقام الجوالات المدخلة. 
+						</div>
+						<h2>الأبناء</h2>
+
+						<!-- Sons -->
+						{sons_html}
+
+						<h4><i class="icon-plus"></i> إضافة أبناء</h4>
+
+						<div id="more_sons">
+							<table class="onechild" id="sons_table">
+								<tr>
+									<th>الاسم</th>
+									<th>الأم</th>
+									<th>النبض</th>
+									<th>الجوّال</th>
+									<th>تاريخ الميلاد</th>
+								</tr>
+							</table>
+						</div>
+
+						<button type="button" class="zoghiby_btn positive" onclick="add_son()"><i class="icon-plus icon-white"></i> إضافة ابن</button>
+						<p></p>
+
+						<h2>البنات</h2>
+
+						<!-- Daughters -->
+						{daughters_html}
+
+						<h4><i class="icon-plus"></i> إضافة بنات</h4>
+
+						<div id="more_daughters">
+							<table class="onechild" id="daughters_table">
+								<tr>
+									<th>الاسم</th>
+									<th>الأم</th>
+									<th>النبض</th>
+									<th>الجوّال</th>
+									<th>تاريخ الميلاد</th>
+									<th>الحالة الإجتماعيّة</th>
+									<th>الزوج (إن وجد)</th>
+								</tr>
+							</table>
+						</div>
+
+						<button type="button" class="zoghiby_btn positive" onclick="add_daughter()"><i class="icon-plus icon-white"></i> إضافة بنت</button>
+						<p></p>
+					</div>
+					<p></p>
+
+					<p class="controls">
+						<button class="submit" type="submit" name="submit" value="1"><i class="icon-ok icon-white"></i> تحديث</button>
+						<button class="zoghiby_btn negative" type="reset">مسح الحقول</button>
+					</p>
+
+				</form>

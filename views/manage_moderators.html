@@ -1,0 +1,84 @@
+				
+				<script type="text/javascript">
+				$(function(){
+					$(".zoghiby-name-autocomplete").zoghibyAutoComplete({
+						type: 'auto-complete'
+					});
+					
+					$(".onerow").each(function(k, v){
+						$("#" + v.id).click(function(){
+							var id = $("#" + v.id).attr("data-id");
+							var checked = $("#check_" + id).attr("checked");
+							
+							$("#check_" + id).attr("checked", !checked);
+						});
+					});
+				});
+				</script>
+					
+				<div class="row">
+					<div class="large-12 columns">
+					
+					<h4>إضافة مشرف</h4>
+					<form action="manage_moderators.php?action=add_moderator" method="post">
+					
+						<div class="row">
+							<div class="large-6 columns">
+								<label>اسم المشرف (الكامل)</label>
+								<input type="text" name="moderator_name" value="" class="zoghiby-name-autocomplete" />
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="large-6 columns">
+								<label>اسم الفرع (الجذر)</label>
+								<input type="text" name="moderator_root_name" value="" class="zoghiby-name-autocomplete" />
+							</div>
+						</div>
+
+						<div id="note" data-alert class="alert-box secondary">
+							<a href="familytree.php" target="_blank">الذهاب إلى الشجرة</a>
+							<a href="#" class="close">&times;</a> 
+						</div>
+
+						<div class="row">
+							<div class="large-4 columns">
+								<button class="small button" type="submit" name="submit" value="1">إضافة مشرف</button>
+							</div>
+						</div>
+					</form>
+
+					<h4>إدارة المشرفين</h4>
+					
+					<form action="manage_moderators.php?action=update_moderators" method="post">
+
+						<table class="table">
+						<thead>
+						<tr>
+							<th></th>
+							<th>اسم المشرف</th>
+							<th>اسم الفرع (الجذر)</th>
+							<th class="hide-for-small">عدد أفراد الفرع</th>
+							<th class="hide-for-small">عدد التحديثات المعلّقة</th>
+							<th class="hide-for-small">عدد الغير فاعلين</th>
+						</tr>
+						</thead>
+						<tbody>
+						{moderators}
+						</tbody>
+						</table>
+						
+						<ul class="button-group">
+							<li>			
+								<select name="do">
+									<option value="update">تحديث</option>
+									<option value="delete">حذف</option>
+								</select>
+							</li>
+							<li>
+								<button type="submit" name="submit" value="1" class="small button">نعم</button>
+							</li>
+						</ul>
+					</form>
+					</div>
+				</div>

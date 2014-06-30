@@ -1,0 +1,52 @@
+				<div class="inputform">
+				
+					<h2>إضافة مشرف</h2>
+					<form action="prepared_relations.php?action=add_moderator" method="post">
+						<p>
+							<label>الاسم</label>
+							<input type="text" name="name" />
+						</p>
+
+						<p>
+							<label>الاستعلام (SQL)</label>
+							<textarea name="query" dir="ltr"></textarea>
+						</p>
+
+						<p>
+							<button class="submit" type="submit" name="submit" value="1"><i class="icon-ok icon-white"></i> إضافة علاقة معدّة</button>
+						</p>
+					</form>
+					
+					<p></p>
+
+					<h2>إدارة العلاقات المعدّة</h2>
+					<form action="prepared_relations.php?action=update_prepared_relations" method="post">
+
+						<table class="table">
+						<thead>
+						<tr>
+							<th></th>
+							<th>اسم العلاقة المعدّة</th>
+							<th>الإجراء</th>
+						</tr>
+						</thead>
+						<tbody>
+						{prepared_relations}
+						</tbody>
+						</table>
+
+						<p></p>
+						
+						<div class="controls">
+							<label>المحدّد</label>
+											
+							<select name="do">
+								<option value="delete">حذف</option>
+							</select>
+	
+							<button type="submit" name="submit" value="1" class="zoghiby_btn positive"><i class="icon-ok icon-white"></i> نعم</button>
+
+						<div class="clear"></div>
+						</div>
+					</form>
+				</div>

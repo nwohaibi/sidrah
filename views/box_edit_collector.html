@@ -1,0 +1,54 @@
+				<script type="text/javascript">
+				$(function(){
+					$(".zoghiby-name-autocomplete").zoghibyAutoComplete({
+						type: 'auto-complete'
+					});
+					
+					$("#role").val("{role}");
+				});
+				</script>
+
+				<div class="row">
+					<div class="large-12 columns">
+	
+						<h4>تعديل محصّل</h4>
+						<form action="family_box.php?action=edit_collector&id={id}" method="post">
+				
+							<div class="row">
+								<div class="large-6 columns">
+									<label>اسم المحصّل (الكامل)</label>
+									<input type="text" name="name" class="zoghiby-name-autocomplete" value="{fullname}" />
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="large-6 columns">
+									<label>الدور</label>
+									<select name="role" id="role">
+										<option value="collector">محصّل</option>
+										<option value="manager">أمين الصندوق</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="large-6 columns">
+									<label>اسم الفرع (الجذر)</label>
+									<input type="text" name="assigned_root_name" class="zoghiby-name-autocomplete" value="{assigned_root_name}" />
+								</div>
+							</div>
+
+							<div id="note" data-alert class="alert-box secondary">
+								<a href="familytree.php" target="_blank">الذهاب إلى الشجرة</a>
+								<a href="#" class="close">&times;</a> 
+							</div>
+
+							<div class="row">
+								<div class="large-4 columns">
+									<button class="small button" type="submit" name="submit" value="1">تعديل محصّل</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+

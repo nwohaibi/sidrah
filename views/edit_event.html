@@ -1,0 +1,173 @@
+
+				<div class="row">
+					<div class="large-4 columns">
+						<form action="calendar.php?action=edit_event&id={id}" method="post">
+						
+							<div class="row">
+								<div class="large-12 columns">
+									<label>يوم المناسبة</label>
+									
+									<div class="row collapse">
+										<div class="large-4 small-4 columns">
+											<input type="text" name="day" placeholder="00" size="2" value="{hijri_day}" />
+										</div>
+										
+										<div class="large-4 small-4 columns">
+											<select name="month" id="month">
+												<option value="1">محرم</option>
+												<option value="2">صفر</option>
+												<option value="3">ربيع الأول</option>
+												<option value="4">ربيع الثاني</option>
+												<option value="5">جمادى الأولى</option>
+												<option value="6">جمادى الثانية</option>
+												<option value="7">رجب</option>
+												<option value="8">شعبان</option>
+												<option value="9">رمضان</option
+												><option value="10">شوال</option>
+												<option value="11">ذو القعدة</option>
+												<option value="12">ذو الحجة</option>
+											</select>
+										</div>
+										
+										<div class="large-4 small-4 columns">
+											<input type="text" name="year" placeholder="0000" size="4" value="{hijri_year}" />
+										</div>
+									</div>
+								</div>
+							</div>
+						
+							<div class="row">
+								<div class="large-12 columns">
+									<label>نوع المناسبة</label>
+									<select name="type" id="event_type">
+										{accepted_types}
+									</select>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="large-12 columns">
+									<label>عنوان المناسبة</label>
+									<input type="text" name="title" value="{title}" />
+									<input type="hidden" name="latitude" id="latitude" />
+									<input type="hidden" name="longitude" id="longitude" />
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="large-12 columns">
+									<label>مكان المناسبة</label>
+									<input type="text" name="location" value="{location}" />
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="large-12 columns">
+									<label>توقيت المناسبة</label>
+									
+									<div class="row collapse">
+										<div class="large-2 small-2 columns">
+											<input type="text" name="minute" placeholder="00" size="2" value="{minute}" />
+										</div>
+										
+										<div class="large-2 small-2 columns">
+											<input type="text" name="hour" placeholder="00" size="2" value="{hour}" />
+										</div>
+										
+										<div class="large-2 small-2 columns">
+											<select name="am_pm" id="am_pm">
+												<option value="ص">ص</option>
+												<option value="م">م</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="large-12 columns">
+									<label>المحتوى</label>
+									<textarea name="content" id="event_content">{content}</textarea>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="large-12 columns">
+									<input class="small button" type="submit" name="submit" value="تحديث المناسبة" />
+								</div>
+							</div>
+						</form>
+					</div>
+
+					<aside class="large-6 large-offset-2 columns">
+						<div id="map" style="height: 300px;"></div>
+					</aside>
+				</div>				
+				
+				<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=ar"></script>
+
+				<script type="text/javascript">
+				
+					function event_type_toggle()
+					{
+						var et = $("#event_type").val();
+						
+						if (et == "meeting" || et == "wedding")
+						{
+							$("#map").show();
+						}
+						else
+						{
+							$("#map").hide();
+						}
+					}
+
+					$(function(){
+	
+						$("#am_pm").val("{am_pm}");
+						$("#month").val("{hijri_month}");
+						$("#event_type").val("{event_type}");
+	
+						$("#latitude").val("{latitude}");
+						$("#longitude").val("{longitude}")
+	
+						event_type_toggle();
+						
+						$("#event_type").change(function(){
+							event_type_toggle();
+						});
+	
+						// Set the center of the map.
+						var lati_long = new google.maps.LatLng({latitude}, {longitude});
+	
+						// Create the map.
+						var map = new google.maps.Map(
+							document.getElementById("map"),
+							{
+								zoom: 10,
+								mapTypeId: google.maps.MapTypeId.ROADMAP,
+								center: lati_long,
+								streetViewControl: false,
+							}
+						);
+		
+						// Add a marker.
+						var marker = new google.maps.Marker({
+							position: lati_long,
+							title: "City",
+							map: map,
+							draggable: true
+						});
+						
+						// Add a listener.
+						google.maps.event.addListener(marker, "dragend", function(event){
+
+							var _lati_long = marker.getPosition();
+							map.panTo(_lati_long);
+							
+							$("#latitude").val(_lati_long.lat());
+							$("#longitude").val(_lati_long.lng());
+							
+						});
+					});
+				</script>

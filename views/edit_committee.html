@@ -1,0 +1,40 @@
+				<div class="inputform">
+					<h2>تعديل {name}</h2>
+					<form action="manage_committees.php?action=edit_committee&id={id}" method="post">
+						<p>
+							<label>اسم اللجنة</label>
+							<input type="text" name="name" value="{name}" />
+						</p>
+						
+						<p>
+							<label>العمر الأدنى</label>
+							<input type="text" name="minimum_age" value="{minimum_age}" placeholder="18" />
+							<span class="info">الحقل فارغ؛ يعني بدون تحديد للعمر الأدنى.</span>
+						</p>
+						
+						<p>
+							<label>ترتيب الظهور</label>
+							<input type="text" name="priority" value="{priority}" />
+						</p>
+						
+						<p>
+							<label>مهام اللجنة</label>
+							<textarea name="tasks" cols="40" rows="4">{tasks}</textarea>
+						</p>
+						
+						<p>
+							<label>مواصفات أعضاء اللجنة</label>
+							<textarea name="members_description" cols="40" rows="4">{members_description}</textarea>
+						</p>
+						
+						<p>
+							<label>كلمات مفتاحيّة <span class="info">(افصل بينها بفاصلة)</span></label>
+							<textarea name="keywords" cols="40" rows="4">{keywords}</textarea>
+						</p>
+
+						<p>
+							<button class="submit" type="submit" name="submit" value="1"><i class="icon-ok icon-white"></i> تعديل اللجنة</button>
+							<span class="info">استخدم (*) في أول كل سطر لإضافة عنصر قائمة.</span>
+						</p>
+					</form>
+				</div>

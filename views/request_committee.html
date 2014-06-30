@@ -1,0 +1,105 @@
+				<script type="text/javascript">
+				
+				function reject(id)
+				{
+					var reason = $("#reject_reason_" + id).val();
+					
+					if (reason == "")
+					{
+						alert("الرجاء إدخال سبب الرفض.");
+						return false;
+					}
+					
+					// Generate the request
+					var request = "request_committee.php?action=reject&member_id=" + id + "&reason=" + encodeURIComponent(reason);
+					window.location.href = request;
+				}
+				
+				function resign(id)
+				{
+					var reason = $("#resign_reason_" + id).val();
+					
+					if (reason == "")
+					{
+						alert("الرجاء إدخال سبب الإقالة.");
+						return false;
+					}
+					
+					// Generate the request
+					var request = "request_committee.php?action=resign&member_id=" + id + "&reason=" + encodeURIComponent(reason);
+					window.location.href = request;
+				}
+				
+				function write_reject_reason(id)
+				{
+					if ($("#reject_reason_" + id).val() == "")
+					{
+						$("#pending_accept_" + id).show();
+					}
+					else
+					{
+						$("#pending_accept_" + id).hide();
+					}
+				}
+				
+				</script>
+
+				<div class="inputform">
+
+					<!-- Pending requests -->
+					<h2>طلبات انضمام معلّقة ({pending_members_count})</h2>
+					<table class="table">
+					<thead>
+					<tr>
+						<th>العضو</th>
+						<th>الإجراء</th>
+					</tr>
+					</thead>
+					<tbody>
+						{pending_members}
+					</tbody>
+					</table>
+					
+					<!-- Committee members -->
+					<h2>أعضاء اللجنة ({committee_members_count})</h2>
+					<table class="table">
+					<thead>
+					<tr>
+						<th>العضو</th>
+						<th>الإجراء</th>
+					</tr>
+					</thead>
+					<tbody>
+						{committee_members}
+					</tbody>
+					</table>
+					
+					<!-- Rejected/Resigned members -->
+					<h2>أعضاء مرفوضين أو مُقالين ({rejected_resigned_members_count})</h2>
+					<table class="table">
+					<thead>
+					<tr>
+						<th>العضو</th>
+						<th>السبب</th>
+						<th>الإجراء</th>
+					</tr>
+					</thead>
+					<tbody>
+						{rejected_resigned_members}
+					</tbody>
+					</table>
+					
+					<!-- Nominee members -->
+					<h2>أعضاء مُرشحين ({nominee_members_count})</h2>
+					<table class="table">
+					<thead>
+					<tr>
+						<th>العضو</th>
+						<th>الإجراء</th>
+					</tr>
+					</thead>
+					<tbody>
+						{nominee_members}
+					</tbody>
+					</table>
+				</div>

@@ -1,0 +1,154 @@
+				<div class="inputform">
+				
+					<h2>إضافة فترة عمادة</h2>
+					<form action="manage_family_dean.php?action=add_deanship_period" method="post">
+						<p>
+							<label>من الفترة</label>
+							<select name="from_d">
+								<option value="0"></option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+								<option value="13">13</option>
+								<option value="14">14</option>
+								<option value="15">15</option>
+								<option value="16">16</option>
+								<option value="17">17</option>
+								<option value="18">18</option>
+								<option value="19">19</option>
+								<option value="20">20</option>
+								<option value="21">21</option>
+								<option value="22">22</option>
+								<option value="23">23</option>
+								<option value="24">24</option>
+								<option value="25">25</option>
+								<option value="26">26</option>
+								<option value="27">27</option>
+								<option value="28">28</option>
+								<option value="29">29</option>
+								<option value="30">30</option>
+							</select>
+					
+							<select name="from_m">
+								<option value="0"></option>
+								<option value="1">محرم</option>
+								<option value="2">صفر</option>
+								<option value="3">ربيع الأول</option>
+								<option value="4">ربيع الثاني</option>
+								<option value="5">جمادى الأولى</option>
+								<option value="6">جمادى الثانية</option>
+								<option value="7">رجب</option>
+								<option value="8">شعبان</option>
+								<option value="9">رمضان</option>
+								<option value="10">شوال</option>
+								<option value="11">ذو القعدة</option>
+								<option value="12">ذو الحجة</option>
+							</select>
+					
+							<input type="text" name="from_y" placeholder="سنة" size="4"/>
+						</p>
+
+						<p>
+							<label>إلى الفترة</label>
+							<select name="to_d">
+								<option value="0"></option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+								<option value="13">13</option>
+								<option value="14">14</option>
+								<option value="15">15</option>
+								<option value="16">16</option>
+								<option value="17">17</option>
+								<option value="18">18</option>
+								<option value="19">19</option>
+								<option value="20">20</option>
+								<option value="21">21</option>
+								<option value="22">22</option>
+								<option value="23">23</option>
+								<option value="24">24</option>
+								<option value="25">25</option>
+								<option value="26">26</option>
+								<option value="27">27</option>
+								<option value="28">28</option>
+								<option value="29">29</option>
+								<option value="30">30</option>
+							</select>
+					
+							<select name="to_m">
+								<option value="0"></option>
+								<option value="1">محرم</option>
+								<option value="2">صفر</option>
+								<option value="3">ربيع الأول</option>
+								<option value="4">ربيع الثاني</option>
+								<option value="5">جمادى الأولى</option>
+								<option value="6">جمادى الثانية</option>
+								<option value="7">رجب</option>
+								<option value="8">شعبان</option>
+								<option value="9">رمضان</option>
+								<option value="10">شوال</option>
+								<option value="11">ذو القعدة</option>
+								<option value="12">ذو الحجة</option>
+							</select>
+					
+							<input type="text" name="to_y" placeholder="سنة" size="4"/>
+						</p>
+
+						<p>
+							<button class="submit" type="submit" name="submit" value="1"><i class="icon-ok icon-white"></i> إضافة فترة عمادة</button>
+						</p>
+					</form>
+					
+					<p></p>
+
+					<h2>إدارة فترات العمادة</h2>
+					<form action="manage_family_dean.php?action=update_deanship_periods" method="post">
+
+						<table class="table">
+						<thead>
+						<tr>
+							<th></th>
+							<th>من الفترة</th>
+							<th>إلى الفترة</th>
+							<th>الحالة</th>
+							<th>الإجراء</th>
+						</tr>
+						</thead>
+						<tbody>
+						{deanship_periods}
+						</tbody>
+						</table>
+
+						<p></p>
+						
+						<div class="controls">
+							<label>المحدّد</label>
+											
+							<select name="do">
+								<option value="delete">حذف</option>
+							</select>
+	
+							<button type="submit" name="submit" value="1" class="zoghiby_btn positive"><i class="icon-ok icon-white"></i> نعم</button>
+
+						<div class="clear"></div>
+						</div>
+					</form>
+				</div>

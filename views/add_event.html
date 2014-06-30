@@ -1,0 +1,133 @@
+
+				<div class="row">
+					<div class="large-4 columns">
+						<form action="calendar.php?action=add_event&hijri_day={hijri_day}&hijri_month={hijri_month}&hijri_year={hijri_year}" method="post">
+							<div class="row">
+								<div class="large-12 columns">
+									<label>نوع المناسبة</label>
+									<select name="type" id="event_type">
+										{accepted_types}
+									</select>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="large-12 columns">
+									<label>عنوان المناسبة</label>
+									<input type="text" name="title" value="" />
+									<input type="hidden" name="latitude" id="latitude" />
+									<input type="hidden" name="longitude" id="longitude" />
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="large-12 columns">
+									<label>مكان المناسبة</label>
+									<input type="text" name="location" value="" />
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="large-12 columns">
+									<label>توقيت المناسبة</label>
+									
+									<div class="row collapse">
+										<div class="large-2 small-2 columns">
+											<input type="text" name="minute" placeholder="00" size="2" />
+										</div>
+										
+										<div class="large-2 small-2 columns">
+											<input type="text" name="hour" placeholder="00" size="2" />
+										</div>
+										
+										<div class="large-2 small-2 columns">
+											<select name="am_pm">
+												<option value="ص">ص</option>
+												<option value="م">م</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="large-12 columns">
+									<label>المحتوى</label>
+									<textarea name="content" id="event_content"></textarea>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="large-12 columns">
+									<input class="small button" type="submit" name="submit" value="إضافة مناسبة جديدة" />
+									<input type="checkbox" name="notify_all" checked /> إخبار الجميع.
+								</div>
+							</div>
+						</form>
+					</div>
+
+					<aside class="large-6 large-offset-2 columns">
+						<div id="map" style="height: 300px;"></div>
+					</aside>
+				</div>				
+				
+				<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=ar"></script>
+
+				<script type="text/javascript">
+				
+					function event_type_toggle()
+					{
+						var et = $("#event_type").val();
+						
+						if (et == "meeting" || et == "wedding")
+						{
+							$("#map").show();
+						}
+						else
+						{
+							$("#map").hide();
+						}
+					}
+
+					$(function(){
+	
+						event_type_toggle();
+						
+						$("#event_type").change(function(){
+							event_type_toggle();
+						});
+	
+						// Set the center of the map.
+						var lati_long = new google.maps.LatLng(24.6500, 46.7100);
+	
+						// Create the map.
+						var map = new google.maps.Map(
+							document.getElementById("map"),
+							{
+								zoom: 10,
+								mapTypeId: google.maps.MapTypeId.ROADMAP,
+								center: lati_long,
+								streetViewControl: false,
+							}
+						);
+		
+						// Add a marker.
+						var marker = new google.maps.Marker({
+							position: lati_long,
+							title: "City",
+							map: map,
+							draggable: true
+						});
+						
+						// Add a listener.
+						google.maps.event.addListener(marker, "dragend", function(event){
+
+							var _lati_long = marker.getPosition();
+							map.panTo(_lati_long);
+							
+							$("#latitude").val(_lati_long.lat());
+							$("#longitude").val(_lati_long.lng());
+							
+						});
+					});
+				</script>

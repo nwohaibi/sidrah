@@ -1,0 +1,45 @@
+
+				<div class="row">
+					<div class="large-12 columns">
+	
+						<h4>{name} - إضافة حساب</h4>
+						<form action="family_box.php?action=add_account&subscriber_id={subscriber_id}" method="post">
+							<div class="row">
+								<div class="large-6 columns">
+									<label>رقم الحساب</label>
+									<input type="text" name="account_number" />
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="large-6 columns">
+									<label>البنك</label>
+									{banks}
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="large-4 columns">
+									<button class="small button" type="submit" name="submit" value="1">إضافة حساب</button>
+									<a href="family_box.php?action=view_subscribers" class="small button secondary">عرض المشتركين</a>
+								</div>
+							</div>
+						</form>
+
+						<h4>عرض الحسابات</h4>
+		
+							<table class="table" width="100%">
+								<thead>
+									<tr>
+										<th>رقم الآيبان (IBAN)</th>
+										<th>الاستقطاعات</th>
+										<th>الرصيد</th>
+										<th>الإجراء</th>
+									</tr>
+								</thead>
+								<tbody>
+									{accounts}
+								</tbody>
+							</table>
+					</div>
+				</div>

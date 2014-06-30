@@ -1,0 +1,48 @@
+				<div class="inputform">
+					<script type="text/javascript">
+					$(function(){
+						$(".onerow").each(function(k, v){
+							$("#" + v.id).click(function(){
+
+								var id = $("#" + v.id).attr("data-id");
+								var checked = $("#check_" + id).attr("checked");
+								
+								$("#check_" + id).attr("checked", !checked);
+							});
+						});
+					});
+					</script>
+
+					<h2>أعضاء {committee_name}</h2>
+					<form action="manage_committees.php?action=manage_committee_members&id={committee_id}" method="post">
+
+						<table class="table">
+						<thead>
+						<tr>
+							<th></th>
+							<th></th>
+							<th>العضو</th>
+							<th>العضوية</th>
+						</tr>
+						</thead>
+						<tbody>
+						{committee_members}
+						</tbody>
+						</table>
+
+						<p></p>
+						
+						<div class="controls">
+							<label>المحدّد</label>
+											
+							<select name="do">
+								<option value="update">تحديث</option>
+								<option value="delete">حذف</option>
+							</select>
+	
+							<button type="submit" name="submit" value="1" class="zoghiby_btn positive"><i class="icon-ok icon-white"></i> نعم</button>
+
+						<div class="clear"></div>
+						</div>
+					</form>
+				</div>

@@ -1,0 +1,45 @@
+				<script type="text/javascript">
+				$(function(){
+					$(".zoghiby-name-autocomplete").zoghibyAutoComplete({
+						type: 'auto-complete'
+					});
+				});
+				</script>
+
+				<div class="row">
+					<div class="large-12 columns">
+	
+						<h4>إضافة مشترك</h4>
+						<form action="family_box.php?action=add_subscriber" method="post">
+							<div class="row">
+								<div class="large-6 columns">
+									<label>اسم المشترك (الكامل)</label>
+									<input type="text" name="name" class="zoghiby-name-autocomplete" />
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="large-4 columns">
+									<button class="small button" type="submit" name="submit" value="1">إضافة مشترك</button>
+									<a href="family_box.php?action=view_transactions" class="small button secondary">عرض العمليات</a>
+								</div>
+							</div>
+						</form>
+
+						<h4>عرض المشتركين</h4>
+		
+							<table class="table" width="100%">
+								<thead>
+									<tr>
+										<th>الاسم</th>
+										<th>الحسابات</th>
+										<th>الرصيد</th>
+										<th>الإجراء</th>
+									</tr>
+								</thead>
+								<tbody>
+									{subscribers}
+								</tbody>
+							</table>
+					</div>
+				</div>

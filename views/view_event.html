@@ -1,0 +1,154 @@
+
+
+<div class="row">
+	<div class="large-12 columns">	
+		<ul class="breadcrumbs">
+			<li><a href="index.php">الأولى</a></li>
+			<li><a href="calendar.php">مناسبات العائلة</a></li>
+			<li><a href="calendar.php?hijri_month={month}&hijri_year={year}">شهر {month}/{year}</a></li>
+			<li class="current">{title}</li>
+		</ul>
+	
+		<div class="row">
+			<div class="large-8 small-8 columns">
+				<h3>{title} <small>(اًُضيفت في {created})</small></h3>
+			</div>
+			
+			
+			<div class="large-4 small-4 columns">
+				<div class="row">
+					<div class="large-4 columns">
+						{author_photo}
+					</div>
+				
+					<div class="large-8 columns">
+						<p>
+						<a href="familytree.php?id={author_id}">{author_username}</a>
+						<br />
+						<strong class="hide-for-small">({author_shorten_name})</strong>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<hr />
+
+		<div class="row">
+			<div class="large-8 columns">
+			
+				<p>{content}</p>
+				
+				<table>
+					<tbody>
+						<tr>
+							<td>الموقع</td>
+							<td><strong>{location}</strong></td>
+						</tr>
+						<tr>
+							<td>التاريخ</td>
+							<td>{day}/{month}/{year} <strong>({diff})</strong></td>
+						</tr>
+						<tr>
+							<td>التوقيت</td>
+							<td><strong>{hour}:{minute} {am_pm}</strong></td>
+						</tr>
+						
+						{reaction}
+					</tbody>
+				</table>
+			</div>
+			
+			{map_comment}
+			<div class="large-4 columns">			
+				<div id="map" style="height: 300px;"></div>
+			</div>
+			{map_end_comment}
+		</div>
+		
+		<div class="row">
+			<div class="large-12 columns">
+				{media}
+			</div>
+		</div>
+		
+		<hr />
+		
+		<div class="row">
+			<div class="large-8 columns">
+				<h5>رأيك حول هذه المناسبة</h5>
+				
+				<form action="calendar.php?action=add_comment&event_id={id}" method="post">
+					<div class="row">
+						<div class="large-12 columns">
+							<textarea name="content" placeholder="علّق على المناسبة إذا أحببت."></textarea>
+						</div>
+					</div>
+		
+					<div class="row">
+						<div class="large-12 columns">
+							<input class="small button" type="submit" name="submit" value="تعليق" />
+						</div>
+					</div>
+				</form>
+				
+				<h5>التعليقات على المناسبة <small>({comments_count})</small></h5>
+				
+				{comments}
+			</div>
+			
+			<aside class="large-4 columns">
+				{event_reactions}
+			</aside>
+		</div>
+		
+		<div class="row" style="text-align: left">
+			<div class="large-12 columns">
+				<small>المناسبة </small>
+				{edit}
+				{delete}
+			</div>
+		</div>
+	</div>
+</div>
+
+{map_comment}
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=ar"></script>
+
+<script type="text/javascript">
+
+	$(function(){
+	
+		// Set the center of the map.
+		var lati_long = new google.maps.LatLng({latitude}, {longitude});
+	
+		// Create the map.
+		var map = new google.maps.Map(
+			document.getElementById("map"),
+			{
+				zoom: 14,
+				mapTypeId: google.maps.MapTypeId.ROADMAP,
+				center: lati_long,
+				streetViewControl: false,
+				//disableDefaultUI: true,
+			}
+		);
+		
+		var infowindow = new google.maps.InfoWindow({
+			content: "{location}"
+		});
+		
+		var marker = new google.maps.Marker({
+			position: lati_long,
+			title: "{location}",
+			map: map
+		});
+		
+		google.maps.event.addListener(marker, "click", function(){
+			infowindow.open(map, marker);
+		});
+	});
+
+</script>
+{map_end_comment}
+

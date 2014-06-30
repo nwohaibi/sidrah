@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="description" content="{description}" />
+		<meta name="keywords" content="{keywords}" />
+		<meta name="author" content="حسام الزغيبي" />
+		
+		<title>عائلة الزغيبي - {title}</title>
+		
+		<link rel="stylesheet" href="views/css/main.css?version={version}" type="text/css" />
+		<link rel="stylesheet" href="views/css/tipsy.css?version={version}" type="text/css" />
+		<link rel="shortcut icon" href="views/img/favicon.ico" type="image/x-icon" />
+		
+		<script type="text/javascript" src="views/js/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="views/js/jquery.zoghiby.autocomplete.js?version={version}"></script>
+		<script type='text/javascript' src='views/js/jquery.tipsy.js'></script>
+		<script type="text/javascript" src="views/js/jit-yc.js"></script>
+		
+		{js}
+	</head>
+	
+	<body>
+	
+		<script type="text/javascript">
+			$(function(){
+				// Tipsy
+				$("#facebook_icon").tipsy({gravity: 's'});
+				$("#twitter_icon").tipsy({gravity: 's'});
+				$("#jobs_link").tipsy({gravity: 's'});
+			});
+		</script>
+		
+		<div id="wrapper">
+
+			{congratulations}
+			
+			<section id="header">
+				<header>
+					<a href="index.php"><img src="views/img/logo.png" alt="الزغيبي، شجرة العائلة الإلكترونية" border="0" /></a>
+					<span class="version">{version}</span>
+				</header>
+				
+				<nav>
+					<ul>
+						<li><a href="index.php">الأولى</a></li>
+						<li><a href="familytree.php">شجرة العائلة</a></li>
+						<li><a href="stats.php">إحصاءات</a></li>
+						{website_stages}
+						{mobile_book}
+						<!--{family_dean}-->
+						<!--{family_council}-->
+					</ul>
+				</nav>
+				
+				<section id="info_box2">
+{logged}
+				</section>
+			</section>
+			
+			<section id="content">
+				<nav id="topnavigation">
+					<ul>
+						<li><a href="index.php">الأولى</a> <i class="icon-chevron-left"></i></li>
+						<li><b>{title}</b></li>
+					</ul>
+				</nav>
+

@@ -1,0 +1,122 @@
+				<script type="text/javascript">
+				
+					var warray = {for_w};
+					var darray = {for_d};
+				
+					$(function(){
+					
+						change_type();
+						
+						$("#other").hide();
+
+						$("#zoghiby-auto-account").zoghibyAutoComplete({
+							type: 'accounts-auto-complete',
+						}, function(){
+						
+							var id = this.attr('data-id');
+							
+							if (id != "")
+							{
+								$("#account_id").val(id);
+							}
+						});
+						
+						$("#type").change(function(){
+							change_type();
+						});
+						
+						$("#for").change(function()
+						{
+							var forv = $("#for").val();
+							
+							if (forv == -1)
+							{
+								$("#other").show();
+							}
+							else
+							{
+								$("#other").hide();
+							}
+						});
+					});
+					
+					function change_type()
+					{
+						var vtype = $("#type").val();
+						
+						$("#for").html("");
+						
+						if (vtype == "withdraw")
+						{
+							for (var i=0; i<warray.length; i++)
+							{
+								$("#for").append("<option value='" + warray[i].id + "'>" + warray[i].name + "</option>");
+							}
+						}
+						else
+						{
+							for (var i=0; i<darray.length; i++)
+							{
+								$("#for").append("<option value='" + darray[i].id + "'>" + darray[i].name + "</option>");
+							}
+						}
+						
+						$("#for").append("<option value='-1'>أخرى</option>");
+					}
+				</script>
+
+				<div class="row">
+					<div class="large-12 columns">
+	
+						<h4>إضافة عملية</h4>
+						<form action="family_box.php?action=add_transaction" method="post">
+						
+							<div class="row">
+								<div class="large-6 columns">
+									<label>النوع</label>
+									<select name="type" id="type">
+										<option value="deposit">إيداع</option>
+										<option value="withdraw">سحب</option>
+									</select>
+								</div>
+							</div>
+						
+							<div class="row">
+								<div class="large-6 columns">
+									<label>الحساب</label>
+									<input type="text" name="account_name" id="zoghiby-auto-account" />
+									<input type="hidden" id="account_id" name="account_id" />
+								</div>
+							</div>
+						
+							<div class="row">
+								<div class="large-6 columns">
+									<label>المبلغ</label>
+									<input type="text" name="amount" placeholder="0" />
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="large-6 columns">
+									<label>الغرض</label>
+									<select name="for" id="for">
+	
+									</select>
+								</div>
+							</div>
+							
+							<div class="row" id="other">
+								<div class="large-6 columns">
+									<label>أخرى</label>
+									<textarea name="other" id="other"></textarea>
+								</div>
+							</div>
+			
+							<div class="row">
+								<div class="large-4 columns">
+									<button class="small button" type="submit" name="submit" value="1">إضافة عملية</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>

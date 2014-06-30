@@ -1,0 +1,582 @@
+<html>
+  <head>
+    <title>Documentation: Diagram</title>
+    <style type="text/css">
+    <!--
+      body,td { font: 8pt verdana #000000; }
+      body { background: #ffffff; }
+      a { text-decoration: none; color: #0000aa; }
+      a:hover { text-decoration: underline; }
+      h1 { font-size: 12pt; letter-spacing: 2pt; }
+      hr { height: 1px; color: #dddddd; background: #dddddd; }
+      .varname { font-size: 10pt; letter-spacing: 2pt; color: #123456; font-weight: bold; }
+      .funname { font-size: 10pt; letter-spacing: 2pt; color: #123456; font-weight: bold; }
+      .vartype { color: #0000aa; font-weight: bold; }
+    //-->
+    </style>
+  </head>
+  <body>
+    <a name='top'></a>
+    <h1>Class: <b>Diagram</b> (0.1)</h1>
+    Class to create diagrams.<br>
+    Credits to: <a href='mailto:a25617@alunos.det.ua.pt'>Jeph</a><br>
+    <a name='var'></a>
+    <br><u>Variables</u><br><br>
+    <a href='#var_alpha' title="Alphablending [ from 0 (opaque) to 127 (transparent) ]"><span class=vartype>int</span> Diagram::alpha</a><br>
+    <a href='#var_bgcolor' title="Image background color"><span class=vartype>array</span> Diagram::bgcolor</a><br>
+    <a href='#var_bordercolor' title="Image border color"><span class=vartype>array</span> Diagram::bordercolor</a><br>
+    <a href='#var_borderwidth' title="Image border size"><span class=vartype>int</span> Diagram::borderwidth</a><br>
+    <a href='#var_data' title="Data"><span class=vartype>array</span> Diagram::data</a><br>
+    <a href='#var_font' title="Font"><span class=vartype>int</span> Diagram::font</a><br>
+    <a href='#var_fontcolor' title="Font color"><span class=vartype>array</span> Diagram::fontcolor</a><br>
+    <a href='#var_inpadding' title="Space between text and border of rectangles"><span class=vartype>int</span> Diagram::inpadding</a><br>
+    <a href='#var_padding' title="Image padding"><span class=vartype>int</span> Diagram::padding</a><br>
+    <a href='#var_rect_bgcolor' title="Rectangle background color"><span class=vartype>array</span> Diagram::rect_bgcolor</a><br>
+    <a href='#var_rect_bordercolor' title="Rectangle border color"><span class=vartype>array</span> Diagram::rect_bordercolor</a><br>
+    <a href='#var_spacepadding' title="Space between 2 rectangles"><span class=vartype>int</span> Diagram::spacepadding</a><br>
+    <a name='fun'></a>
+    <br><u>Methods</u><br><br>
+    <a href='#fun_Draw' title="Draw diagram (to stdout or to an image)">Diagram::Draw (
+    $file
+    ) </a><br>
+    <a href='#fun_SetBackgroundColor' title="Set image background color">Diagram::SetBackgroundColor (
+    $r
+    , $g
+    , $b
+    ) </a><br>
+    <a href='#fun_SetBorderColor' title="Set image border color">Diagram::SetBorderColor (
+    $r
+    , $g
+    , $b
+    ) </a><br>
+    <a href='#fun_SetBorderWidth' title="Set image border size">Diagram::SetBorderWidth (
+    $n
+    ) </a><br>
+    <a href='#fun_SetData' title="Set diagram data">Diagram::SetData (
+    $data
+    ) </a><br>
+    <a href='#fun_SetFont' title="Set font">Diagram::SetFont (
+    $font
+    ) </a><br>
+    <a href='#fun_SetFontColor' title="Set font color">Diagram::SetFontColor (
+    $r
+    , $g
+    , $b
+    ) </a><br>
+    <a href='#fun_SetInPadding' title="Space between text and border of rectangles">Diagram::SetInPadding (
+    $p
+    ) </a><br>
+    <a href='#fun_SetPadding' title="Image padding">Diagram::SetPadding (
+    $p
+    ) </a><br>
+    <a href='#fun_SetRectangleBackgroundColor' title="Set rectangles background color">Diagram::SetRectangleBackgroundColor (
+    $r
+    , $g
+    , $b
+    ) </a><br>
+    <a href='#fun_SetRectangleBorderColor' title="Set rectangles background color">Diagram::SetRectangleBorderColor (
+    $r
+    , $g
+    , $b
+    ) </a><br>
+    <a href='#fun_SetSpacing' title="Space between 2 rectangles">Diagram::SetSpacing (
+    $p
+    ) </a><br>
+    <hr>
+    <a name='var_alpha'></a>
+    <table border=0 cellpadding=0 cellspacing=0 width=100%>
+      <tr>
+        <td>
+          <span class=varname>Diagram::alpha</span></a>
+        </td>
+        <td align=right>
+          <a href='#top'>^ Top</a>
+          | <a href='#var'>^ Variables</a>
+          | <a href='#fun'>^ Methods</a>
+        </td>
+      </tr>
+    </table>
+    Alphablending [ from 0 (opaque) to 127 (transparent) ]<br><br>
+    &nbsp; <b>Type:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp; int<br>
+    <br>&nbsp; <b>Default:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp; 0<br>
+    <br>
+    <hr>
+    <a name='var_bgcolor'></a>
+    <table border=0 cellpadding=0 cellspacing=0 width=100%>
+      <tr>
+        <td>
+          <span class=varname>Diagram::bgcolor</span></a>
+        </td>
+        <td align=right>
+          <a href='#top'>^ Top</a>
+          | <a href='#var'>^ Variables</a>
+          | <a href='#fun'>^ Methods</a>
+        </td>
+      </tr>
+    </table>
+    Image background color<br><br>
+    &nbsp; <b>Type:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp; Array(int, int, int)<br>
+    <br>&nbsp; <b>Default:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp; Array(255, 255, 255)<br>
+    <br>
+    <hr>
+    <a name='var_bordercolor'></a>
+    <table border=0 cellpadding=0 cellspacing=0 width=100%>
+      <tr>
+        <td>
+          <span class=varname>Diagram::bordercolor</span></a>
+        </td>
+        <td align=right>
+          <a href='#top'>^ Top</a>
+          | <a href='#var'>^ Variables</a>
+          | <a href='#fun'>^ Methods</a>
+        </td>
+      </tr>
+    </table>
+    Image border color<br><br>
+    &nbsp; <b>Type:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp; Array(int, int, int)<br>
+    <br>&nbsp; <b>Default:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp; Array(100, 100, 100)<br>
+    <br>
+    <hr>
+    <a name='var_borderwidth'></a>
+    <table border=0 cellpadding=0 cellspacing=0 width=100%>
+      <tr>
+        <td>
+          <span class=varname>Diagram::borderwidth</span></a>
+        </td>
+        <td align=right>
+          <a href='#top'>^ Top</a>
+          | <a href='#var'>^ Variables</a>
+          | <a href='#fun'>^ Methods</a>
+        </td>
+      </tr>
+    </table>
+    Image border size<br><br>
+    &nbsp; <b>Type:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp; int<br>
+    <br>&nbsp; <b>Default:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp; 1<br>
+    <br>
+    <hr>
+    <a name='var_data'></a>
+    <table border=0 cellpadding=0 cellspacing=0 width=100%>
+      <tr>
+        <td>
+          <span class=varname>Diagram::data</span></a>
+        </td>
+        <td align=right>
+          <a href='#top'>^ Top</a>
+          | <a href='#var'>^ Variables</a>
+          | <a href='#fun'>^ Methods</a>
+        </td>
+      </tr>
+    </table>
+    Data<br><br>
+    &nbsp; <b>Type:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp; Array()<br>
+    <br>
+    <hr>
+    <a name='var_font'></a>
+    <table border=0 cellpadding=0 cellspacing=0 width=100%>
+      <tr>
+        <td>
+          <span class=varname>Diagram::font</span></a>
+        </td>
+        <td align=right>
+          <a href='#top'>^ Top</a>
+          | <a href='#var'>^ Variables</a>
+          | <a href='#fun'>^ Methods</a>
+        </td>
+      </tr>
+    </table>
+    Font<br><br>
+    &nbsp; <b>Type:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp; int<br>
+    <br>&nbsp; <b>Default:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp; 2<br>
+    <br>
+    <hr>
+    <a name='var_fontcolor'></a>
+    <table border=0 cellpadding=0 cellspacing=0 width=100%>
+      <tr>
+        <td>
+          <span class=varname>Diagram::fontcolor</span></a>
+        </td>
+        <td align=right>
+          <a href='#top'>^ Top</a>
+          | <a href='#var'>^ Variables</a>
+          | <a href='#fun'>^ Methods</a>
+        </td>
+      </tr>
+    </table>
+    Font color<br><br>
+    &nbsp; <b>Type:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp; Array(int, int, int)<br>
+    <br>&nbsp; <b>Default:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp; Array(0, 0, 0)<br>
+    <br>
+    <hr>
+    <a name='var_inpadding'></a>
+    <table border=0 cellpadding=0 cellspacing=0 width=100%>
+      <tr>
+        <td>
+          <span class=varname>Diagram::inpadding</span></a>
+        </td>
+        <td align=right>
+          <a href='#top'>^ Top</a>
+          | <a href='#var'>^ Variables</a>
+          | <a href='#fun'>^ Methods</a>
+        </td>
+      </tr>
+    </table>
+    Space between text and border of rectangles<br><br>
+    &nbsp; <b>Type:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp; int<br>
+    <br>&nbsp; <b>Default:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp; 5<br>
+    <br>
+    <hr>
+    <a name='var_padding'></a>
+    <table border=0 cellpadding=0 cellspacing=0 width=100%>
+      <tr>
+        <td>
+          <span class=varname>Diagram::padding</span></a>
+        </td>
+        <td align=right>
+          <a href='#top'>^ Top</a>
+          | <a href='#var'>^ Variables</a>
+          | <a href='#fun'>^ Methods</a>
+        </td>
+      </tr>
+    </table>
+    Image padding<br><br>
+    &nbsp; <b>Type:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp; int<br>
+    <br>&nbsp; <b>Default:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp; 10<br>
+    <br>
+    <hr>
+    <a name='var_rect_bgcolor'></a>
+    <table border=0 cellpadding=0 cellspacing=0 width=100%>
+      <tr>
+        <td>
+          <span class=varname>Diagram::rect_bgcolor</span></a>
+        </td>
+        <td align=right>
+          <a href='#top'>^ Top</a>
+          | <a href='#var'>^ Variables</a>
+          | <a href='#fun'>^ Methods</a>
+        </td>
+      </tr>
+    </table>
+    Rectangle background color<br><br>
+    &nbsp; <b>Type:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp; Array(int, int, int)<br>
+    <br>&nbsp; <b>Default:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp; Array(200, 200, 200)<br>
+    <br>
+    <hr>
+    <a name='var_rect_bordercolor'></a>
+    <table border=0 cellpadding=0 cellspacing=0 width=100%>
+      <tr>
+        <td>
+          <span class=varname>Diagram::rect_bordercolor</span></a>
+        </td>
+        <td align=right>
+          <a href='#top'>^ Top</a>
+          | <a href='#var'>^ Variables</a>
+          | <a href='#fun'>^ Methods</a>
+        </td>
+      </tr>
+    </table>
+    Rectangle border color<br><br>
+    &nbsp; <b>Type:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp; Array(int, int, int)<br>
+    <br>&nbsp; <b>Default:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp; Array(170, 170, 170)<br>
+    <br>
+    <hr>
+    <a name='var_spacepadding'></a>
+    <table border=0 cellpadding=0 cellspacing=0 width=100%>
+      <tr>
+        <td>
+          <span class=varname>Diagram::spacepadding</span></a>
+        </td>
+        <td align=right>
+          <a href='#top'>^ Top</a>
+          | <a href='#var'>^ Variables</a>
+          | <a href='#fun'>^ Methods</a>
+        </td>
+      </tr>
+    </table>
+    Space between 2 rectangles<br><br>
+    &nbsp; <b>Type:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp; int<br>
+    <br>&nbsp; <b>Default:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp; 5<br>
+    <br>
+    <hr><a name='fun_Draw'></a>
+    <table border=0 cellpadding=0 cellspacing=0 width=100%>
+      <tr>
+        <td><span class=funname>Diagram::Draw()</span></a></td>
+        <td align=right>
+          <a href='#top'>^ Top</a>
+          | <a href='#var'>^ Variables</a>
+          | <a href='#fun'>^ Methods</a>
+        </td>
+      </tr>
+    </table>
+    Draw diagram (to stdout or to an image)<br><br>
+    &nbsp; <b>Arguments:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    ( <span class=vartype>string</span>
+    )
+    $file<br>
+    <br>&nbsp; <b>Default:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp;$file = ""<br>
+    <br>
+    <hr><a name='fun_SetBackgroundColor'></a>
+    <table border=0 cellpadding=0 cellspacing=0 width=100%>
+      <tr>
+        <td><span class=funname>Diagram::SetBackgroundColor()</span></a></td>
+        <td align=right>
+          <a href='#top'>^ Top</a>
+          | <a href='#var'>^ Variables</a>
+          | <a href='#fun'>^ Methods</a>
+        </td>
+      </tr>
+    </table>
+    Set image background color<br><br>
+    &nbsp; <b>Arguments:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    ( <span class=vartype>int</span>
+    )
+    $r<br>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    ( <span class=vartype>int</span>
+    )
+    $g<br>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    ( <span class=vartype>int</span>
+    )
+    $b<br>
+    <br>
+    <hr><a name='fun_SetBorderColor'></a>
+    <table border=0 cellpadding=0 cellspacing=0 width=100%>
+      <tr>
+        <td><span class=funname>Diagram::SetBorderColor()</span></a></td>
+        <td align=right>
+          <a href='#top'>^ Top</a>
+          | <a href='#var'>^ Variables</a>
+          | <a href='#fun'>^ Methods</a>
+        </td>
+      </tr>
+    </table>
+    Set image border color<br><br>
+    &nbsp; <b>Arguments:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    ( <span class=vartype>int</span>
+    )
+    $r<br>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    ( <span class=vartype>int</span>
+    )
+    $g<br>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    ( <span class=vartype>int</span>
+    )
+    $b<br>
+    <br>
+    <hr><a name='fun_SetBorderWidth'></a>
+    <table border=0 cellpadding=0 cellspacing=0 width=100%>
+      <tr>
+        <td><span class=funname>Diagram::SetBorderWidth()</span></a></td>
+        <td align=right>
+          <a href='#top'>^ Top</a>
+          | <a href='#var'>^ Variables</a>
+          | <a href='#fun'>^ Methods</a>
+        </td>
+      </tr>
+    </table>
+    Set image border size<br><br>
+    &nbsp; <b>Arguments:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    ( <span class=vartype>int</span>
+    )
+    $n<br>
+    <br>
+    <hr><a name='fun_SetData'></a>
+    <table border=0 cellpadding=0 cellspacing=0 width=100%>
+      <tr>
+        <td><span class=funname>Diagram::SetData()</span></a></td>
+        <td align=right>
+          <a href='#top'>^ Top</a>
+          | <a href='#var'>^ Variables</a>
+          | <a href='#fun'>^ Methods</a>
+        </td>
+      </tr>
+    </table>
+    Set diagram data<br><br>
+    &nbsp; <b>Arguments:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    ( <span class=vartype>array</span>
+    )
+    $data<br>
+    <br>
+    <hr><a name='fun_SetFont'></a>
+    <table border=0 cellpadding=0 cellspacing=0 width=100%>
+      <tr>
+        <td><span class=funname>Diagram::SetFont()</span></a></td>
+        <td align=right>
+          <a href='#top'>^ Top</a>
+          | <a href='#var'>^ Variables</a>
+          | <a href='#fun'>^ Methods</a>
+        </td>
+      </tr>
+    </table>
+    Set font<br><br>
+    &nbsp; <b>Arguments:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    ( <span class=vartype>int</span>
+    )
+    $font<br>
+    <br>
+    <hr><a name='fun_SetFontColor'></a>
+    <table border=0 cellpadding=0 cellspacing=0 width=100%>
+      <tr>
+        <td><span class=funname>Diagram::SetFontColor()</span></a></td>
+        <td align=right>
+          <a href='#top'>^ Top</a>
+          | <a href='#var'>^ Variables</a>
+          | <a href='#fun'>^ Methods</a>
+        </td>
+      </tr>
+    </table>
+    Set font color<br><br>
+    &nbsp; <b>Arguments:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    ( <span class=vartype>int</span>
+    )
+    $r<br>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    ( <span class=vartype>int</span>
+    )
+    $g<br>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    ( <span class=vartype>int</span>
+    )
+    $b<br>
+    <br>
+    <hr><a name='fun_SetInPadding'></a>
+    <table border=0 cellpadding=0 cellspacing=0 width=100%>
+      <tr>
+        <td><span class=funname>Diagram::SetInPadding()</span></a></td>
+        <td align=right>
+          <a href='#top'>^ Top</a>
+          | <a href='#var'>^ Variables</a>
+          | <a href='#fun'>^ Methods</a>
+        </td>
+      </tr>
+    </table>
+    Space between text and border of rectangles<br><br>
+    &nbsp; <b>Arguments:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    ( <span class=vartype>int</span>
+    )
+    $p<br>
+    <br>
+    <hr><a name='fun_SetPadding'></a>
+    <table border=0 cellpadding=0 cellspacing=0 width=100%>
+      <tr>
+        <td><span class=funname>Diagram::SetPadding()</span></a></td>
+        <td align=right>
+          <a href='#top'>^ Top</a>
+          | <a href='#var'>^ Variables</a>
+          | <a href='#fun'>^ Methods</a>
+        </td>
+      </tr>
+    </table>
+    Image padding<br><br>
+    &nbsp; <b>Arguments:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    ( <span class=vartype>int</span>
+    )
+    $p<br>
+    <br>
+    <hr><a name='fun_SetRectangleBackgroundColor'></a>
+    <table border=0 cellpadding=0 cellspacing=0 width=100%>
+      <tr>
+        <td><span class=funname>Diagram::SetRectangleBackgroundColor()</span></a></td>
+        <td align=right>
+          <a href='#top'>^ Top</a>
+          | <a href='#var'>^ Variables</a>
+          | <a href='#fun'>^ Methods</a>
+        </td>
+      </tr>
+    </table>
+    Set rectangles background color<br><br>
+    &nbsp; <b>Arguments:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    ( <span class=vartype>int</span>
+    )
+    $r<br>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    ( <span class=vartype>int</span>
+    )
+    $g<br>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    ( <span class=vartype>int</span>
+    )
+    $b<br>
+    <br>
+    <hr><a name='fun_SetRectangleBorderColor'></a>
+    <table border=0 cellpadding=0 cellspacing=0 width=100%>
+      <tr>
+        <td><span class=funname>Diagram::SetRectangleBorderColor()</span></a></td>
+        <td align=right>
+          <a href='#top'>^ Top</a>
+          | <a href='#var'>^ Variables</a>
+          | <a href='#fun'>^ Methods</a>
+        </td>
+      </tr>
+    </table>
+    Set rectangles background color<br><br>
+    &nbsp; <b>Arguments:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    ( <span class=vartype>int</span>
+    )
+    $r<br>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    ( <span class=vartype>int</span>
+    )
+    $g<br>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    ( <span class=vartype>int</span>
+    )
+    $b<br>
+    <br>
+    <hr><a name='fun_SetSpacing'></a>
+    <table border=0 cellpadding=0 cellspacing=0 width=100%>
+      <tr>
+        <td><span class=funname>Diagram::SetSpacing()</span></a></td>
+        <td align=right>
+          <a href='#top'>^ Top</a>
+          | <a href='#var'>^ Variables</a>
+          | <a href='#fun'>^ Methods</a>
+        </td>
+      </tr>
+    </table>
+    Space between 2 rectangles<br><br>
+    &nbsp; <b>Arguments:</b><br>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    ( <span class=vartype>int</span>
+    )
+    $p<br>
+    <br>
+  </body>
+</html>

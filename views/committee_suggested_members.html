@@ -1,0 +1,31 @@
+				<div class="inputform">
+					<form action="manage_committees.php?action=tell_suggested_members&committee_id={committee_id}" method="post">
+					<table class="table">
+						<thead>
+							<tr>
+								<th></th>
+								<th>العضو</th>
+								<th>العمر</th>
+								<th>التخصّص</th>
+								<th>المسمّى الوظيفي</th>
+								<th>مكان الإقامة</th>
+							</tr>
+						</thead>
+						<tbody>
+						{suggested_members}
+						</tbody>
+					</table>
+					
+					<p></p>
+						
+					<div class="controls">
+						<label>المحدّد</label>			
+
+						<button type="submit" name="submit" value="1" class="zoghiby_btn positive"><i class="icon-ok icon-white"></i> رشّح</button>
+						<input type="checkbox" name="send_sms" /> أخطرهم برسالة SMS أيضاً
+												
+						<div class="clear"></div>
+					</div>
+					
+					</form>
+				</div>

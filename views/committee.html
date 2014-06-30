@@ -1,0 +1,42 @@
+				<script type="text/javascript">
+					function reject()
+					{
+						var reject_url = "committees.php?do=decide_join_reject&committee_id={committee_id}&decision=reject";
+						var reason = $("#reason").val();
+						
+						if (reason == '')
+						{
+							alert("الرجاء إدخال سبب الرفض.");
+							$("#reason").focus();
+							return false;
+						}
+
+						window.location.href = reject_url + "&reason=" + encodeURIComponent(reason);
+					}
+					
+					function write_reason()
+					{
+						if ($("#reason").val() == "")
+						{
+							$("#accept").show();
+						}
+						else
+						{
+							$("#accept").hide();
+						}
+					}
+				</script>
+
+				<div class="inputform family_council_page">
+					<h2>المهام</h2>
+					<p>
+					{tasks}
+					</p>
+					
+					<h2>مواصفات أعضاء اللجنة</h2>
+					<p>
+					{members_description}
+					</p>
+					
+					{committee_members}
+				</div>

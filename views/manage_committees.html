@@ -1,0 +1,104 @@
+				<div class="inputform">
+					<script type="text/javascript">
+					$(function(){
+						$(".onerow").each(function(k, v){
+							$("#" + v.id).click(function(){
+
+								var id = $("#" + v.id).attr("data-id");
+								var checked = $("#check_" + id).attr("checked");
+								
+								$("#check_" + id).attr("checked", !checked);
+							});
+						});
+						
+						$(".zoghiby-committee-head-autocomplete").zoghibyAutoComplete({
+							type: 'auto-complete'
+						});
+					});
+					</script>
+
+					<h2>إضافة لجنة</h2>
+					<form action="manage_committees.php?action=add_committee" method="post">
+						<p>
+							<label>اسم اللجنة</label>
+							<input type="text" name="name" value="" />
+						</p>
+						
+						<p>
+							<label>العمر الأدنى</label>
+							<input type="text" name="minimum_age" value="" placeholder="18" />
+							<span class="info">الحقل فارغ؛ يعني بدون تحديد للعمر الأدنى.</span>
+						</p>
+						
+						<p>
+							<label>ترتيب الظهور</label>
+							<input type="text" name="priority" value="" />
+						</p>
+						
+						<p>
+							<label>مهام اللجنة</label>
+							<textarea name="tasks" cols="40" rows="4"></textarea>
+						</p>
+						
+						<p>
+							<label>مواصفات أعضاء اللجنة</label>
+							<textarea name="members_description" cols="40" rows="4"></textarea>
+						</p>
+						
+						<p>
+							<ul class="autocomplete_ul">
+								<li class="label">رئيس اللجنة</li>
+								<li><input type="text" name="head_name" value="" class="zoghiby-committee-head-autocomplete" /></li>
+							</ul>
+							<div class="clear"></div>
+						</p>
+						
+						<p>
+							<label>كلمات مفتاحيّة <span class="info">(افصل بينها بفاصلة)</span></label>
+							<textarea name="keywords" cols="40" rows="4"></textarea>
+						</p>
+
+						<p>
+							<button class="submit" type="submit" name="submit" value="1"><i class="icon-ok icon-white"></i> إضافة لجنة</button>
+							<span class="info">استخدم (*) في أول كل سطر لإضافة عنصر قائمة.</span>
+						</p>
+					</form>
+					
+					<p></p>
+
+					<h2>إدارة اللجان</h2>
+					<form action="manage_committees.php?action=update_committees" method="post">
+
+						<table class="table">
+						<thead>
+						<tr>
+							<th></th>
+							<th>ترتيب الظهور</th>
+							<th>اسم اللجنة</th>
+							<th>رئيس اللجنة</th>
+							<th>عدد الأعضاء</th>
+							<th>كلمات مفتاحيّة</th>
+							<th>الإجراء</th>
+						</tr>
+						</thead>
+						<tbody>
+						{committees}
+						</tbody>
+						</table>
+
+						<p></p>
+						
+						<div class="controls">
+							<label>المحدّد</label>
+											
+							<select name="do">
+								<option value="update_order">تحديث الترتيب</option>
+								<option value="delete">حذف</option>
+							</select>
+	
+							<button type="submit" name="submit" value="1" class="zoghiby_btn positive"><i class="icon-ok icon-white"></i> نعم</button>
+
+						<div class="clear"></div>
+						</div>
+					</form>
+				</div>

@@ -1,0 +1,119 @@
+				<script type="text/javascript">
+				
+				function show_details(id)
+				{
+					$("#btn_show_details_" + id).hide();
+					$("#btn_hide_details_" + id).show();
+					$("#details_msg_" + id).show();
+				}
+				
+				function hide_details(id)
+				{
+					$("#btn_hide_details_" + id).hide();
+					$("#details_msg_" + id).hide();
+					$("#btn_show_details_" + id).show();
+				}	
+				
+				function reject(id)
+				{
+					var reason = $("#reason_" + id).val();
+					var key = $("#random_key_" + id).val();
+					
+					if (reason == "")
+					{
+						alert("الرجاء إدخال سبب الرفض.");
+						return false;
+					}
+					
+					// Generate the request
+					var request = "request_update.php?do=reject&key=" + key + "&reason=" + encodeURIComponent(reason);
+					window.location.href = request;
+				}
+				
+				function write_reason(id)
+				{
+					if ($("#reason_" + id).val() == "")
+					{
+						$("#accept_" + id).show();
+					}
+					else
+					{
+						$("#accept_" + id).hide();
+					}
+				}
+				
+				function check_all()
+				{
+					$(".check").each(function(){
+						var id = $(this).attr("id");
+						$("#" + id).attr("checked", true);
+					});
+				}
+				
+				function uncheck_all()
+				{
+					$(".check").each(function(){
+						var id = $(this).attr("id");
+						$("#" + id).attr("checked", false);
+					});
+				}
+				
+				function show_all_details()
+				{
+					$(".check").each(function(){
+						var id = $(this).attr("data-id");
+						show_details(id);
+					});
+				}
+				
+				function hide_all_details()
+				{
+					$(".check").each(function(){
+						var id = $(this).attr("data-id");
+						hide_details(id);
+					});
+				}
+						
+				</script>
+
+				<div class="row">
+					<div class="large-12 columns">
+						<form action="request_update.php?do=assign" method="post" class="inputform">
+							<h4>تحديثات معلّقة {pendings_count}</h4>
+							<table class="table" width="100%">
+								<thead>
+									<tr>
+										<th></th>
+										<th class="hide-for-small"></th>
+										<th>التحديث</th>
+										<th class="hide-for-small">اٌُسند إلى</th>
+										<th>الإجراء</th>
+									</tr>
+								</thead>
+								<tbody>
+									{pendings}
+								</tbody>
+							</table>
+							{assign_to_div}
+						</form>
+
+						<div>
+							<h4>آخر {updates_count} تحديثات</h4>
+							<table class="table" width="100%">
+							<thead>
+							<tr>
+								<th class="hide-for-small"></th>
+								<th>التحديث</th>
+								<th>القرار</th>
+								<th class="hide-for-small">سبب الرفض (إن وُجد)</th>
+								<th class="hide-for-small">الإنجاز</th>
+							</tr>
+							</thead>
+							<tbody>
+								{not_pendings}
+							</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+

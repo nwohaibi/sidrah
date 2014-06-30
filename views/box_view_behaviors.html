@@ -1,0 +1,167 @@
+				<script type="text/javascript">
+				
+				function other_toggle()
+				{
+					var _for = $("#for").val();
+					
+					if ( _for == -1)
+					{
+						$("#other").show();
+					}
+					else
+					{
+						$("#other").hide();
+					}
+				}
+				
+				$(function(){
+				
+					$("#for").change(function(){
+						other_toggle();
+					});
+				
+					// Cause this event.
+					other_toggle();
+				});
+				
+				</script>
+
+				<div class="row">
+					<div class="large-12 columns">
+	
+						<h4>إضافة استقطاع شهري - {name}</h4>
+						<form action="family_box.php?action=add_behavior&account_id={account_id}" method="post">
+						
+							<div class="row">
+								<div class="large-6 columns">
+									<label>المبلغ (الاستقطاع)</label>
+									<input type="text" name="amount" placeholder="0" />
+								</div>
+							</div>
+						
+							<div class="row">
+								<div class="large-6 columns">
+									<label>تاريخ البدء (ميلادي)</label>
+									<div class="row">
+										<div class="large-4 small-4 columns">
+											<input type="text" name="start_day" value="" placeholder="اليوم" />
+										</div>
+										<div class="large-4 small-4 columns">
+											<select name="start_month">
+												<option value="0"></option>
+												<option value="1">1. يناير</option>
+												<option value="2">2. فبراير</option>
+												<option value="3">3. مارس</option>
+												<option value="4">4. أبريل</option>
+												<option value="5">5. مايو</option>
+												<option value="6">6. يوليو</option>
+												<option value="7">7. يونيو</option>
+												<option value="8">8. أغسطس</option>
+												<option value="9">9. سبتمبر</option>
+												<option value="10">10. أكتوبر</option>
+												<option value="11">11. نوفمبر</option>
+												<option value="12">12. ديسمبر</option>
+											</select>
+										</div>
+										<div class="large-4 small-4 columns">
+											<input type="text" placeholder="سنة" value="" name="start_year" />
+										</div>
+									</div>
+								</div>
+							</div>
+						
+							<div class="row">
+								<div class="large-6 columns">
+									<label>تاريخ الإنتهاء (ميلادي)</label>
+									<div class="row">
+										<div class="large-4 small-4 columns">
+											<input type="text" name="end_day" value="" placeholder="اليوم" />
+										</div>
+										<div class="large-4 small-4 columns">
+											<select name="end_month">
+												<option value="0"></option>
+												<option value="1">1. يناير</option>
+												<option value="2">2. فبراير</option>
+												<option value="3">3. مارس</option>
+												<option value="4">4. أبريل</option>
+												<option value="5">5. مايو</option>
+												<option value="6">6. يوليو</option>
+												<option value="7">7. يونيو</option>
+												<option value="8">8. أغسطس</option>
+												<option value="9">9. سبتمبر</option>
+												<option value="10">10. أكتوبر</option>
+												<option value="11">11. نوفمبر</option>
+												<option value="12">12. ديسمبر</option>
+											</select>
+										</div>
+										<div class="large-4 small-4 columns">
+											<input type="text" placeholder="سنة" value="" name="end_year" />
+										</div>
+									</div>
+								</div>
+							</div>
+						
+							<div class="row">
+								<div class="large-6 columns">
+									<label>أي يوم من الشهر؟</label>
+									<input type="text" name="dayofmonth" />
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="large-6 columns">
+									<label>الغرض</label>
+									<select name="for" id="for">
+										{fors}
+										<option value="-1">أخرى</option>
+									</select>
+								</div>
+							</div>
+							
+							<div class="row" id="other">
+								<div class="large-6 columns">
+									<label>أخرى</label>
+									<textarea name="other"></textarea>
+								</div>
+							</div>
+						
+							<div class="row">
+								<div class="large-4 columns">
+									<button class="small button" type="submit" name="submit" value="1">إضافة استقطاع</button>
+								</div>
+							</div>
+						</form>
+
+						<h4>إدارة الاستقطاعات الشهريّة</h4>
+		
+						<form action="manage_ramadan_questions.php?action=update_questions" method="post">
+		
+							<table class="table" width="100%">
+								<thead>
+									<tr>
+										<th></th>				
+										<th>المبلغ</th>
+										<th>في يوم</th>
+										<th>بدءً من</th>
+										<th>انتهاءً عند</th>
+										<th>الإجراء</th>
+									</tr>
+								</thead>
+								<tbody>
+									{behaviors}
+								</tbody>
+							</table>
+		
+							<ul class="button-group">
+								<li>
+									<select name="do">
+										<option value="delete">حذف</option>
+									</select>
+								</li>
+								<li>
+									<button type="submit" name="submit" value="1" class="small button">نعم</button>
+								</li>
+							</ul>
+						</form>
+					</div>
+				</div>

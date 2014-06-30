@@ -1,0 +1,302 @@
+
+			<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+			
+			<script type="text/javascript">
+
+				google.load("visualization", "1", {packages:["corechart"]});
+				google.setOnLoadCallback(drawChart);
+				
+				function drawChart() {
+					var data = google.visualization.arrayToDataTable([
+						["Task", "Hours per Day"],
+						["Work", 11],
+					]);
+
+					var options = {
+						title: "My Daily Activities",
+						is3D: true,
+					};
+
+					var chart = new google.visualization.PieChart(document.getElementById("genders"));
+					chart.draw(data, options);
+				}
+			</script>
+
+			<div class="row">
+				<div class="large-12 columns">
+				
+					<h3>أفراد العائلة</h3>
+
+					<table class="table">
+					<tbody>
+						<tr>
+							<td>عدد أفراد العائلة (الأحياء)</td>
+							<td><span class="number">{alive_members}</span> <span>{today_added_members}</span></td>
+						</tr>
+						<tr>
+							<td>عدد أفراد العائلة (ذكور)</td>
+							<td><span class="number">{male_alive_members}</span> <span>({male_average})</span></td>
+						</tr>
+						<tr>
+							<td>عدد أفراد العائلة (إناث)</td>
+							<td><span class="number">{female_alive_members}</span> <span>({female_average})</span></td>
+						</tr>
+					</tbody>
+					</table>
+					
+					<div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+
+					<h3>الحالات الإجتماعية</h3>
+
+					<table class="table">
+					<tbody>
+						<tr>
+							<td>عدد الذكور المتزوجين</td>
+							<td><span class="number">{married_male_alive_members}</span> <span>({married_male_average})</span></td>
+						</tr>
+						<tr>
+							<td>عدد الذكور العازبين (18 سنة فما فوق)</td>
+							<td><span class="number">{single_male_alive_members}</span> <span>({single_male_average})</b></td>
+						</tr>
+						<tr>
+							<td>عدد الإناث المتزوجات</td>
+							<td><span class="number">{married_female_alive_members}</span> <span>({married_female_average})</b></td>
+						</tr>
+						<tr>
+							<td>عدد الإناث العازبات (18 سنة فما فوق)</td>
+							<td><span class="number">{single_female_alive_members}</span> <span>({single_female_average})</b></td>
+						</tr>
+						<tr>
+							<td>عدد الإناث المطلّقات</td>
+							<td><span class="number">{divorced_female_alive_members}</span> <span>({divorced_female_average})</b></td>
+						</tr>
+						<tr>
+							<td>عدد الإناث الأرامل</td>
+							<td><span class="number">{widow_female_alive_members}</span> <span>({widow_female_average})</b></td>
+						</tr>
+					</tbody>
+					</table>
+
+					<p></p>
+
+					<h3>الفئات العمرية</h3>
+
+					<table class="table">
+
+					<thead>
+						<th>الفئة العمرية</th>
+						<th>العدد</th>
+					</thead>
+
+					<tbody>
+						{member_ages_ranges}
+					</tbody>
+
+					</table>
+
+					<p></p>
+
+					<h3>التعليم</h3>
+
+					<table class="table">
+
+					<thead>
+						<th>المستوى التعليمي</th>
+						<th>العدد</th>
+					</thead>
+
+					<tbody>
+						{member_educations_ranges}	
+					</tbody>
+
+					</table>
+
+					<p></p>
+
+					<h3>أكثر التخصّصات تداولاً</h3>
+
+					<table class="table">
+
+					<thead>
+						<th>التخصّص</th>
+						<th>العدد</th>
+					</thead>
+
+					<tbody>
+						{members_majors}	
+					</tbody>
+
+					</table>
+
+					<p></p>
+
+					<h3>أكثر جهات العمل تداولاً</h3>
+
+					<table class="table">
+
+					<thead>
+						<th>جهة العمل</th>
+						<th>العدد</th>
+					</thead>
+
+					<tbody>
+						{members_companies}
+					</tbody>
+
+					</table>
+
+					<p></p>
+
+					<h3>أكثر المسمّيات الوظيفية تداولاً</h3>
+
+					<table class="table">
+
+					<thead>
+						<th>المسمّى الوظيفي</th>
+						<th>العدد</th>
+					</thead>
+
+					<tbody>
+						{members_job_titles}
+					</tbody>
+
+					</table>
+
+					<p></p>
+
+					<h3>أكثر أسماء الذكور تداولاً</h3>
+
+					<table class="table">
+
+					<thead>
+						<th>الاسم</th>
+						<th>العدد</th>
+					</thead>
+
+					<tbody>
+						{top_male_member_names}	
+					</tbody>
+
+					</table>
+
+					<p></p>
+
+					<h3>أكثر أسماء الإناث تداولاً</h3>
+
+					<table class="table">
+
+					<thead>
+						<th>الاسم</th>
+						<th>العدد</th>
+					</thead>
+
+					<tbody>
+						{top_female_member_names}	
+					</tbody>
+
+					</table>
+
+					<p></p>
+
+					<h3>أكثر أماكن الإقامة تداولاً</h3>
+
+					<table class="table">
+
+					<thead>
+						<th>مكان الإقامة</th>
+						<th>العدد</th>
+					</thead>
+
+					<tbody>
+						{top_member_locations}
+					</tbody>
+
+					</table>
+
+					<p></p>
+
+					<h3>أكثر العوائل التي تزوّجنا منها</h3>
+
+					<table class="table">
+
+					<thead>
+						<th>العائلة</th>
+						<th>العدد</th>
+					</thead>
+
+					<tbody>
+						{top_tribes_we_married}
+					</tbody>
+
+					</table>
+
+					<p></p>
+
+					<h3>أكثر العوائل التي تزوّجت منّا</h3>
+
+					<table class="table">
+
+					<thead>
+						<th>العائلة</th>
+						<th>العدد</th>
+					</thead>
+
+					<tbody>
+						{top_tribes_they_married}
+					</tbody>
+
+					</table>
+
+					<p></p>
+
+					<h3>السكن</h3>
+
+					<table class="table">
+
+					<thead>
+						<th>نوع السكن</th>
+						<th>العدد</th>
+					</thead>
+
+					<tbody>
+						{members_livings}
+					</tbody>
+
+					</table>
+
+					<p></p>
+
+					<h3>الدم</h3>
+
+					<table class="table">
+
+					<thead>
+						<th>فصيلة الدم</th>
+						<th>العدد</th>
+					</thead>
+
+					<tbody>
+						{members_bloods}	
+					</tbody>
+
+					</table>
+
+					<p></p>
+
+					<h3>أكثر الهوايات تداولاً</h3>
+
+					<table class="table">
+
+					<thead>
+						<th>الهواية</th>
+						<th>العدد</th>
+					</thead>
+
+					<tbody>
+						{top_hobbies}	
+					</tbody>
+
+					</table>
+				</div>
+			</div>
+

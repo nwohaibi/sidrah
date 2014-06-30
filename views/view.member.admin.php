@@ -1,0 +1,47 @@
+<div class="breadcrumb">
+<a class='btn btn-mini' href='#toppage' onclick='edit_member({id})'><i class='icon-ok'></i> تعديل</a>
+<a class='btn btn-mini' href='#toppage' onclick='add_member({id})'><i class='icon-plus'></i> إضافة أبناء</a>
+<a class='btn btn-mini btn-danger' href='#toppage' onclick='delete_member({id})'><i class='icon-remove icon-white'></i> حذف</a>
+</div>
+
+<div class="div_content">
+			<div style="float: left;">
+				<img src="{pic}" border="0" width="66" height="77" />
+			</div>
+			
+			<h2>{name} {nickname}</h2>
+			
+			<p>{mercy_word}</p>
+			
+			<div class="clear"></div>
+			
+			<p>
+				<b>الاسم الكامل</b><br />
+				{fullname}
+			</p>
+			
+			{nickname_row}
+
+			<p>
+				<b>الجوّال</b><br />
+				{mobile}
+			</p>
+						
+			<p>
+				<b>تاريخ الميلاد</b><br />
+				{dob}
+			</p>		
+
+			{dod_row}
+			
+			<p>
+				<b>الأبناء{children_count}</b><br />
+			
+			{children}
+
+			</p>
+			
+			<p>
+				<a href="#">عرض صفحة مفصّلة</a>
+			</p>
+</div>

@@ -1,0 +1,123 @@
+<div class="row">
+	<div class="large-12 columns">
+	
+		<h4>إضافة سؤال رمضاني</h4>
+		<form action="manage_ramadan_questions.php?action=add_question" method="post">
+		
+			<div class="row">
+				<div class="large-4 columns">
+					<label>اليوم</label>
+					<input type="text" name="day" />
+				</div>
+			</div>
+		
+			<div class="row">
+				<div class="large-8 columns">
+					<label>السؤال</label>
+					<textarea name="question" cols="40" rows="4"></textarea>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="large-4 columns">
+					<div class="row collapse">
+						<label>الجواب الأول</label>
+						<div class="large-10 small-10 columns">
+							<input type="text" name="answer1" value="" />
+						</div>
+						<div class="large-2 small-2 columns">
+							<span class="postfix"><input type="radio" name="correct_answer" value="1" /></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="large-4 columns">
+					<div class="row collapse">
+						<label>الجواب الثاني</label>
+						<div class="large-10 small-10 columns">
+							<input type="text" name="answer2" value="" />
+						</div>
+						<div class="large-2 small-2 columns">
+							<span class="postfix"><input type="radio" name="correct_answer" value="2" /></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="large-4 columns">
+					<div class="row collapse">
+						<label>الجواب الثالث</label>
+						<div class="large-10 small-10 columns">
+							<input type="text" name="answer3" value="" />
+						</div>
+						<div class="large-2 small-2 columns">
+							<span class="postfix"><input type="radio" name="correct_answer" value="3" /></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="large-4 columns">
+					<div class="row collapse">
+						<label>الجواب الرابع</label>
+						<div class="large-10 small-10 columns">
+							<input type="text" name="answer4" value="" />
+						</div>
+						<div class="large-2 small-2 columns">
+							<span class="postfix"><input type="radio" name="correct_answer" value="4" /></span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="large-8 columns">
+					<label>الرسالة الإيجابيّة</label>
+					<textarea name="positive_message" cols="40" rows="4"></textarea>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="large-12 columns">
+					<button class="small button" type="submit" name="submit" value="1">إضافة سؤال</button>
+					<a href="manage_ramadan_questions.php?action=random_winner" class="small button success">فائزون عشوائيون</a>
+				</div>
+			</div>	
+		</form>
+
+		<h4>إدارة الأسئلة الرمضانيّة</h4>
+		
+		<form action="manage_ramadan_questions.php?action=update_questions" method="post">
+		
+			<table class="table" width="100%">
+				<thead>
+					<tr>
+					<th></th>
+					<th>السؤال</th>
+					<th>عدد الإجابات</th>
+					<th>عدد الإجابات الصحيحة</th>
+					<th>الإجراء</th>
+				</tr>
+				</thead>
+				<tbody>
+					{ramadan_questions}
+				</tbody>
+			</table>
+		
+			<ul class="button-group">
+				<li>
+					<select name="do">
+						<option value="delete">حذف</option>
+					</select>
+				</li>
+				<li>
+					<button type="submit" name="submit" value="1" class="small button">نعم</button>
+				</li>
+			</ul>
+		</form>
+	</div>
+</div>

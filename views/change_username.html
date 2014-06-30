@@ -1,0 +1,65 @@
+				<script type="text/javascript">
+				
+					$(function(){
+						$("#new_username").keyup(function(){
+							check_user_availability();
+						});
+					});
+					
+					function check_user_availability()
+					{
+						var username = encodeURIComponent("{username}");
+						var new_username = encodeURIComponent($("#new_username").val());
+						var name = encodeURIComponent("{name}");
+
+						$.ajax({
+							url: "zoghiby_ajax.php?action=check_user_availability&username=" + username + "&new_username=" + new_username + "&name=" + name,
+							success: function(data){
+							
+								var username_availability = data;
+								var username_availability_html = "";
+								
+								if (username_availability == "Available")
+								{
+									username_availability_html = "مُتاح";
+								}
+								else if (username_availability == "NotAvailable")
+								{
+									username_availability_html = "غير مُتاح";
+								}
+								else
+								{
+									username_availability_html = "الرجاء <a href='login.php'>تسجيل الدخول</a>";
+								}
+								
+								// Set.
+								$("#username_availability").html(username_availability_html);
+								$("#username_availability").addClass("label");
+							}
+						});
+					}
+				</script>
+
+				<div class="row">
+					<div class="large-12 columns">
+						<form action="change_username.php" method="post" class="inputform">
+							<div class="row">
+								<div class="large-6 columns">
+									<label>اسم المستخدم الجديد</label>
+									<input type="text" name="new_username" id="new_username" maxlength="{user_max_length}" />
+								</div>
+								<div class="large-6 columns">
+									<span id="username_availability"</span>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="large-6 columns">
+									<button class="small button" type="submit" name="submit" value="1"><i class="icon-user icon-white"></i> تغيير اسم المستخدم</button>
+									<span>اسم المستخدم أكثر من أو يساوي {user_min_length} حرف، و أقل من {user_max_length} حرف.</span>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				

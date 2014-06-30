@@ -1,0 +1,62 @@
+
+				<div class="row">
+					<div class="large-12 columns">
+	
+						<h4>إضافة غرض</h4>
+						<form action="family_box.php?action=add_for" method="post">
+						
+							<div class="row">
+								<div class="large-6 columns">
+									<label>الغرض</label>
+									<input type="text" name="name" />
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="large-6 columns">
+									<label>النوع</label>
+									<select name="type">
+										<option value="withdraw">سحب</option>
+										<option value="deposit">إيداع</option>
+									</select>
+								</div>
+							</div>
+						
+							<div class="row">
+								<div class="large-4 columns">
+									<button class="small button" type="submit" name="submit" value="1">إضافة غرض</button>
+								</div>
+							</div>
+						</form>
+
+						<h4>إدارة الاستقطاعات الشهريّة</h4>
+		
+						<form action="manage_ramadan_questions.php?action=update_questions" method="post">
+		
+							<table class="table" width="100%">
+								<thead>
+									<tr>
+										<th></th>				
+										<th>الغرض</th>
+										<th>النوع</th>
+										<th>الإجراء</th>
+									</tr>
+								</thead>
+								<tbody>
+									{fors}
+								</tbody>
+							</table>
+		
+							<ul class="button-group">
+								<li>
+									<select name="do">
+										<option value="delete">حذف</option>
+									</select>
+								</li>
+								<li>
+									<button type="submit" name="submit" value="1" class="small button">نعم</button>
+								</li>
+							</ul>
+						</form>
+					</div>
+				</div>

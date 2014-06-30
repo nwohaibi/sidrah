@@ -1,0 +1,28 @@
+<div class="row">
+	<div class="large-12 columns">
+	
+		<h4>تعديل السيرة الذاتية ل{fullname}</h4>
+		<form action="edit_cv.php?id={id}" method="post">
+		
+			<div class="row">
+				<div class="large-8 columns">
+					<label>السيرة الحاليّة</label>
+					<ul>{cv}</ul>
+				</div>
+			</div>
+		
+			<div class="row">
+				<div class="large-8 columns">
+					<label>السيرة أو المعلومة المضافة (ضع * قبل كل معلومة)</label>
+					<textarea name="info" cols="40" rows="4">{cv_info}</textarea>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="large-12 columns">
+					<input class="small button" type="submit" name="submit" value="تعديل السيرة الذاتيّة" />
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,49 @@
+<script type="text/javascript">
+	$(function(){
+
+		$("#vote_for_dean").hide();
+	
+		$("#zoghiby_family_dean").zoghibyAutoComplete({
+			type: 'dean-auto-complete',
+			input_class: 'biginput',
+		}, function (){
+			var id = this.attr('data-id');
+							
+			if (id != "")
+			{
+				$("#vote_for_dean").show();
+				$("#member_id").val(id);
+			}
+		});
+	});
+</script>
+
+<div class="panel">
+	<center>
+		<h4 class="subheader">مرحلة التصويت لعميد عائلة الزغيبي</h4>
+		
+		<p>
+			<b>في الفترة من </b>
+			{from}
+			<b> إلى </b>
+			{to}
+		</p>
+
+		<div class="row">
+			<div class="large-12 columns">
+				{vote}
+			</div>
+		</div>
+	
+		<div id="vote_for_dean">
+			<form action="family_dean.php?action=vote_to_member" method="post">
+		
+				<input type="hidden" name="period_id" value="{period_id}" />
+				<input type="hidden" name="member_id" id="member_id" />
+			
+				<button type="submit" name="submit" value="1" class="small button">صوّت لهذا المرشّح</button>
+				<span>(تأكد من أنك تريد التصويت لهذا المرشح)</span>
+			</form>
+		</div>
+	</center>
+</div>

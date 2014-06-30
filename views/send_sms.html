@@ -1,0 +1,137 @@
+				<script type="text/javascript">
+				
+					var g_to, g_message, g_recipients_count;
+					var g_sent, g_not_sent;
+				
+					$(function(){
+					
+						$("#message").keyup(function(){
+							
+							var message_length = $("#message").val().length;
+							var messages_count = Math.ceil(message_length / 70);
+							
+							$("#message_info").html(
+								message_length + " حرفاً (" + messages_count + ")"
+							);
+						});
+						
+						$("#submit").click(function(){
+						
+							g_to = $("#to").val();
+							g_message = $("#message").val();
+
+							// Check if the message is empty.
+							if ($("#message").val() == "")
+							{
+								alert("الرجاء إدخال محتوى الرسالة المراد إرسالها.");
+								return false;
+							}
+						
+							$("#submit").hide();
+							
+							get_recipients_count();
+							
+							// Rest some values.
+							g_sent = 0; g_not_sent = 0;
+							
+							if (g_recipients_count == 0)
+							{
+								alert("لم يتم العثور على مستلمين.");
+								return;
+							}
+		
+							for (var l_offset=0; l_offset<g_recipients_count; l_offset++)
+							{
+								send_message_offset(g_to, g_message, l_offset);
+								var numerator = l_offset + 1;
+								var percent = Math.round((numerator / g_recipients_count) * 100);
+								$("#sending_details").html("جاري إرسال "+ (numerator) + " من " + (g_recipients_count) + " (" + percent + "%)...");
+							}
+							
+							// After all display sent details.
+							$("#sending_details").html("تم إرسال الرسالة إلى " + g_sent + "، بينما لم يتم إرسالها إلى " + g_not_sent + ".");
+							
+							$("#message").val("");
+							$("#submit").show();
+						});
+			
+						$("#message").keyup();
+					});
+					
+					function get_recipients_count()
+					{
+						$.ajax({
+							url: "zoghiby_ajax.php?action=send_sms_message",
+							type: "post",
+							async: false,
+							data: {method: "count", to: g_to},
+							success: function(response){
+								g_recipients_count = parseInt(response);
+							}
+						});
+					}
+					
+					function send_message_offset(l_to, l_message, l_offset)
+					{
+						$.ajax({
+							url: "zoghiby_ajax.php?action=send_sms_message",
+							type: "post",
+							async: false,
+							data: { method: "offset", to: g_to, message: g_message, offset: l_offset},
+							success: function(response){
+							
+								//1: success, 4:mobile wrong, 0: finished
+								respone_code = parseInt(response);
+								
+								if (respone_code == 1)
+								{
+									g_sent++;
+								}
+								else if (respone_code == 0)
+								{
+									g_not_sent++;
+								}
+							}
+						});
+					}
+				</script>
+				
+				<div class="row">
+					<div class="large-12 columns">
+						<form action="send_sms.php" method="post">
+						
+							<div id="note" data-alert class="alert-box">
+				رصيد النقاط: {current} من {total}.
+								<a href="#" class="close">&times;</a> 
+							</div>
+						
+							<div class="row">
+								<div class="large-8 columns">
+									<label>إلى</label>
+									<select name="to" id="to">
+										{tos}
+									</select>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="large-8 columns">
+									<label>محتوى الرسالة <span id="message_info"></span></label>
+									<textarea name="message" cols="40" rows="8" id="message"></textarea>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="large-8 columns">
+									<span id="sending_details">-</span>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="large-8 columns">
+									<button class="small button" type="button" id="submit"><i class="icon-ok icon-white"></i> إرسال</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>

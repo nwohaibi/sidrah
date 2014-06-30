@@ -1,0 +1,43 @@
+
+<div class="row">
+	<div class="large-12 columns">
+	
+		<ul class="breadcrumbs">
+			<li><a href="index.php">الأولى</a></li>
+			<li class="current">مناسبات العائلة</li>
+		</ul>
+	
+		<div class="row">
+			<div class="large-8 columns">
+	
+				{table}
+		
+				<ul class="button-group">
+					{prev}
+					<li><a href="calendar.php" class="small button">الشهر الحالي</a></li>
+					{next}
+				</ul>
+	
+			</div>
+
+			<aside class="large-4 columns">
+	
+				<h5>مناسبات حاليّة ({current_events_count})</h5>
+
+				<ul class="side-nav">
+					{current_events}
+				</ul>
+		
+				<h5>مناسبات مستقبليّة ({future_events_count})</h5>
+				<ul class="side-nav">
+					{future_events}
+				</ul>
+		
+				<h5>مناسبات ماضية ({past_events_count})</h5>
+				<ul class="side-nav">
+					{past_events}
+				</ul>
+			</aside>
+		</div>
+	</div>
+</div>

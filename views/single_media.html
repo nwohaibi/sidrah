@@ -1,0 +1,205 @@
+   
+<script type="text/javascript">
+
+	var tagmembers = Array();
+	
+	{tagmembers}
+
+	$(function(){
+	
+		// Set the mother to be zoghibyAutoComplete object.
+		$(".zoghiby-tagmember-autocomplete").zoghibyAutoComplete({
+			type: 'auto-complete',
+			input_class: 'large-12 small-12 columns',
+		}, function (){
+			var id = this.attr('data-id');
+							
+			if (id != "")
+			{
+				if (id in tagmembers)
+				{
+					update_tagmembers()
+					return;
+				}
+			
+				tagmembers[id] = {
+					"name": this.val(),
+					"id": id
+				};
+				
+				update_tagmembers();
+				this.val("");
+			}
+		});
+		
+		// Call tagmembers.
+		update_tagmembers();
+		
+		$("#tagmembers_form").submit(function(){
+		
+			var items = Array();
+		
+			for (var key in tagmembers)
+			{
+				items.push(key);
+			}
+			
+			$("#tagmember_values").val(items.join(","));
+		});
+	});
+	
+	function update_tagmembers()
+	{
+		$("#tagmembers").html("");
+	
+		if (tagmembers.length > 0)
+		{
+			$("#tagmembers").html("<b>في هذه الصورة:</b> ");
+			
+			for (var key in tagmembers)
+			{
+				var tagmember = tagmembers[key];
+				$("#tagmembers").append("<a href='familytree.php?id=" + key + "'>" + tagmember["name"] + "</a> <a href='javascript:remove_tagmember(" + key + ")'>[x]</a>, ");
+			}
+		}
+	}
+	
+	function remove_tagmember(id)
+	{
+		tagmembers.splice(id, 1);
+		update_tagmembers();
+	}
+
+</script>
+
+<div class="row">
+	<div class="large-12 columns">
+	
+		<ul class="breadcrumbs">
+			<li><a href="index.php">الأولى</a></li>
+			<li class="current">{media_title}</li>
+		</ul>
+	
+		<div class="row">
+			<div class="large-8 small-8 columns">
+				<h3>{media_title} <small>(اًُضيفت في {created})</small></h3>
+			</div>
+			
+			
+			<div class="large-4 small-4 columns">
+				<div class="row">
+					<div class="large-4 columns">
+						{author_photo}
+					</div>
+				
+					<div class="large-8 columns">
+						<p>
+						<a href="familytree.php?id={author_id}">{author_username}</a>
+						<br />
+						<strong class="hide-for-small">({author_shorten_name})</strong>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<hr />
+
+		<div class="row">
+			<div class="large-10 small-12 columns">
+				<center>
+					<a href="views/medias/photos/large/{media_name}">
+						<img src="views/medias/photos/large/{media_name}" border="0" id="media_photo" />
+					</a>
+					
+					<p>
+						{media_description}
+					</p>
+				</center>
+			</div>
+			
+			<div class="large-2 columns hide-for-small">
+			
+				<h4>{media_views}</h4>
+				<p>مشاهدة</p>
+				
+				<hr />
+			
+				<h4>{media_likes}</h4>
+				<p>إعجاب</p>
+				
+				<hr />
+				
+				<h4>{comments_count}</h4>
+				<p>تعليق</p>
+				
+				{media_like}
+				{media_event}
+				
+				<hr />
+				
+				{previous_media}
+				{next_media}
+			</div>
+		</div>
+		
+		<div class="row show-for-small">
+			<div class="large-12 columns">
+				<p>
+					{previous_media}
+					{next_media}
+					
+					{media_like}
+					
+					<b>{media_views}</b> مشاهدة
+					<b>{media_likes}</b> إعجاب
+					<b>{comments_count}</b> تعليق
+					
+					{media_event}
+				</p>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="large-12 columns">
+			<form action="media.php?action=update_tagmembers&id={media_id}" method="post" id="tagmembers_form">
+				{delete_media}
+				{rotate_media}
+				<h5>من ترى في هذه الصورة؟</h5>
+				
+				<input type="text" class="zoghiby-tagmember-autocomplete" />
+				<input type="hidden" name="tagmembers" id="tagmember_values" value="" />
+				
+				<div id="tagmembers"></div><br />
+				<input type="submit" name="submit" class="small button" value="حفظ" />
+			</form>
+			</div>
+		</div>
+		
+		<hr />
+		
+		<div class="row">
+			<div class="large-12 columns">
+				<h5>رأيك حول هذه الصورة</h5>
+				
+				<form action="media.php?action=add_comment&media_id={media_id}" method="post">
+					<div class="row">
+						<div class="large-12 columns">
+							<textarea name="content" placeholder="علّق على الصورة إذا أحببت."></textarea>
+						</div>
+					</div>
+		
+					<div class="row">
+						<div class="large-12 columns">
+							<input class="small button" type="submit" name="submit" value="تعليق" />
+						</div>
+					</div>
+				</form>
+				
+				<h5>التعليقات على الصورة <small>({comments_count})</small></h5>
+				
+				{comments}
+			</div>
+		</div>
+	</div>
+</div>

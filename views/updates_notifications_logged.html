@@ -1,0 +1,39 @@
+							<script type="text/javascript">
+								$(function(){
+									$("#top_notifications").hide();
+									
+									$("#notifications_link").click(function(){
+										load_notifications();
+									});
+									
+									$("#notifications_close").click(function(){
+										$("#top_notifications").hide();
+									});
+								});
+								
+								function load_notifications()
+								{
+									var message = "<li>جاري التحميل...</li>";
+									
+									$("#notifications_list").html(message).load("zoghiby_notifications.php");
+									
+									$("#top_notifications").show();
+									$("#notifications_word").html("لا يوجد إشعارات");
+								}
+							</script>
+
+							<span id="notifications_word">
+								<span class="notification">{notifications_number}</span>
+								<a href="#" id="notifications_link">إشعارات</a>
+							</span>
+							
+							<div id="top_notifications" class="notifications">
+								
+								<div class="close">
+									<a href="#" id="notifications_close"><i class="icon-remove"></i></a>
+								</div>
+								
+								<ul id="notifications_list"></ul>
+								
+								<div class="clear"></div>
+							</div>

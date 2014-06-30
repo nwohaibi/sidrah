@@ -1,0 +1,125 @@
+<script type="text/javascript">
+
+	var visited_nodes = Array();
+	var tribe_id = {tribe_id};
+
+	$(function(){
+
+		get_node({id});
+		
+		$("#searchquery").zoghibyAutoComplete({
+			type: 'auto-complete',
+			input_class: 'large-12 small-12 columns',
+		}, function (){
+			var id = this.attr('data-id');
+							
+			if (id != "")
+			{
+				get_node(id);
+			}
+		});
+	});
+	
+	function get_node(id)
+	{	
+		if ((id in visited_nodes) == false)
+		{	
+			$.ajax({
+				url: "zoghiby_ajax.php?action=get_node&tribe_id=" + tribe_id + "&id=" + id,
+				cache: false,
+				type: "GET",
+				success: function(data){		
+					visited_nodes[id] = {
+						"parent": data.parent,
+						"name": data.name,
+						"children": data.children,
+						"photo": data.photo,
+						"nickname": data.nickname,
+					};
+					
+					redraw_tree(id);
+				}
+			});
+		}
+		else
+		{
+			redraw_tree(id);
+		}
+		
+		$.ajaxSetup ({ cache: false });
+		var message = "جاري التحميل...";
+		$("#memberinfo").html(message).load("control.php?do=view_member&tribe_id=" + tribe_id + "&id=" + id);
+	}
+	
+	function redraw_tree(id)
+	{
+		var children_html = "";
+		
+		$.each(visited_nodes[id].children, function(child_id, child){
+			children_html += node_style(child, "", "");
+		});
+		
+		if (children_html != "")
+		{
+			children_html = "<ul>" + children_html + "</ul>";
+		}
+		
+		var node_html = "<ul>" + node_style(visited_nodes[id], "selected_node", children_html) + "</ul>"; 
+		var parent_html = node_html;
+		
+		
+		if (visited_nodes[id].parent.id != -1)
+		{
+			parent_html = "<ul>" + node_style(visited_nodes[id].parent, "", node_html) + "</ul>";
+		}
+		
+		$(".tree").html(parent_html);
+	}
+	
+	function node_style(node, color, children)
+	{
+		children_number_html = "";
+		nickname = "";
+		
+		if (node.children_number)
+		{
+			children_number_html = "(" + node.children_number + ")";
+		}
+		
+		if (node.nickname != "")
+		{
+			nickname = "(" + node.nickname + ")";
+		}
+
+		return "<li><a class='" + color + "' href='javascript:void(0);' onclick='get_node(" + node.id + ")'>" + node.name + " " + nickname + " " + children_number_html + "</a>" + children + "</li>";
+	}
+	
+	function delete_member(id)
+	{
+		$.ajaxSetup ({ cache: false });
+		var message = "جاري التحميل...";
+		$("#memberinfo").html(message).load("control.php?do=delete_member&tribe_id={tribe_id}&id=" + id);
+		$("#memberinfo").css("overflow-y", "hidden");
+	}
+</script>
+
+<div class="row">
+	<div class="large-8 columns">
+		<div class="row">
+				<input type="text" id="searchquery" />
+		</div>
+	</div>
+	<div class="large-4 columns">
+		<button class="small success button" id="search">ابحث</button>
+	</div>
+</div>
+
+<div class="row">
+	<div class="large-8 columns">
+		<div class="tree"></div>
+	</div>
+	<div class="large-4 columns">
+		<div class="panel" id="memberinfo"></div>
+	</div>
+</div>
+

@@ -1,0 +1,59 @@
+
+<script type="text/javascript">
+	$(function(){
+		$("#wwyltd_div").hide();	
+		
+		$("#wwyltd_link").click(function(){
+			$("#wwyltd_div").toggle();
+		});	
+		
+		$("#notifications").load("zoghiby_notifications.php");	
+	});
+</script>
+
+<div id="notifications">
+	جاري التحميل...
+</div>
+
+<div class="show-for-small panel">
+	<center><a href="change_avatar.php?id={id}">{photo}</a></center>
+</div>
+
+<div id="wwyltd">
+	<center>
+		{notifications}
+		<a id="wwyltd_link" href="javascript:void(0)" class="small button">ماذا تودّ أن تفعل؟</a>
+		<a href="logout.php" class="small button alert">خروج</a>
+	</center>
+</div>
+
+<div id="wwyltd_div">
+	<div class="large-2 columns hide-for-small">
+		<a href="change_avatar.php?id={id}">{photo}</a>
+		<hr />
+		<a href="familytree.php?id={id}">{username}</a>
+	</div>
+
+	<div class="large-10 columns">
+		<div class="row">
+			<div class="large-3 small-6 columns">
+				<a href="update_profile_{gender}.php?id={id}" class="small secondary button large-12 small-12 columns">تحديث المعلومات الأساسية</a>
+			</div>
+			<div class="large-3 small-6 columns">
+				<a href="update_optional.php?id={id}" class="small secondary button large-12 small-12 columns">تحديث المعلومات الاختيارية</a>
+			</div>
+			<div class="large-3 small-6 columns">
+				<a class="small secondary button large-12 small-12 columns" href="manage_privacy.php?id={id}">إدارة الخصوصيّة</a>
+			</div>
+			<div class="large-3 small-6 columns">
+				<a class="small secondary button large-12 small-12 columns" href="change_username.php">تغيير اسم المستخدم</a>
+			</div>
+			<div class="large-3 small-6 columns">
+				<a class="small secondary button large-12 small-12 columns" href="change_password.php">تغيير كلمة المرور</a>
+			</div>
+		
+			{cockpit}
+		</div>
+	</div>
+</div>
+	

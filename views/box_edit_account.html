@@ -1,0 +1,37 @@
+
+				<script type="text/javascript">
+				
+				$(function(){
+					$("#banks").val("{code}");
+				});
+				
+				</script>
+				
+				<div class="row">
+					<div class="large-12 columns">
+	
+						<h4>{name} - تحديث حساب</h4>
+						<form action="family_box.php?action=edit_account&id={id}" method="post">
+							<div class="row">
+								<div class="large-6 columns">
+									<label>رقم الحساب</label>
+									<input type="text" name="account_number" value="{account_number}" />
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="large-6 columns">
+									<label>البنك</label>
+									{banks}
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="large-4 columns">
+									<button class="small button" type="submit" name="submit" value="1">تحديث حساب</button>
+									<a href="family_box.php?action=view_subscribers" class="small button secondary">عرض المشتركين</a>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>

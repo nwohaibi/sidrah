@@ -1,0 +1,23 @@
+		
+					<form action="login.php" method="post">
+					
+					<div class="large-2 large-offset-6 columns">
+						<input name="username" type="text" placeholder="اسم المستخدم" />
+						<span class="show-for-large">
+						</span>
+					</div>
+					
+					<div class="large-2 columns">
+						<input name="password" type="password" placeholder="كلمة المرور" />
+					</div>
+					
+					<div class="large-2 columns">
+						<input type="hidden" name="url" value="{url}" />
+						<input name="submit" type="submit" value="تسجيل الدخول" class="small button" />
+						<a href="twitter.php?action=authorize&callback=twitter.php%3Faction%3Dlogin">
+							<img src="views/img/twitter_login.png" />
+						</a>
+						<label><a href="reset_password.php">نسيت كلمة المرور؟</a></label>
+					</div>
+					
+					</form>

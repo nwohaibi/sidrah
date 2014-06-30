@@ -1,0 +1,204 @@
+
+				<script type="text/javascript">
+			
+					function update_blood_type(blood_type)
+					{
+						$(".blood_type").val(blood_type);
+					}
+
+					function update_living(living)
+					{
+						$(".living").val(living);
+					}
+	
+					function add_hobby()
+					{
+						var one_hobby = '<div class="row"><div class="large-4 columns"><input type="text" name="new_hobbies[]" /></div></div>';
+						$("#more_hobbies").append(one_hobby);
+					}
+
+					function update_salary(salary)
+					{
+						$(".salary").val(salary);
+					}
+
+					$(function(){
+						update_salary({salary}); 
+						update_blood_type('{blood_type}');
+						update_living('{living}');
+						add_hobby();
+					});
+				</script>
+
+				<div class="row">
+					<div class="large-12 columns">
+						<form action="update_optional.php?id={id}" method="post" enctype="multipart/form-data" class="inputform">
+
+							<h4 class="subheader">اتصال</h4>
+
+							<div class="row">
+								<div class="large-4 columns">
+									<label>الهاتف</label>
+									<input type="text" name="phone_home" value="{phone_home}" />
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="large-4 columns">
+									<label>البريد الإلكتروني</label>
+									<input type="text" name="email" value="{email}"/>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="large-4 columns">
+									<label>هاتف العمل (إن وجد)</label>
+									<input type="text" name="phone_work" value="{phone_work}"/>
+								</div>
+							</div>
+
+							<h4 class="subheader">تكوين</h4>
+
+							<div class="row">
+								<div class="large-4 columns">
+									<label>فصيلة الدم</label>
+									<select name="blood_type" class="blood_type">
+										<option value=""></option>
+										<option value="O+">O+</option>
+										<option value="A+">A+</option>
+										<option value="B+">B+</option>
+										<option value="AB+">AB+</option>
+										<option value="O-">O-</option>
+										<option value="A-">A-</option>
+										<option value="B-">B-</option>
+										<option value="AB-">AB-</option>
+									</select>
+								</div>
+							</div>
+
+							<h4 class="subheader">السكن</h4>
+
+							<div class="row">
+								<div class="large-4 columns">
+									<label>نوع السكن</label>
+									<select name="living" class="living">
+										<option value=""></option>
+										<option value="ملك">ملك</option>
+										<option value="إيجار">إيجار</option>
+										<option value="مع العائلة">مع العائلة</option>
+										<option value="أخرى">أخرى</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="large-4 columns">
+									<label>الحيّ</label>
+									<input type="text" name="neighborhood" value="{neighborhood}" />
+								</div>
+							</div>
+
+							<h4 class="subheader">الراتب</h4>
+
+							<div class="row">
+								<div class="large-4 columns">
+									<label>معدّل الراتب (اختياري)</label>
+									<select name="salary" class="salary">
+										<option value="0"></option>
+										<option value="1">1,000-3,000</option>
+										<option value="2">3,000-5,000</option>
+										<option value="3">5,000-8,000</option>
+										<option value="4">8,000-10,000</option>
+										<option value="5">10,000-15,000</option>
+										<option value="6">15,000-20,000</option>
+										<option value="7">&gt;20,000</option>
+									</select>
+								</div>
+							</div>
+
+							<h4 class="subheader">ويب</h4>
+
+							<div class="row">
+								<div class="large-4 columns">
+									<label>الموقع الشخصي (أو المدوّنة)</label>
+									<input type="text" name="website" value="{website}"/>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="large-6 columns">
+									<div class="row collapse">
+										<label>Facebook</label>
+										<div class="large-8 small-6 columns">
+											<input type="text" name="facebook" value="{facebook}"/>
+										</div>
+										<div class="large-4 small-6 columns">
+											<span class="postfix" style="direction: ltr;">facebook.com/</span>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="large-4 columns">
+									<div class="row collapse">
+										<label>Twitter</label>
+										<div class="large-10 small-10 columns">
+											<input type="text" name="twitter" value="{twitter}"/>
+										</div>
+										<div class="large-2 small-2 columns">
+											<span class="postfix">@</span>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="large-4 columns">
+									<label>Linkedin</label>
+									<input type="text" name="linkedin" value="{linkedin}"/>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="large-6 columns">
+									<div class="row collapse">
+										<label>Flickr</label>
+										<div class="large-8 small-6 columns">
+											<input type="text" name="flickr" value="{flickr}"/>
+										</div>
+										<div class="large-4 small-6 columns">
+											<span class="postfix" style="direction: ltr;">flickr.com/photos/</span>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<h4 class="subheader">هوايات</h4>
+					
+							{hobbies}
+
+							<h6 class="subheader">هوايات أخرى</h6>
+					
+							<div id="more_hobbies"></div>
+							
+							<button type="button" class="small secondary button" onclick="add_hobby()">إضافة هواية</button>
+
+							<!--
+							<h4 class="subheader">صورة رمزيّة</h4>
+							<p>
+							<div>{photo}</div>
+							<input type="file" name="pic" />
+							(الحجم الأقصى 200 ك.ب)
+							</p>
+							-->
+
+							<div class="row">
+								<div class="large-4 columns">
+									<button class="small button" type="submit" name="submit" value="1"><i class="icon-ok icon-white"></i> تحديث</button>
+									<button class="small alert button" type="reset">مسح الحقول</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>

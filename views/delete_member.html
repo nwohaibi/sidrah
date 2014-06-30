@@ -1,0 +1,15 @@
+
+<form action="control.php?do=delete_member" method="post" id="delete_member">
+	<h4>لحظة!</h4>
+
+	<p>
+	هل أنت متأكد من أنك تريد حذف العضو، سيتم حذف جميع الأبناء/البنات التابعين، و كذلك العلاقات و الهوايات؟
+	</p>
+
+	<p>
+		<input type="hidden" name="id" value="{id}" />
+		<button class="small button alert" type="submit" name="submit" value="1">نعم</button>
+		<button class="small button" type="button" onclick="get_node({id})">لا</button>
+		(ننصح به)
+	</p>
+</form>

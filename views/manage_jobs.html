@@ -1,0 +1,86 @@
+				<div class="row">
+					<div class="large-12 columns">
+						<h4>إضافة وظيفة</h4>
+						<form action="manage_jobs.php?action=add_job" method="post">
+						
+							<div class="row">
+								<div class="large-4 columns">
+									<label>مسمّى الوظيفة</label>
+									<input type="text" name="title" value="" />
+								</div>
+							</div>
+						
+							<div class="row">
+								<div class="large-4 columns">
+									<label>مسمّى الوظيفة (إنجليزي)</label>
+									<input type="text" name="en_title" value="" />
+								</div>
+							</div>
+						
+							<div class="row">
+								<div class="large-8 columns">
+									<label>الوصف</label>
+									<textarea name="description" cols="40" rows="4"></textarea>
+								</div>
+							</div>
+						
+							<div class="row">
+								<div class="large-8 columns">
+									<label>المسؤوليات</label>
+									<textarea name="responsibilities" cols="40" rows="4"></textarea>
+								</div>
+							</div>
+						
+							<div class="row">
+								<div class="large-8 columns">
+									<label>المؤهلات</label>
+									<textarea name="qualifications" cols="40" rows="4"></textarea>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="large-8 columns">
+									<label>المهارات</label>
+									<textarea name="desired_skills" cols="40" rows="4"></textarea>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="large-12 columns">
+									<button class="small button" type="submit" name="submit" value="1"><i class="icon-ok icon-white"></i> إضافة وظيفة</button>
+									<span class="radius secondary label">استخدم (*) في أول كل سطر لإضافة عنصر قائمة.</span>
+								</div>
+							</div>	
+						</form>
+
+						<h4>إدارة الوظائف</h4>
+						
+						<form action="manage_jobs.php?action=update_jobs" method="post">
+
+							<table class="table" width="100%">
+							<thead>
+							<tr>
+								<th></th>
+								<th>مسمّى الوظيفة</th>
+								<th class="hide-for-small">عدد المتقدّمين</th>
+								<th>الإجراء</th>
+							</tr>
+							</thead>
+							<tbody>
+								{jobs}
+							</tbody>
+							</table>
+						
+							<ul class="button-group">
+								<li>			
+									<select name="do">
+										<option value="delete">حذف</option>
+									</select>
+								</li>
+								<li>
+									<button type="submit" name="submit" value="1" class="small button">نعم</button>
+								</li>
+							</ul>
+						</form>
+					</div>
+				</div>

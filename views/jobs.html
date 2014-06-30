@@ -1,0 +1,43 @@
+<script type="text/javascript">
+
+	$(function(){
+	
+		$("#job_howto_fly").hide();
+		$("#job_fly").hide();
+		$("#job_fly").slideDown();
+	
+		$("#job_fly").hover(function(){
+			$("#job_fly_text").html("أجل.");
+			$("#job_howto_fly").slideDown();
+		});
+	});
+
+</script>
+
+
+<div id="job_howto_fly">
+
+	<div id="job_howto_fly_text">
+	
+		<ul>
+			<li><span>لديك الرغبة في تطوير موقع عائلة الزغيبي.</span></li>
+			<li><span>لديك معرفة (متوسطة) بالرسم، أو التصميم، أو البرمجة، أو انتاج الفيديو، أو غيرها.</span></li>
+			<li><span>لدينا مقعد لك، فاركبْ معنا.</span></li>
+		</ul>
+		
+	</div>
+</div>
+
+<div id="job_fly">
+	<span id="job_fly_text">
+		هل ترغب في الطيران.
+	</span>
+</div>
+
+<div id="jobs">
+
+	<h1><span><i class="icon-user"></i></span> نحن نبحث عن...</h1>
+	<ul>
+		{jobs}
+	</ul>
+</div>

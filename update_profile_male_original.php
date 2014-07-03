@@ -3,7 +3,7 @@
 // UPDATE_PROFILE_MALE.PHP
 // Update male profile.
 //
-// Author:	Hussam Al-Zoghiby.
+// Author:	Hussam Al-sidrah.
 // Date:	12 Jul 2012.
 
 require_once("inc/functions.inc.php");
@@ -677,7 +677,7 @@ else
 			$daughters_html .= " <select name='daughter_dob_m[$daughter[id]]' id='daughter_dob_m_$daughter[id]'><option value='0'></option><option value='1'>محرم</option><option value='2'>صفر</option><option value='3'>ربيع الأول</option><option value='4'>ربيع الثاني</option><option value='5'>جمادى الأولى</option><option value='6'>جمادى الثانية</option><option value='7'>رجب</option><option value='8'>شعبان</option><option value='9'>رمضان</option><option value='10'>شوال</option><option value='11'>ذو القعدة</option><option value='12'>ذو الحجة</option></select>";
 			$daughters_html .= " <input type='text' placeholder='0000' name='daughter_dob_y[$daughter[id]]' size='4' value='$dob_y'/></td>";
 			$daughters_html .= "<td><select id='dm_$daughter[id]' name='daughter_marital_status[$daughter[id]]' onchange='daughter_husband_toggle(this.name)'><option value='1'>عزباء</option><option value='2'>متزوجة</option><option value='3'>طليقة</option><option value='4'>أرملة</option></select></td>";
-			$daughters_html .= "<td><input type='text' class='zoghiby-daughter-husband-autocomplete' id='daughter_husband_$daughter[id]' name='daughter_husband_name[$daughter[id]]' placeholder='اسم الزوج (رباعي)' value='$daughter[husband_name]' /></td></tr>";
+			$daughters_html .= "<td><input type='text' class='sidrah-daughter-husband-autocomplete' id='daughter_husband_$daughter[id]' name='daughter_husband_name[$daughter[id]]' placeholder='اسم الزوج (رباعي)' value='$daughter[husband_name]' /></td></tr>";
 		}
 		
 		$daughters_html .= "</tbody></table></div>";

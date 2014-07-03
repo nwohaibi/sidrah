@@ -6,8 +6,8 @@ require_once("inc/functions.inc.php");
 
 $action = mysql_real_escape_string(@$_GET["action"]);
 
-$session_verification_code = @$_SESSION["zoghiby_verification_code"];
-$session_mobile = @$_SESSION["zoghiby_mobile"];
+$session_verification_code = @$_SESSION["sidrah_verification_code"];
+$session_mobile = @$_SESSION["sidrah_mobile"];
 
 switch ($action)
 {
@@ -45,8 +45,8 @@ switch ($action)
 				$verification_code = sprintf("%04d", rand(0, 9999));				
 				$hashed_verification_code = md5_salt($verification_code);
 
-				$_SESSION["zoghiby_verification_code"] = $hashed_verification_code;
-				$_SESSION["zoghiby_mobile"] = $user_info["mobile"];
+				$_SESSION["sidrah_verification_code"] = $hashed_verification_code;
+				$_SESSION["sidrah_mobile"] = $user_info["mobile"];
 
 				// Send an sms.
 				$content = "رمز التأكيد\n$verification_code";
@@ -138,8 +138,8 @@ switch ($action)
 				// Update the value of sms received.
 				$update_sms_received_query = mysql_query("UPDATE user SET sms_received = '$sms_received' WHERE id = '$user_info[user_id]'");
 		
-				unset($_SESSION["zoghiby_verification_code"]);
-				unset($_SESSION["zoghiby_mobile"]);
+				unset($_SESSION["sidrah_verification_code"]);
+				unset($_SESSION["sidrah_mobile"]);
 		
 				echo success_message(
 					"تم توليد كلمة مرور جديدة.",

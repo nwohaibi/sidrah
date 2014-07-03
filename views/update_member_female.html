@@ -13,8 +13,8 @@
 					var default_value = "";
 	
 					$(function(){
-						// Set the mother to be zoghibyAutoComplete object.
-						$(".zoghiby-mother-autocomplete").zoghibyAutoComplete({
+						// Set the mother to be sidrahAutoComplete object.
+						$(".sidrah-mother-autocomplete").sidrahAutoComplete({
 							type: 'mother', suggested: suggested_mothers
 						});
 
@@ -48,12 +48,12 @@
 					function add_husband()
 					{
 						var marital_status = '<div class="large-2 small-6 columns"><select name="husband_marital_status[' + husband_index + ']"><option value="2">زوج</option><option value="3">مطلّق</option></select></div><div class="large-2 small-6 columns"><select name="husband_is_alive[' + husband_index + ']"><option value="1">حيّ يرزق</option><option value="0">متوفّى</option></select></div>';
-						var one_husband = '<div class="row"><div class="large-8 columns"><input class="zoghiby-husband-autocomplete" type="text" name="husband[' + husband_index + ']" size="30" placeholder="[اسم الزوج] [الأب] [الجد] [العائلة]" /></div>' + marital_status + '</div>';
+						var one_husband = '<div class="row"><div class="large-8 columns"><input class="sidrah-husband-autocomplete" type="text" name="husband[' + husband_index + ']" size="30" placeholder="[اسم الزوج] [الأب] [الجد] [العائلة]" /></div>' + marital_status + '</div>';
 
 						$("#more_husbands").append(one_husband);
 		
-						// Set the husbands to be zoghibyAutoComplete object.
-						$(".zoghiby-husband-autocomplete").zoghibyAutoComplete({
+						// Set the husbands to be sidrahAutoComplete object.
+						$(".sidrah-husband-autocomplete").sidrahAutoComplete({
 							type: 'husband', class_to_walk: 'husband'
 						}, function(){
 							update_husbands();
@@ -78,12 +78,12 @@
 					{
 						var il_daughter = '<div class="large-2 small-2 columns"><select name="daughter_is_alive[' + daughter_index + ']"><option value="1">حيّة ترزق</option><option value="0">متوفّاة</option></select></div>';
 						var dob_daughter = '<div class="large-1 small-1 columns"><select name="daughter_dob_d[' + daughter_index + ']"><option value="0"></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option></select></div><div class="large-1 small-1 columns"><select name="daughter_dob_m[' + daughter_index + ']"><option value="0"></option><option value="1">محرم</option><option value="2">صفر</option><option value="3">ربيع الأول</option><option value="4">ربيع الثاني</option><option value="5">جمادى الأولى</option><option value="6">جمادى الثانية</option><option value="7">رجب</option><option value="8">شعبان</option><option value="9">رمضان</option><option value="10">شوال</option><option value="11">ذو القعدة</option><option value="12">ذو الحجة</option></select></div><div class="large-1 small-1 columns"><input type="text" placeholder="0000" name="daughter_dob_y[' + daughter_index + ']" size="4" /></div>';
-						var ms_daughter = '<div class="large-3 small-3 columns"><select onchange="daughter_husband_toggle(this.name)" name="daughter_marital_status[' + daughter_index + ']" id="dm_' + daughter_index + '" ><option value="1">عزباء</option><option value="2">متزوجة</option><option value="3">طليقة</option><option value="4">أرملة</option></select></td><td></div><div class="large-5 small-5 columns"><input type="text" placeholder="اسم الزوج (رباعي)" name="daughter_husband_name[' + daughter_index + ']" style="display: none;" class="zoghiby-daughter-husband-autocomplete" id="daughter_husband_' + daughter_index + '"/></div>';
+						var ms_daughter = '<div class="large-3 small-3 columns"><select onchange="daughter_husband_toggle(this.name)" name="daughter_marital_status[' + daughter_index + ']" id="dm_' + daughter_index + '" ><option value="1">عزباء</option><option value="2">متزوجة</option><option value="3">طليقة</option><option value="4">أرملة</option></select></td><td></div><div class="large-5 small-5 columns"><input type="text" placeholder="اسم الزوج (رباعي)" name="daughter_husband_name[' + daughter_index + ']" style="display: none;" class="sidrah-daughter-husband-autocomplete" id="daughter_husband_' + daughter_index + '"/></div>';
 						var one_daughter = '<label>البنت</label><div class="row"><div class="large-2 small-2 columns"><input class="childname" type="text" name="daughter[' + daughter_index + ']" placeholder="[الاسم الأول]" /></div>' +  il_daughter + dob_daughter + '<div class="large-5 small-5 columns"><select class="dads" name="daughter_dad[' + daughter_index + ']"></select></div></div><div class="row"><div class="large-4 small-4 columns"><input type="text" placeholder="رقم الجوّال" name="daughter_mobile[' + daughter_index + ']" size="10" /></div>' + ms_daughter + '</div>';	
 
 						$("#daughters_table").append(one_daughter);
 
-						$(".zoghiby-daughter-husband-autocomplete").zoghibyAutoComplete({
+						$(".sidrah-daughter-husband-autocomplete").sidrahAutoComplete({
 							type: 'husband'
 						});
 
@@ -308,7 +308,7 @@
 								
 									<div class="row" id="p_mother">
 										<div class="large-8 columns">
-											<input type="text" class="zoghiby-mother-autocomplete" name="mother_name" value="{mother_name}" placeholder="[اسم الأم] [الأب] [الجد] [العائلة]"/>
+											<input type="text" class="sidrah-mother-autocomplete" name="mother_name" value="{mother_name}" placeholder="[اسم الأم] [الأب] [الجد] [العائلة]"/>
 										</div>
 										
 										<div class="large-2 small-6 columns">

@@ -43,8 +43,8 @@ if (!empty($submit))
 	$member = get_member_id($user["member_id"]);
 
 	// Save the cookie of the user information.
-	setcookie("zoghiby_username", $user["username"], $cookie_time);
-	setcookie("zoghiby_password", $user["password"], $cookie_time);
+	setcookie("sidrah_username", $user["username"], $cookie_time);
+	setcookie("sidrah_password", $user["password"], $cookie_time);
 		
 	// Update the last login time.
 	$now = time();

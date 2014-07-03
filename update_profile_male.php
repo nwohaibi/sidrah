@@ -3,7 +3,7 @@
 // UPDATE_PROFILE_MALE.PHP
 // Update male profile.
 //
-// Author:	Hussam Al-Zoghiby.
+// Author:	Hussam Al-sidrah.
 // Date:	12 Jul 2012.
 
 require_once("inc/functions.inc.php");
@@ -661,7 +661,7 @@ else
 				}
 			
 				$wives_html .= "<div class='row'>";
-				$wives_html .= "<div class='large-8 columns'><input class='zoghiby-wife-autocomplete' type='text' name='wife[$id]' size='30' placeholder='[اسم الزوجة] [الأب] [الجد] [العائلة]' value='$wife_name' /></div>";
+				$wives_html .= "<div class='large-8 columns'><input class='sidrah-wife-autocomplete' type='text' name='wife[$id]' size='30' placeholder='[اسم الزوجة] [الأب] [الجد] [العائلة]' value='$wife_name' /></div>";
 				$wives_html .= "<div class='large-2 small-6 columns'><select id='wife_marital_status_$id' name='wife_marital_status[$id]'><option value='2'>زوجة</option><option value='3'>طليقة</option></select></div>";
 				$wives_html .= "<div class='large-2 small-6 columns'><select id='wife_is_alive_$id' name='wife_is_alive[$id]'><option value='1'>حيّة ترزق</option><option value='0'>متوفّاة</option></select></div>";
 				$wives_html .= "</div>";
@@ -834,7 +834,7 @@ else
 				$daughters_html .= " <select name='daughter_dob_m[$daughter_index]' id='daughter_dob_m_$daughter_index'><option value='0'></option><option value='1'>محرم</option><option value='2'>صفر</option><option value='3'>ربيع الأول</option><option value='4'>ربيع الثاني</option><option value='5'>جمادى الأولى</option><option value='6'>جمادى الثانية</option><option value='7'>رجب</option><option value='8'>شعبان</option><option value='9'>رمضان</option><option value='10'>شوال</option><option value='11'>ذو القعدة</option><option value='12'>ذو الحجة</option></select>";
 				$daughters_html .= " <input type='text' placeholder='0000' name='daughter_dob_y[$daughter_index]' size='2' value='$daughter[dob_y]'/></td>";
 				$daughters_html .= "<td><select id='dm_$daughter_index' name='daughter_marital_status[$daughter_index]' onchange='daughter_husband_toggle(this.name)' class='daughter_ms_select'><option value='1'>عزباء</option><option value='2'>متزوجة</option><option value='3'>طليقة</option><option value='4'>أرملة</option></select></td>";
-				$daughters_html .= "<td><input type='text' class='zoghiby-daughter-husband-autocomplete' id='daughter_husband_$daughter_index' name='daughter_husband_name[$daughter_index]' placeholder='اسم الزوج (رباعي)' value='$daughter[husband_name]' /></td></tr>";
+				$daughters_html .= "<td><input type='text' class='sidrah-daughter-husband-autocomplete' id='daughter_husband_$daughter_index' name='daughter_husband_name[$daughter_index]' placeholder='اسم الزوج (رباعي)' value='$daughter[husband_name]' /></td></tr>";
 				
 				// JS
 				$js_on_load .= sprintf("update_daughter_mom_id(%d, %d); ", $daughter_index, $daughter["mother_id"]);
@@ -1048,7 +1048,7 @@ else
 				$daughters_html .= "<div class='large-5 small-5 columns'><select class='moms' name='daughter_mom[$daughter[id]]' id='daughter_mom_id_$daughter[id]'></select></div></div>";
 				$daughters_html .= "<div class='row'><div class='large-4 small-4 columns'><input type='text' placeholder='رقم الجوّال' value='$daughter[mobile]' name='daughter_mobile[$daughter[id]]' size='8' /></div>";
 				$daughters_html .= "<div class='large-3 small-3 columns'><select id='dm_$daughter[id]' name='daughter_marital_status[$daughter[id]]' onchange='daughter_husband_toggle(this.name)' class='daughter_ms_select'><option value='1'>عزباء</option><option value='2'>متزوجة</option><option value='3'>طليقة</option><option value='4'>أرملة</option></select></div>";
-				$daughters_html .= "<div class='large-5 small-5 columns'><input type='text' class='zoghiby-daughter-husband-autocomplete' id='daughter_husband_$daughter[id]' name='daughter_husband_name[$daughter[id]]' placeholder='اسم الزوج (رباعي)' value='$daughter[husband_name]' /></div>";
+				$daughters_html .= "<div class='large-5 small-5 columns'><input type='text' class='sidrah-daughter-husband-autocomplete' id='daughter_husband_$daughter[id]' name='daughter_husband_name[$daughter[id]]' placeholder='اسم الزوج (رباعي)' value='$daughter[husband_name]' /></div>";
 				$daughters_html .= "</div>";
 			}
 			

@@ -115,19 +115,19 @@ switch ($do)
 						
 						case "nominee":
 							$join_committee  = "<div class='notice_string'><p><i class='icon-star'></i> أنت مرشح للانضمام إلى هذه اللجنة، فهل ترغب في ذلك؟</p>";
-							$join_committee .= "<p><a class='zoghiby_btn positive' href='committees.php?do=decide_join_reject&committee_id=$committee[id]&decision=accept' id='accept'><i class='icon-ok icon-white'></i> نعم</a> <a class='zoghiby_btn negative href='#reject' onclick='reject();'><i class='icon-remove icon-white'></i> لا</a> <input type='text' id='reason' placeholder='بسبب...' onkeyup='write_reason()' onkeydown='write_reason()' onkeypress='write_reason()' /></p></div>";
+							$join_committee .= "<p><a class='sidrah_btn positive' href='committees.php?do=decide_join_reject&committee_id=$committee[id]&decision=accept' id='accept'><i class='icon-ok icon-white'></i> نعم</a> <a class='sidrah_btn negative href='#reject' onclick='reject();'><i class='icon-remove icon-white'></i> لا</a> <input type='text' id='reason' placeholder='بسبب...' onkeyup='write_reason()' onkeydown='write_reason()' onkeypress='write_reason()' /></p></div>";
 						break;
 					}
 					
 					// Add a button for managing the committee.
 					if ($one_member_committee["member_title"] == "head")
 					{
-						$join_committee .= "<p><a href='request_committee.php' class='zoghiby_btn positive'><i class='icon-cog icon-white'></i> إدارة أعضاء اللجنة</a></p>";
+						$join_committee .= "<p><a href='request_committee.php' class='sidrah_btn positive'><i class='icon-cog icon-white'></i> إدارة أعضاء اللجنة</a></p>";
 					}
 				}
 				else
 				{
-					$join_committee = "<p><span><a class='zoghiby_btn positive' href='committees.php?do=join_request_committee&id=$committee[id]'><i class='icon-ok-circle icon-white'></i> طلب الانضمام إلى هذه اللجنة</a></span></p>";
+					$join_committee = "<p><span><a class='sidrah_btn positive' href='committees.php?do=join_request_committee&id=$committee[id]'><i class='icon-ok-circle icon-white'></i> طلب الانضمام إلى هذه اللجنة</a></span></p>";
 				}
 			}
 		}

@@ -80,7 +80,7 @@ switch ($action)
 					}
 					else
 					{
-						$vote_html = "<input type='text' id='zoghiby_family_dean' name='family_dean_name' placeholder='أدخل اسم مرشحك لعمادة عائلة الزغيبي.' />";
+						$vote_html = "<input type='text' id='sidrah_family_dean' name='family_dean_name' placeholder='أدخل اسم مرشحك لعمادة عائلة الزغيبي.' />";
 					}
 					
 					// Get the main template.

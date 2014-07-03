@@ -3,7 +3,7 @@
 /**
  * In Allah We Trust.
  *
- * @author:	Hussam Al-Zoghiby.
+ * @author:	Hussam Al-sidrah.
  * @date:	9 Jul 2012.
  */
 

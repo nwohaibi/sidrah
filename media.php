@@ -111,7 +111,7 @@ switch ($action)
 		if ($user["group"] == "admin" || $user["member_id"] == $media["author_id"])
 		{
 			$delete_media = "<a href='media.php?action=delete_media&media_id=$media[id]' class='small button alert'>حذف</a>";
-			$rotate_media = "<a href='zoghiby_ajax.php?action=rotate_image&type=media&id=$media[id]' class='small button success'>تدوير 90º</a>";
+			$rotate_media = "<a href='sidrah_ajax.php?action=rotate_image&type=media&id=$media[id]' class='small button success'>تدوير 90º</a>";
 		} 
 		
 		// Get the creatde date for this media.

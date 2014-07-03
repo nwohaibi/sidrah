@@ -50,7 +50,7 @@ switch ($action)
 			while ($pending_member = mysql_fetch_array($pending_members_query))
 			{
 				$member_bio = "$pending_member[member_mobile] - $pending_member[member_major] - $pending_member[member_job_title]";
-				$pending_members_html .= "<tr><td><p><a href='familytree.php?id=$pending_member[member_id]'>$pending_member[member_fullname]</a> ($pending_member[member_age] سنة)</p><p class='datetime'>$member_bio</p></td><td><ul class='ul_inline'><li><a id='pending_accept_$pending_member[member_id]' href='request_committee.php?action=accept&member_id=$pending_member[member_id]' class='zoghiby_btn positive'><i class='icon-ok icon-white'></i> قبول</a></li> <li><a href='#reject' class='zoghiby_btn negative' onclick='reject($pending_member[member_id])'><i class='icon-remove icon-white'></i> رفض</a></li></ul><div class='reject_reason'><input type='text' placeholder='سبب الرفض (إن وجد)' id='reject_reason_$pending_member[member_id]' onkeyup='write_reject_reason($pending_member[member_id])' onkeydown='write_reject_reason($pending_member[member_id])' onkeypress='write_reject_reason($pending_member[member_id])' /></div></td></tr>";
+				$pending_members_html .= "<tr><td><p><a href='familytree.php?id=$pending_member[member_id]'>$pending_member[member_fullname]</a> ($pending_member[member_age] سنة)</p><p class='datetime'>$member_bio</p></td><td><ul class='ul_inline'><li><a id='pending_accept_$pending_member[member_id]' href='request_committee.php?action=accept&member_id=$pending_member[member_id]' class='sidrah_btn positive'><i class='icon-ok icon-white'></i> قبول</a></li> <li><a href='#reject' class='sidrah_btn negative' onclick='reject($pending_member[member_id])'><i class='icon-remove icon-white'></i> رفض</a></li></ul><div class='reject_reason'><input type='text' placeholder='سبب الرفض (إن وجد)' id='reject_reason_$pending_member[member_id]' onkeyup='write_reject_reason($pending_member[member_id])' onkeydown='write_reject_reason($pending_member[member_id])' onkeypress='write_reject_reason($pending_member[member_id])' /></div></td></tr>";
 			}
 		}
 		
@@ -70,7 +70,7 @@ switch ($action)
 			while ($committee_member = mysql_fetch_array($committee_members_query))
 			{
 				//$member_bio = "$committee_member[member_mobile] - $committee_member[member_major] - $committee_member[member_job_title]";
-				$committee_members_html .= "<tr><td><p><a href='familytree.php?id=$committee_member[member_id]'>$committee_member[member_fullname]</a></p></td><td><ul class='ul_inline'><li><input type='text' placeholder='سبب الإقالة (إن وجد)' id='resign_reason_$committee_member[member_id]'/></li> <li><a href='#reject' class='zoghiby_btn negative' onclick='resign($committee_member[member_id])'><i class='icon-minus icon-white'></i> إقالة</a></li></ul></td></tr>";
+				$committee_members_html .= "<tr><td><p><a href='familytree.php?id=$committee_member[member_id]'>$committee_member[member_fullname]</a></p></td><td><ul class='ul_inline'><li><input type='text' placeholder='سبب الإقالة (إن وجد)' id='resign_reason_$committee_member[member_id]'/></li> <li><a href='#reject' class='sidrah_btn negative' onclick='resign($committee_member[member_id])'><i class='icon-minus icon-white'></i> إقالة</a></li></ul></td></tr>";
 			}
 		}
 		
@@ -91,7 +91,7 @@ switch ($action)
 			{
 				//$member_bio = "$rejected_resigned_member[member_mobile] - $rejected_resigned_member[member_major] - $rejected_resigned_member[member_job_title]";
 				$status = ($rejected_resigned_member["status"] == "rejected") ? "مرفوض" : "مُقال";
-				$rejected_resigned_members_html .= "<tr><td><p>($status) <a href='familytree.php?id=$rejected_resigned_member[member_id]'>$rejected_resigned_member[member_fullname]</a></p></td><td>$rejected_resigned_member[reason]</td><td><ul class='ul_inline'><li><a href='request_committee.php?action=rejoin&member_id=$rejected_resigned_member[member_id]' class='zoghiby_btn positive'><i class='icon-repeat icon-white'></i> إعادة</a></li></ul></td></tr>";
+				$rejected_resigned_members_html .= "<tr><td><p>($status) <a href='familytree.php?id=$rejected_resigned_member[member_id]'>$rejected_resigned_member[member_fullname]</a></p></td><td>$rejected_resigned_member[reason]</td><td><ul class='ul_inline'><li><a href='request_committee.php?action=rejoin&member_id=$rejected_resigned_member[member_id]' class='sidrah_btn positive'><i class='icon-repeat icon-white'></i> إعادة</a></li></ul></td></tr>";
 			}
 		}
 		

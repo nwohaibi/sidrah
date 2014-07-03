@@ -185,7 +185,7 @@ switch ($action)
 				$inative_users_fetch = mysql_fetch_array($get_inactive_users_query);
 				$inactive_users_count = $inative_users_fetch["users_count"];
 				
-				$moderators_html .= "<tr data-id='$moderator[id]' id='table_$moderator[id]' class='onerow'><td><input type='checkbox' name='check[$moderator[id]]' id='check_$moderator[id]' /></td><td><b><a href='familytree.php?id=$moderator[member_id]'>$moderator[username]</a></b><p class='hide-for-small'>($moderator_info[fullname])</p></td><td><div class='row'><div class='large-12 columns'><input type='text' name='moderator_root[$moderator[id]]' value='$root_fullname' class='zoghiby-name-autocomplete' /></div></div></td><td class='hide-for-small'><center>$root_members_count</center></td><td class='hide-for-small'><center>$pending_requests</center></td><td class='hide-for-small'><center>$inactive_users_count</center></td></tr>";
+				$moderators_html .= "<tr data-id='$moderator[id]' id='table_$moderator[id]' class='onerow'><td><input type='checkbox' name='check[$moderator[id]]' id='check_$moderator[id]' /></td><td><b><a href='familytree.php?id=$moderator[member_id]'>$moderator[username]</a></b><p class='hide-for-small'>($moderator_info[fullname])</p></td><td><div class='row'><div class='large-12 columns'><input type='text' name='moderator_root[$moderator[id]]' value='$root_fullname' class='sidrah-name-autocomplete' /></div></div></td><td class='hide-for-small'><center>$root_members_count</center></td><td class='hide-for-small'><center>$pending_requests</center></td><td class='hide-for-small'><center>$inactive_users_count</center></td></tr>";
 			}
 		}
 

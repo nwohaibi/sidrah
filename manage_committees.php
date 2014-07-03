@@ -518,7 +518,7 @@ switch ($action)
 				
 				$committee_head_name = shorten_name($get_committee_head_fetch["fullname"]);
 				
-				$committees_html .= "<tr><td><input type='checkbox' id='check_$committee[id]' name='check[$committee[id]]'></td><td><input type='text' name='priority[$committee[id]]' value='$committee[priority]' size='1' /></td><td><a href='committees.php?do=view_committee&id=$committee[id]'>$committee[name]</a></td><td>($committee_head_name)</td><td><center><a href='manage_committees.php?action=manage_committee_members&id=$committee[id]'>$committee_members</a></center></td><td>$committee[keywords]</td><td><a href='manage_committees.php?action=edit_committee&id=$committee[id]' class='zoghiby_btn'><i class='icon-pencil'></i> تعديل</a> <a class='zoghiby_btn positive' href='manage_committees.php?action=suggest_members&committee_id=$committee[id]'><i class='icon-thumbs-up icon-white'></i> اقترح أعضاء</a></td></tr>";
+				$committees_html .= "<tr><td><input type='checkbox' id='check_$committee[id]' name='check[$committee[id]]'></td><td><input type='text' name='priority[$committee[id]]' value='$committee[priority]' size='1' /></td><td><a href='committees.php?do=view_committee&id=$committee[id]'>$committee[name]</a></td><td>($committee_head_name)</td><td><center><a href='manage_committees.php?action=manage_committee_members&id=$committee[id]'>$committee_members</a></center></td><td>$committee[keywords]</td><td><a href='manage_committees.php?action=edit_committee&id=$committee[id]' class='sidrah_btn'><i class='icon-pencil'></i> تعديل</a> <a class='sidrah_btn positive' href='manage_committees.php?action=suggest_members&committee_id=$committee[id]'><i class='icon-thumbs-up icon-white'></i> اقترح أعضاء</a></td></tr>";
 			}
 		}
 

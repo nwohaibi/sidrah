@@ -13,7 +13,7 @@
 		<link rel="shortcut icon" href="views/img/favicon.ico" type="image/x-icon" />
 		
 		<script type="text/javascript" src="views/js/jquery-1.4.2.min.js"></script>
-		<script type="text/javascript" src="views/js/jquery.zoghiby.autocomplete.js?version={version}"></script>
+		<script type="text/javascript" src="views/js/jquery.sidrah.autocomplete.js?version={version}"></script>
 		<script type='text/javascript' src='views/js/jquery.tipsy.js'></script>
 		<script type="text/javascript" src="views/js/jit-yc.js"></script>
 		

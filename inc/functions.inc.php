@@ -191,14 +191,14 @@ function user_information()
 {
 	
 	// COOKIE
-	if (!isset($_COOKIE["zoghiby_username"]) && !isset($_COOKIE["zoghiby_password"]))
+	if (!isset($_COOKIE["sidrah_username"]) && !isset($_COOKIE["sidrah_password"]))
 	{
 		return array("group" => "visitor");
 	}
 
 	// Escape the data, someone might attack server.
-	$cookie_username = mysql_real_escape_string($_COOKIE["zoghiby_username"]);
-	$cookie_password = mysql_real_escape_string($_COOKIE["zoghiby_password"]);
+	$cookie_username = mysql_real_escape_string($_COOKIE["sidrah_username"]);
+	$cookie_password = mysql_real_escape_string($_COOKIE["sidrah_password"]);
 
 	// Otherwise, there is information.
 	$get_user_info_query = mysql_query("SELECT * FROM user WHERE username = '$cookie_username' AND password = '$cookie_password'");
@@ -226,7 +226,7 @@ function user_information()
 // public
 function md5_salt($string)
 {
-	return md5($string . zoghiby_salt);
+	return md5($string . sidrah_salt);
 }
 
 // public

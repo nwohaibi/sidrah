@@ -1,5 +1,5 @@
 (function ($){
-	$.fn.zoghibyAutoComplete = function(options, callback){
+	$.fn.sidrahAutoComplete = function(options, callback){
 
 		var settings = $.extend({
 			'type': 'mother',
@@ -46,7 +46,7 @@
 				}
 
 				$.ajax({
-					url: 'zoghiby_autocomplete.php?name=' + encodeURIComponent(objVal) + '&type=' + settings['type'] + '&suggested=' + JSON.stringify(settings['suggested']) + '&unique_id=' + uniqueId,
+					url: 'sidrah_autocomplete.php?name=' + encodeURIComponent(objVal) + '&type=' + settings['type'] + '&suggested=' + JSON.stringify(settings['suggested']) + '&unique_id=' + uniqueId,
 					success: function(data){
 
 						$('#idnames-' + uniqueId).show();

@@ -14,8 +14,8 @@
 	
 				$(function(){
 				
-					// Set the mother to be zoghibyAutoComplete object.
-					$(".zoghiby-mother-autocomplete").zoghibyAutoComplete({
+					// Set the mother to be sidrahAutoComplete object.
+					$(".sidrah-mother-autocomplete").sidrahAutoComplete({
 						type: 'mother', suggested: suggested_mothers
 					});
 
@@ -55,7 +55,7 @@
 						
 						
 						// Check if the mother is empty.
-						if ($(".zoghiby-mother-autocomplete").val() == "")
+						if ($(".sidrah-mother-autocomplete").val() == "")
 						{
 							alert("الرجاء إدخال اسم الأم.");
 							$("#p_mother").addClass("warning");
@@ -132,7 +132,7 @@
 						// Walk up-on daughters to check husband names.
 						$(".daughter_ms_select").each(function(index){
 						
-							var _husband = $(".zoghiby-daughter-husband-autocomplete:eq(" + index + ")").val();
+							var _husband = $(".sidrah-daughter-husband-autocomplete:eq(" + index + ")").val();
 							var _value = $(".daughter_ms_select:eq(" + index + ")").val();
 							
 							// Check if one of the daughters is married/divorced/widow.
@@ -155,12 +155,12 @@
 				function add_wife()
 				{
 					var marital_status = '<select name="wife_marital_status[' + wife_index + ']"><option value="2">زوجة</option><option value="3">طليقة</option></select> <select name="wife_is_alive[' + wife_index + ']"><option value="1">حيّة ترزق</option><option value="0">متوفّاة</option></select>';
-					var one_wife = '<p><input class="zoghiby-wife-autocomplete" type="text" name="wife[' + wife_index + ']" size="30" placeholder="[اسم الزوجة] [الأب] [الجد] [العائلة]" /> ' + marital_status + '</p>';
+					var one_wife = '<p><input class="sidrah-wife-autocomplete" type="text" name="wife[' + wife_index + ']" size="30" placeholder="[اسم الزوجة] [الأب] [الجد] [العائلة]" /> ' + marital_status + '</p>';
 
 					$("#more_wives").append(one_wife);
 		
-					// Set the wives to be zoghibyAutoComplete object.
-					$(".zoghiby-wife-autocomplete").zoghibyAutoComplete({
+					// Set the wives to be sidrahAutoComplete object.
+					$(".sidrah-wife-autocomplete").sidrahAutoComplete({
 						type: 'wife', class_to_walk: 'wife'
 					}, function(){
 						update_wives();
@@ -185,12 +185,12 @@
 				{
 					var il_daughter = '<td><select name="daughter_is_alive[' + daughter_index + ']"><option value="1">حيّة ترزق</option><option value="0">متوفّاة</option></select></td><td><input type="text" placeholder="رقم الجوّال" name="daughter_mobile[' + daughter_index + ']" size="8" /></td>';
 					var dob_daughter = '<td><select name="daughter_dob_d[' + daughter_index + ']"><option value="0"></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option></select> <select name="daughter_dob_m[' + daughter_index + ']"><option value="0"></option><option value="1">محرم</option><option value="2">صفر</option><option value="3">ربيع الأول</option><option value="4">ربيع الثاني</option><option value="5">جمادى الأولى</option><option value="6">جمادى الثانية</option><option value="7">رجب</option><option value="8">شعبان</option><option value="9">رمضان</option><option value="10">شوال</option><option value="11">ذو القعدة</option><option value="12">ذو الحجة</option></select> <input type="text" placeholder="0000" name="daughter_dob_y[' + daughter_index + ']" size="2" /></td>';
-					var ms_daughter = '<td><select onchange="daughter_husband_toggle(this.name)" name="daughter_marital_status[' + daughter_index + ']" id="dm_' + daughter_index + '" class="daughter_ms_select"><option value="1">عزباء</option><option value="2">متزوجة</option><option value="3">طليقة</option><option value="4">أرملة</option></select></td><td><input type="text" placeholder="اسم الزوج (رباعي)" name="daughter_husband_name[' + daughter_index + ']" style="display: none;" class="zoghiby-daughter-husband-autocomplete" id="daughter_husband_' + daughter_index + '"/></td>';
+					var ms_daughter = '<td><select onchange="daughter_husband_toggle(this.name)" name="daughter_marital_status[' + daughter_index + ']" id="dm_' + daughter_index + '" class="daughter_ms_select"><option value="1">عزباء</option><option value="2">متزوجة</option><option value="3">طليقة</option><option value="4">أرملة</option></select></td><td><input type="text" placeholder="اسم الزوج (رباعي)" name="daughter_husband_name[' + daughter_index + ']" style="display: none;" class="sidrah-daughter-husband-autocomplete" id="daughter_husband_' + daughter_index + '"/></td>';
 					var one_daughter = '<tr><td class="childname"><input class="childname childnamein" type="text" name="daughter[' + daughter_index + ']" placeholder="[الاسم الأول]" /></td><td><select class="moms" name="daughter_mom[' + daughter_index + ']"></select></td>' + il_daughter + dob_daughter + ms_daughter + '</tr>';		
 
 					$("#daughters_table").append(one_daughter);
 
-					$(".zoghiby-daughter-husband-autocomplete").zoghibyAutoComplete({
+					$(".sidrah-daughter-husband-autocomplete").sidrahAutoComplete({
 						type: 'husband'
 					});
 
@@ -429,7 +429,7 @@
 							</li>
 						
 							<li>
-								<input type="text" class="zoghiby-mother-autocomplete" name="mother_name" value="{mother_name}" placeholder="[اسم الأم] [الأب] [الجد] [العائلة]"/>
+								<input type="text" class="sidrah-mother-autocomplete" name="mother_name" value="{mother_name}" placeholder="[اسم الأم] [الأب] [الجد] [العائلة]"/>
 							</li>
 							
 						<li>
@@ -1014,7 +1014,7 @@
 					<div id="more_wives">
 					</div>
 
-					<button type="button" class="zoghiby_btn positive" onclick="add_wife()"><i class="icon-plus icon-white"></i> إضافة زوجة</button>
+					<button type="button" class="sidrah_btn positive" onclick="add_wife()"><i class="icon-plus icon-white"></i> إضافة زوجة</button>
 					<p></p>
 
 					<div class="sons_daughters">
@@ -1042,7 +1042,7 @@
 							</table>
 						</div>
 
-						<button type="button" class="zoghiby_btn positive" onclick="add_son()"><i class="icon-plus icon-white"></i> إضافة ابن</button>
+						<button type="button" class="sidrah_btn positive" onclick="add_son()"><i class="icon-plus icon-white"></i> إضافة ابن</button>
 						<p></p>
 
 						<h2>البنات</h2>
@@ -1066,14 +1066,14 @@
 							</table>
 						</div>
 
-						<button type="button" class="zoghiby_btn positive" onclick="add_daughter()"><i class="icon-plus icon-white"></i> إضافة بنت</button>
+						<button type="button" class="sidrah_btn positive" onclick="add_daughter()"><i class="icon-plus icon-white"></i> إضافة بنت</button>
 						<p></p>
 					</div>
 					<p></p>
 
 					<p class="controls">
 						<button class="submit" type="submit" name="submit" value="1"><i class="icon-ok icon-white"></i> تحديث</button>
-						<button class="zoghiby_btn negative" type="reset">مسح الحقول</button>
+						<button class="sidrah_btn negative" type="reset">مسح الحقول</button>
 					</p>
 
 				</form>

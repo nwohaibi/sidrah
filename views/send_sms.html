@@ -61,7 +61,7 @@
 					function get_recipients_count()
 					{
 						$.ajax({
-							url: "zoghiby_ajax.php?action=send_sms_message",
+							url: "sidrah_ajax.php?action=send_sms_message",
 							type: "post",
 							async: false,
 							data: {method: "count", to: g_to},
@@ -74,7 +74,7 @@
 					function send_message_offset(l_to, l_message, l_offset)
 					{
 						$.ajax({
-							url: "zoghiby_ajax.php?action=send_sms_message",
+							url: "sidrah_ajax.php?action=send_sms_message",
 							type: "post",
 							async: false,
 							data: { method: "offset", to: g_to, message: g_message, offset: l_offset},

@@ -206,8 +206,8 @@ switch ($action)
 		
 		while ($applied_member = mysql_fetch_array($get_applied_members_query))
 		{
-			$accept_btn = "<a class='zoghiby_btn positive' href='manage_jobs.php?action=accept&id=$applied_member[id]'><i class='icon-ok icon-white'></i> قبول</a>";
-			$reject_btn = "<a class='zoghiby_btn negative' href='manage_jobs.php?action=reject&id=$applied_member[id]'><i class='icon-remove icon-white'></i> رفض</a>";
+			$accept_btn = "<a class='sidrah_btn positive' href='manage_jobs.php?action=accept&id=$applied_member[id]'><i class='icon-ok icon-white'></i> قبول</a>";
+			$reject_btn = "<a class='sidrah_btn negative' href='manage_jobs.php?action=reject&id=$applied_member[id]'><i class='icon-remove icon-white'></i> رفض</a>";
 			
 			switch ($applied_member["status"])
 			{

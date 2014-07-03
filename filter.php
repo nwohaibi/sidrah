@@ -216,8 +216,8 @@ switch ($action)
 		
 		$content .= "<form class='inputform' action='filter.php' method='post'><p><ul class='autocomplete_ul'>";
 		$content .= "<input type='hidden' name='query' value='$base64_encode_query' />";
-		$content .= "<li class='label'><button id='export_to_excel' type='submit' value='1' class='zoghiby_btn positive'><i class='icon-list-alt icon-white'></i> تصدير إلى Excel</button></li> ";
-		$content .= "<li><input id='prepared_relation_text' type='text' name='prepared_relation' placeholder='أدخل اسم العلاقة المعدّة للحفظ.' /></li> <li><button id='save_prepared_relation' type='submit' value='1' class='zoghiby_btn negative'><i class='icon-filter icon-white'></i> حفظ كعلاقة معدّة</button></li>";
+		$content .= "<li class='label'><button id='export_to_excel' type='submit' value='1' class='sidrah_btn positive'><i class='icon-list-alt icon-white'></i> تصدير إلى Excel</button></li> ";
+		$content .= "<li><input id='prepared_relation_text' type='text' name='prepared_relation' placeholder='أدخل اسم العلاقة المعدّة للحفظ.' /></li> <li><button id='save_prepared_relation' type='submit' value='1' class='sidrah_btn negative'><i class='icon-filter icon-white'></i> حفظ كعلاقة معدّة</button></li>";
 		$content .= "</ul><div class='clear'></div></p></form>";
 	
 		// Get the header.
@@ -272,11 +272,11 @@ switch ($action)
 			$content .= "<script type='text/javascript'>var one_{$parameter_name} = '$one_parameter_condition'; $(function(){ $('#btn_{$parameter_name}').click(function(){ $('#$parameter_name').append(one_{$parameter_name}); }); $('#btn_{$parameter_name}').click(); });</script>";
 		
 			$content .= "</div>";
-			$content .= "<button type='button' id='btn_{$parameter_name}' class='zoghiby_btn'><i class='icon-plus'></i></button>";
+			$content .= "<button type='button' id='btn_{$parameter_name}' class='sidrah_btn'><i class='icon-plus'></i></button>";
 			$content .= "</div>";
 		}
 	
-		$content .= "<div class='clear'></div><p><button value='1' type='submit' name='submit' class='zoghiby_btn positive'><i class='icon-search icon-white'></i> بحث</button></p>";
+		$content .= "<div class='clear'></div><p><button value='1' type='submit' name='submit' class='sidrah_btn positive'><i class='icon-search icon-white'></i> بحث</button></p>";
 		$content .= "</form>";
 	
 		// Get the header.

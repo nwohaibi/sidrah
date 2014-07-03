@@ -3,7 +3,7 @@
 // UPDATE_PROFILE_FEMALE.PHP
 // Update male profile.
 //
-// Author:	Hussam Al-Zoghiby.
+// Author:	Hussam Al-sidrah.
 // Date:	12 Jul 2012.
 
 require_once("inc/functions.inc.php");
@@ -689,7 +689,7 @@ else
 			$daughters_html .= "<div class='large-5 small-5 columns'><select class='dads' name='daughter_dad[$daughter[id]]' id='daughter_dad_id_$daughter[id]'></select></div></div>";
 			$daughters_html .= "<div class='row'><div class='large-4 small-4 columns'><input type='text' placeholder='رقم الجوّال' value='$daughter[mobile]' name='daughter_mobile[$daughter[id]]' size='10' /></div>";
 			$daughters_html .= "<div class='large-3 small-3 columns'><select id='dm_$daughter[id]' name='daughter_marital_status[$daughter[id]]' onchange='daughter_husband_toggle(this.name)'><option value='1'>عزباء</option><option value='2'>متزوجة</option><option value='3'>طليقة</option><option value='4'>أرملة</option></select></div>";
-			$daughters_html .= "<div class='large-5 small-5 columns'><input type='text' class='zoghiby-daughter-husband-autocomplete' id='daughter_husband_$daughter[id]' name='daughter_husband_name[$daughter[id]]' placeholder='اسم الزوج (رباعي)' value='$daughter[husband_name]' /></div>";
+			$daughters_html .= "<div class='large-5 small-5 columns'><input type='text' class='sidrah-daughter-husband-autocomplete' id='daughter_husband_$daughter[id]' name='daughter_husband_name[$daughter[id]]' placeholder='اسم الزوج (رباعي)' value='$daughter[husband_name]' /></div>";
 			$daughters_html .= "</div>";
 		}
 		

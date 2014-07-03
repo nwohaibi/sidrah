@@ -23,7 +23,7 @@ foreach ($tables as $table)
 }
 
 // Create tables.
-$contents = file_get_contents("init_zoghiby.sql");
+$contents = file_get_contents("init_sidrah.sql");
 
 // Remove comments.
 $contents = preg_replace("/--(.*)\n/", '', $contents);

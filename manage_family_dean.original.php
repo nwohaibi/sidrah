@@ -34,15 +34,15 @@ switch ($action)
 				switch ($deanship_period["status"])
 				{
 					case "nomination":
-						$change_to = "<a href='manage_family_dean.php?action=start_deanship_period_voting&deanship_period_id=$deanship_period[id]' class='zoghiby_btn positive'><i class='icon-thumbs-up icon-white'></i> البدء في مرحلة التصويت</a>";
+						$change_to = "<a href='manage_family_dean.php?action=start_deanship_period_voting&deanship_period_id=$deanship_period[id]' class='sidrah_btn positive'><i class='icon-thumbs-up icon-white'></i> البدء في مرحلة التصويت</a>";
 					break;
 					
 					case "voting":
-						$change_to = "<a href='manage_family_dean.php?action=finish_deanship_period_voting&deanship_period_id=$deanship_period[id]' class='zoghiby_btn positive'><i class='icon-star icon-white'></i> إنهاء مرحلة التصويت</a>";
+						$change_to = "<a href='manage_family_dean.php?action=finish_deanship_period_voting&deanship_period_id=$deanship_period[id]' class='sidrah_btn positive'><i class='icon-star icon-white'></i> إنهاء مرحلة التصويت</a>";
 					break;
 					
 					case "ongoing":
-						$change_to = "<a href='manage_family_dean.php?action=finish_deanship_period&deanship_period_id=$deanship_period[id]' class='zoghiby_btn positive'><i class='icon-ok-circle icon-white'></i> إنهاء فترة العمادة</a>";
+						$change_to = "<a href='manage_family_dean.php?action=finish_deanship_period&deanship_period_id=$deanship_period[id]' class='sidrah_btn positive'><i class='icon-ok-circle icon-white'></i> إنهاء فترة العمادة</a>";
 					break;
 					
 					case "finished":
@@ -50,7 +50,7 @@ switch ($action)
 					break;
 				}
 				
-				$deanship_periods_html .= "<tr><td><input type='checkbox' name='check[$deanship_period[id]]' /></td><td><i class='icon-calendar'></i> $deanship_period[from_period]</td><td><i class='icon-calendar'></i> $deanship_period[to_period]</td><td><b>($status)</b></td><td><ul class='ul_inline'><li><a href='manage_family_dean.php?action=edit_deanship_period&id=$deanship_period[id]' class='zoghiby_btn'><i class='icon-pencil'></i> تعديل</a></li> <li>$change_to</li></ul></td></tr>";
+				$deanship_periods_html .= "<tr><td><input type='checkbox' name='check[$deanship_period[id]]' /></td><td><i class='icon-calendar'></i> $deanship_period[from_period]</td><td><i class='icon-calendar'></i> $deanship_period[to_period]</td><td><b>($status)</b></td><td><ul class='ul_inline'><li><a href='manage_family_dean.php?action=edit_deanship_period&id=$deanship_period[id]' class='sidrah_btn'><i class='icon-pencil'></i> تعديل</a></li> <li>$change_to</li></ul></td></tr>";
 			}
 		}
 		

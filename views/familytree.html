@@ -7,7 +7,7 @@
 
 		get_node({id});
 		
-		$("#searchquery").zoghibyAutoComplete({
+		$("#searchquery").sidrahAutoComplete({
 			type: 'auto-complete',
 			input_class: 'large-12 small-12 columns',
 		}, function (){
@@ -25,7 +25,7 @@
 		if ((id in visited_nodes) == false)
 		{	
 			$.ajax({
-				url: "zoghiby_ajax.php?action=get_node&tribe_id=" + tribe_id + "&id=" + id,
+				url: "sidrah_ajax.php?action=get_node&tribe_id=" + tribe_id + "&id=" + id,
 				cache: false,
 				type: "GET",
 				success: function(data){		

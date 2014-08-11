@@ -31,10 +31,6 @@ define("sms_sender", "");
 define("user_min_length", 4);
 define("user_max_length", 40);
 
-// Twitter
-define("twitter_consumer_key", "");
-define("twitter_consumer_secret", "");
-
 // Version
 define("version", "1.0.0");
 

@@ -1,0 +1,93 @@
+<script type="text/javascript">
+	$(function(){
+	
+		$("#children").hide();
+		
+		add_son();
+		add_daughter();
+		
+		$("#usergroup").val("{usergroup}");
+		$("#is_alive").val("{is_alive}");
+		
+		if ({gender} == 1)
+		{
+			$("#children").show();
+		}
+		
+		$("#add_son").click(function(){
+			add_son();
+		});
+		
+		$("#add_daughter").click(function(){
+			add_daughter();
+		});
+	});
+	
+	function add_son()
+	{
+		var son = '<input type="text" name="sons[]" value="" /><br />';
+		$("#sons").append(son);
+	}
+	
+	function add_daughter()
+	{
+		var daughter = '<input type="text" name="daughters[]" value="" /><br />';
+		$("#daughters").append(daughter);
+	}
+</script>
+
+<form action="install.php?stage=view_member&id={id}" method="post">
+
+	<h2>{name}</h2>
+
+	<div class="clear"></div>
+
+	<p>
+	<b>الاسم الكامل</b><br />
+	{fullname}
+	</p>
+
+	<p>
+	<b>النبض</b><br />
+	<select name="is_alive" id="is_alive">
+		<option value="1">حيّ يرزق</option>
+		<option value="0">متوفّى</option>
+	</select>
+	</p>
+
+	<p>
+	<b>العضوية</b><br />
+	<select name="usergroup" id="usergroup">
+		<option value="user">عضو</option>
+		<option value="admin">مدير</option>
+	</select>
+	</p>
+
+	<p>
+	<b>الجوال</b><br />
+	<input type="text" name="mobile" value="{mobile}" />
+	</p>
+
+	<div id="children">
+	<p>
+	<b>إضافة أبناء</b>
+	<div id="sons">
+
+	</div>
+	<button type="button" class="btn" id="add_son"><i class="icon-plus"></i></button>
+	</p>
+
+	<p>
+	<b>إضافة بنات</b>
+	<div id="daughters">
+
+	</div>
+	<button type="button" class="btn" id="add_daughter"><i class="icon-plus"></i></button>
+	</p>
+	</div>
+
+	<p class="controls">
+		<button type="submit" name="submit" class="btn positive" value="1"><i class="icon-ok icon-white"></i> تحديث</button>
+	</p>
+</form>
+
